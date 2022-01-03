@@ -4,25 +4,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Section</title>
 </head>
 <body>
- <form name="section" class="section" action="Section" return formValidation()" method="post">
-      <table>
-        <tr>
-          <td><label for="name">Section Name:</label></td>
-          <td><input type="text" name="sectionName" id="name" placeholder="sectionName"required autofocus></td>
-        </tr>
-       
-          <td><label for="categoryName">Category Name</label></td>
-          <td><input type="text" name="categoryName" id="categoryName" required></td>
-        </tr>     
-       
-        <tr>
-          <td colspan="2"><input type="submit" class="submit" /></td>
-        </tr>      
-       
-      </table>
-    </form>
+ <center><h1>Section</h1></centre>
+    <form action="AddSection.jsp">
+    <button type="submit">Add Section</button></form><br><br>
+    <form action="UpdateSection.jsp">
+    <button type="submit">Update Section</button></form><br><br>
+    <form action="DeleteSection.jsp">
+    <button type="submit">Delete Section</button></form><br><br>
+    <form action="SessionList.jsp">
+    <button type="submit">Section List</button></form><br><br>  
 </body>
 </html>

@@ -71,19 +71,19 @@
    
   <div class="container">
     <h1 style=color:black>Registration Form</h1>
-    <form name="registration" class="registartion-form" action="Register" return formValidation()" method="post">
+    <form name="registration" class="registartion-form" action="RegisterServlet" return formValidation()" method="post">
       <table>
         <tr>
           <td><label for="name">User Name:</label></td>
-          <td><input type="text" name="name" id="name" placeholder="your name"required autofocus></td>
+          <td><input type="text" name="name" id="name"  pattern="[A-Za-z0-9]{3,10}"required autofocus></td>
         </tr>
         <tr>
           <td><label for="email">Email:</label></td>
-          <td><input type="text" name="email" id="email" placeholder="your email"required></td>
+          <td><input type="text" name="email" id="email"pattern="[a-z0-9]+[@][a-z]+[.][a-z]+"required></td>
         </tr>
         <tr>
           <td><label for="password">Password:</label></td>
-          <td><input type="password" name="password" id="password" required></td>
+          <td><input type="password" name="password" id="password" pattern="[A-Za-z0-9]{8,10}"required></td>
         </tr>     
        
         <tr>
@@ -94,7 +94,7 @@
     </form>
     <br>
     
-      <p>Already have an account? <a href="Login.jsp">Sign in</a>.</p>
+      <p>Already have an account? <a href="Login.jsp">Sign in</a></p>
     </div>
 
    
