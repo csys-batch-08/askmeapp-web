@@ -1,24 +1,29 @@
 package com.askme.servlet;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.askme.dao.QuestionDAOImpl;
+import com.askme.dao.SectionDAOImpl;
+
 /**
- * Servlet implementation class SectionContent
+ * Servlet implementation class DeleteQuestionServlet
  */
-@WebServlet("/SectionContent")
-public class SectionContent extends HttpServlet {
+@WebServlet("/DeleteQuestionServlet")
+public class DeleteQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SectionContent() {
+    public DeleteQuestionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,12 +42,30 @@ public class SectionContent extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		   
-	          myfile = open('story.txt')
-	        		  next_line = myfile.readline()
-	        		  while next_line != "":
-	        		      print(next_line)
-	        		      next_line = myfile.readline()
+response.setContentType("text/html");
+		
+		try {
+			PrintWriter out=response.getWriter();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+	try {
+		QuestionDAOImpl questionDao=new  QuestionDAOImpl();
+		String question=(request.getParameter("question"));		
+	    questionDao.deletedetails(question);
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Question.jsp");
+		requestDispatcher.forward(request, response);
+	} catch (ServletException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
 	}
 
-}
+

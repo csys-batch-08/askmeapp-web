@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-      <%@page import="com.askme.dao.QuestionDAOImpl"%>  
+     <%@page import="com.askme.dao.QuestionDAOImpl"%>  
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Update Question</h1>
+ <h1>Delete Question</h1>
     <p>Question List</p>
 <%  
 		QuestionDAOImpl questionDao=new QuestionDAOImpl();
@@ -38,22 +38,18 @@
 			<%} %>
 					</tbody>
 		           </table><br><br>
-<form name="question"  action="UpdateQuestionServlet"  method="post">
+<form name="question"  action="DeleteQuestionServlet"  method="post">
      
       <table>
         <tr>
-          <td><label for="question">Enter old Question</label></td>
-          <td><input type="text" name="oldquestion"  required autofocus></td>
+          <td><label for="question">Enter Question</label></td>
+          <td><input type="text" name="question"  required autofocus></td>
         </tr><br>
-         <tr>
-          <td><label for="name">Enter New Question</label></td>
-          <td><input type="text" name="newquestion" required autofocus></td>
-        </tr>
         <tr>
           <td colspan="2"><input type="submit" class="submit" /></td>
         </tr>      
        
       </table>
-    </form>
+      </form>	
 </body>
 </html>

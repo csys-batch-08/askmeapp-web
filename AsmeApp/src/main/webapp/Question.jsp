@@ -7,7 +7,7 @@
 <title>Question</title>
 </head>
 <body>
-	  <center><h1>Categories</h1></centre>
+	  <center><h1>Questions</h1></centre>
     <form action="AddQuestion.jsp">
     <button type="submit">Add Question</button></form><br><br>
     <form action="UpdateQuestion.jsp">

@@ -10,7 +10,7 @@
 <link rel=stylesheet type=text/css href=css/style.css>
  <style>
        body {
-          background-image: url('images/question.jpg');
+          background-image: url('images/askQuestion.jpg');
         background-repeat: no-repeat;
          background-attachment: fixed;  
          background-size: cover;
@@ -25,22 +25,22 @@
         <div id=header>
       <img src="images/simpleform.png">
       <ul>
-          <li><a href="ReadMore.jsp">About Us</a></li>
-          <li><a href="AskQuestion.jsp">Ask a question</a></li>
-          <li><a href="Comment.jsp">Comments</a></li>
+          <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>
+          
          
       </ul>
     </div>
     <div id=head>
   <center>
 <%int cid = Integer.parseInt(request.getParameter("cusid"));
+ session.setAttribute("category_id", cid);
 SectionDAOImpl sectionDAOImpl = new SectionDAOImpl();
 ResultSet rs = sectionDAOImpl.showSectionName(cid);
  %>
 <table border="2">
 			<thead>
 				<tr>
-				   <th >Category Name</th>
+				   <th >Section Name</th>
 				</tr>
 			</thead>
 			<br>

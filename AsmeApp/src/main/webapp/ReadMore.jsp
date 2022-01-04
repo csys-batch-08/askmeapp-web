@@ -4,9 +4,32 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel=stylesheet type=text/css href=css/style.css>
 <title>Read More...</title>
+ <style>
+        body {
+          background-image: url('images/master1.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;  
+          background-size: cover;
+          
+        }
+        </style>
 </head>
 <body>
+<div id="toolbar">
+    </div>
+    <div id="container">
+        <div id=header>
+      <img src="images/simpleform.png">
+      <ul>
+      		<li><a href="Index.jsp">Home</a></li>
+          <li><a href="AskmeQuestion.jsp">Ask a question</a></li>
+          <li><a href="comment.jsp">Comments</a></li>         
+      </ul>
+    </div>
+    <div id=head>
+   
      <h4> About Us:</h4>
 <p>AskMeOnline is an online tool built by a team of experts with vast experience in various fields, 
     including but not limited to issues related to management, business, leadership, industrial development, 
@@ -36,28 +59,6 @@ It is undeniable that the entire world has gone digital nowadays, thus,
 <h4>How It Works:</h4>
 AskMeOnline offers services as per your requirements. 
 Using your desktop computer, laptop, tablet, and or Smartphone.
-<h4>Comments</h4>
-When visitors leave comments on the site we collect the data shown in the comments form,
- and also the visitor’s IP address and browser user agent string to help spam detection.
-At the end of every post, there is a place for your to leave a comment.
- And we ask you to do it. When visitors leave comments on the site,
-  we collect the data shown in the comments form and work on the requirements as soon as practically possible.
-   So do not forget to leave a comment once you complete your reading.
-<h4>Search for:</h4>
-<h3>Search …
-Recent Posts</h3>
-Communication for a Healthy Marriage
-Avoiding Possible Regrets from Future Actions
-Five Tips on How to Stop Regretting the Past
-What Married Women Want from their Counterparts
-Why do Partnership Business Fail in Africa?
-<h3>Recent Comments</h3>
-Raja on Six (6) Reasons Many Marriages Collapse Before Five Years?
-seraphia on Five Tips on How to Stop Regretting the Past
-seraphia on Six (6) Reasons Many Marriages Collapse Before Five Years?
-Nestory Mhando on Six (6) Reasons Many Marriages Collapse Before Five Years?
-seraphia on Six (6) Reasons Many Marriages Collapse Before Five Years?
-
 </p>
 </body>
 </html>

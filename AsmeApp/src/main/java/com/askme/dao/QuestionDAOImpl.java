@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.askme.model.Question;
+import com.askme.model.Section;
 import com.askme.util.ConnectionUtil;
 
 
@@ -124,6 +125,27 @@ public class QuestionDAOImpl {
 		
 		return rs;
 	}
+	//Search by Question
+		public static ResultSet showQuestion(int id)
+		{
+			
+			String query = "select * from question_details where section_id=?";
+			ConnectionUtil conUtil = new ConnectionUtil();
+			Connection con = conUtil.getDbConnection();
+			ResultSet rs=null;
+			PreparedStatement stmt;
+			try {
+				stmt = con.prepareStatement(query);
+				stmt.setInt(1, id);
+				 rs=stmt.executeQuery();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+			return rs;
+		}
 	
 	
 

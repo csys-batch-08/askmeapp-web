@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.askme.dao.QuestionDAOImpl"%>  
+     <%@page import="com.askme.dao.SectionDAOImpl"%>  
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
     
@@ -11,11 +11,11 @@
 <title>Question</title>
 </head>
 <body>
- <h1> Question List</h1>
+ <h1> Section List</h1>
    
 <%  
-		QuestionDAOImpl questionDao=new QuestionDAOImpl();
-		ResultSet rs=questionDao.showAllQuestion();
+SectionDAOImpl sectionDao=new SectionDAOImpl();
+ResultSet rs=sectionDao.showAllSection();
 		%>
 	
    		<table border="2">

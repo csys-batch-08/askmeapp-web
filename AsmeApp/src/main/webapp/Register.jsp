@@ -5,6 +5,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Register</title>
+ <style>
+        body {
+          background-image: url('images/question.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;  
+          background-size: cover;
+          
+        }
+        </style>
 </head>
 <body>
  <style>
@@ -70,7 +79,7 @@
 </style>
    
   <div class="container">
-    <h1 style=color:black>Registration Form</h1>
+    <h1 style=color:white>Registration Form</h1>
     <form name="registration" class="registartion-form" action="RegisterServlet" return formValidation()" method="post">
       <table>
         <tr>
@@ -94,7 +103,7 @@
     </form>
     <br>
     
-      <p>Already have an account? <a href="Login.jsp">Sign in</a></p>
+      <p style=color:white>Already have an account? <a href="Login.jsp" style=color:white>Sign in</a></p>
     </div>
 
    

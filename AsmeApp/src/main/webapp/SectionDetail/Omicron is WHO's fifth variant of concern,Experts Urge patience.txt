@@ -1,0 +1,40 @@
+
+
+
+                                                                       Omicron Is WHO’s Fifth Variant of Concern, Experts Urge Patience
+
+
+
+ABOVE:
+The Omicron variant of SARS-CoV-2 was recently identified by scientists in South Africa.
+MODIFIED FROM © ISTOCK.COM, CROCOTHERY
+Update (December 1): US health officials confirm that Omicron is present in the United States after a sample from a person in California tested positive for the variant. The person had returned from South Africa on November 22, STAT reports.
+On Tuesday, November 23, scientists in South Africa alerted the world to a new variant of SARS-CoV-2, the virus that causes COVID-19. Officially named the B.1.1.529 variant, it has been dubbed Omicron as part of the World Health Organization (WHO)’s Greek naming system, and has put health officials and researchers around the world on high alert as they make sense of its potential implications for the ongoing global pandemic.
+
+In addition to South Africa, the new variant has been detected in at least 15 countries in Africa, Europe, and North America, according to CNN, prompting myriad restrictions on international travel. The variant is likely already present in additional countries, including the United States, The Wall Street Journal reports.
+
+WHO Director-General Tedros Adhanom Ghebreyesus describes the Omicron variant as “perilous and precarious,” according to Reuters. It’s too soon to tell whether Omicron will continue to spread internationally or if it will overtake Delta as the primary variant of concern, The Wall Street Journal notes. Many SARS-CoV-2 variants that initially seemed concerning have fizzled out over time. Still, the WHO designated Omicron as its fifth “Variant of Concern” on November 26.
+
+Little is known about the new variant, but experts have been working to glean insights from its long list of mutations as well as the preliminary clinical reports from South Africa. That early evidence suggests that Omicron may be even more infectious than the Delta variant that previously overtook the globe, which was, in turn, more infectious than previous forms of the virus, some experts say. Virologist Pei-Yong Shi of the University of Texas Medical Branch in Galveston tells NPR that the rapid spread to several South African provinces is concerning, as it may indicate the variant is outcompeting Delta. But University of Massachusetts Medical School virologist Jeremy Luban stresses that it’s too early to tell. “Everyone is afraid that Omicron will be significantly more transmissible than Delta. Upon first impression, it looks like it could be,” he tells NPR. “But that could be totally wrong. Right now, nobody knows. The problem is that our data is very limited.”
+
+Scripps Research infectious disease researcher Kristian Andersen tells Science that the sudden increase in Omicron infectious could be largely driven by superspreading events, such as university or sports events, rather than increased transmissibility. It’s similarly difficult to say anything about how severe infections from the variant are based on the limited number of cases reported to date, notes a WHO update.  
+
+See “Dissecting the Unusual Biology of the SARS-CoV-2 Delta Variant”
+The Omicron variant diverges from the original SARS-CoV-2 virus by about 50 mutations, including more than two dozen in the spike protein, Nature reports—far more than any other variant of SARS-CoV-2. Alex Sigal, a virologist at the University of KaZulu-Natal, tells The Wall Street Journal that it’s likely that the variant accumulated so many changes by surviving in a single patient for months, where it could slowly morph from a variant known as B.1.1 (which by now has nearly vanished from the world) into Omicron. According to the WHO, the earliest sample of the variant was collected on November 9, but when and where the variant originated remains uncertain—especially in light of the discovery of Omicron in stored European samples, reports NPR. Its detection in South Africa could be because of the country’s robust genomic surveillance program rather than proximity to the variant’s emergence, says STAT.
+
+
+The spike protein mutations have public health experts especially concerned, as most of the highly effective neutralizing antibodies, including those in antibody drugs such as Regeneron’s REGN-COV2, as well as those whose production is triggered by all of the COVID-19 vaccines available globally target that protein. This could mean that Omicron can better evade natural and vaccine-induced immunity, says White House Chief Medical Advisor Anthony Fauci, according to The Hill. However, it will take time—perhaps weeks—for experts to sort out whether or to what extent that’s the case, according to the WHO update.
+
+According to The Guardian, South African doctor Unben Pillay told reporters at a November 29 briefing that Omicron cases have been typically mild to date, and that vaccinated people “tend to do much better.” Cases are also heavily skewed towards the unvaccinated, South African health officials have noted. Together, these may indicate that the vaccines retain at least some degree of efficacy, but the country’s low vaccination rates—about 65 percent of people over 60 have received at least one dose, and closer to 25 percent of adults under 35, according to The Guardian—make drawing conclusions about efficacy difficult.
+
+Indeed, the fact that many countries in southern Africa that have inoculated only small percentages of their people means that, vaccine protection aside, these areas must prepare for the worse, says Rudo Mathivha, head of the intensive care unit at the Chris Hani Baragwanath Academic Hospital in Soweto, South Africa. “We know we have a new variant,” she tells members of the media in a press briefing, reports the Associated Press. “The worst-case scenario is that it hits us like Delta . . . we need to have critical care beds ready.”
+
+See “Wealthier Nations Disregarding WHO Call for COVID-19 Booster Moratorium”
+Pharmaceutical companies say they’re monitoring the situation to see if modifications to their vaccines need to be made. Pfizer and Moderna previously stated that it would take about six weeks to alter their mRNA vaccines, according to CNN, and spokespeople from both companies tell The New York Times that they’re investigating whether such alterations are necessary or if booster shots will fend off the Omicron variant.
+
+In addition to the novel spike protein mutations, the Omicron variant contains ones seen in previous variants. These include E484K, which studies suggest helps the coronavirus elude antibodies, as well as N501Y, which is implicated in making both the Alpha and Gamma variants more infectious, CNN reports. However, fully understanding how these and the variant’s other mutations may alter the dynamics of Omicron infections will require researchers to gather and analyze a lot more data over the coming days and weeks.
+
+In the meantime, experts emphasize that masking, washing hands, and social distancing remain helpful.
+
+“We have been through all of this before with the Alpha and Delta variant,” University of Leicester clinical virologist Julian Tang tells Science Focus. “But the main difference is that the scientific evidence for the effectiveness of masks and social distancing has increased—and there is more conviction now amongst scientists that these measures do work to reduce the spread of the virus.”
+

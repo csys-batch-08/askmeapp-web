@@ -107,7 +107,7 @@ public class CategoryDAOImpl {
 	//List of User
 	public ResultSet showAllCategory()
 	{
-		List<Category> categoryList=new ArrayList<Category>();
+		
 		
 		String selectQuery="select * from category_detail";
 		

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-   
+<center><h1>Your comments received successfully!!	 Reply Shortly</h1></center>
+<a href="UserHome.jsp">Back to Home Page</a>
 </body>
 </html>

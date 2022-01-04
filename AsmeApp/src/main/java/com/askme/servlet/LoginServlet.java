@@ -71,7 +71,8 @@ public class LoginServlet extends HttpServlet {
 						//session.setAttribute("LOGGED_IN_USER",currentUser.getName());
 						int user_id=0;
 						user_id=userDao.findUserId(email);
-						RequestDispatcher requestDispatcher=request.getRequestDispatcher("Index.jsp");
+						session.setAttribute("userid", user_id);
+						RequestDispatcher requestDispatcher=request.getRequestDispatcher("UserHome.jsp");
 						requestDispatcher.forward(request, response);
 						
 						

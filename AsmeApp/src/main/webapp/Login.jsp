@@ -6,6 +6,15 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <title>Login</title>
+  <style>
+        body {
+          background-image: url('images/question.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;  
+          background-size: cover;
+          
+        }
+        </style>
 </head>
 <body>
  <style>    
@@ -75,7 +84,7 @@ String loggedInAsUser = (String) session.getAttribute("LOGGED_IN_USER");
 %>		
    
   <div class="container">
-    <h1 style=color:black>Login</h1>
+    <h1 style=color:white>Login</h1>
     <form name="login" class="loginform" action="LoginServlet"  method="post">
       <table>       
         <tr>

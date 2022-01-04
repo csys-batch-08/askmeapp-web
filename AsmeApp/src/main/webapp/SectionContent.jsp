@@ -9,39 +9,46 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel=stylesheet type=text/css href=css/style.css>
 </head>
 <body>
+
 <div id="toolbar">
     </div>
+    <%      int secid = Integer.parseInt(request.getParameter("secid"));
+		%>
     <div id="container">
         <div id=header>
       <img src="images/simpleform.png">
       <ul>
-          <li><a href="ReadMore.jsp">About Us</a></li>
-          <li><a href="AskQuestion.jsp">Ask a question</a></li>
-          <li><a href="Comment.jsp">Comments</a></li>
+          <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>
+          <li><a href="AskmeQuestion.jsp?sectionid=<%=secid%>" style=color:white>Ask a question</a></li>
+          
          
       </ul>
     </div>
     <div id=head>
-<%int secid = Integer.parseInt(request.getParameter("secid"));
-SectionDAOImpl sectionDAOImpl = new SectionDAOImpl();
+<centre>
 
-%>
   <%
  			String content= request.getParameter("sectionname");
-            String file = application.getRealPath("/SectionDetail/") + content+".txt";
-            File fileObject = new File(file);
-
-            char data[] = new char[(int) fileObject.length()];
-            FileReader filereader = new FileReader(file);
-
-            int charsread = filereader.read(data);
-            out.println(new String(data, 0 , charsread));
-
-            filereader.close();
-        %>
-     
+						session.setAttribute("sectionName", content);%>
+            <a href="<%=content %>.pdf"><%=content %></a>
+         
+        <form action="UserRatingServlet">   
+        <h2><b>Place Your Rating</b></h2>
+        <h3>From 1....10 </h3>
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="text" name="rating" ></th>                   
+                </tr>
+            </thead>
+        </table>
+        <button type="submit">Submit Rating</button>
+    </form>
+     </form>
+     <h2><li><a href="Comments.jsp?section_id=<%=secid%>">Leave a Reply</a></li></h2>
      <br><br>   
           <li><a href="Index.jsp">Back to Home Page</a></li>
          

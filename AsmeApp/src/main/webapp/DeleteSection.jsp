@@ -10,7 +10,7 @@
 <title>Delete Section</title>
 </head>
 <body>
-	 <h1>Update Section</h1>
+	 <h1>Delete Section</h1>
     <p>Section List</p>
 <%  
 		SectionDAOImpl sectionDao=new SectionDAOImpl();

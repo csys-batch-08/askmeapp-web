@@ -13,15 +13,16 @@
   
    <h1> Question List</h1>
    
-<%  
+<%      int s_id = Integer.parseInt(request.getParameter("sectionid"));
+		session.setAttribute("section_id", s_id);
 		QuestionDAOImpl questionDao=new QuestionDAOImpl();
-		ResultSet rs=questionDao.showAllQuestion();
+		ResultSet rs=questionDao.showQuestion(s_id);
 		%>
 	
    		<table border="2">
 			<thead>
 				<tr>
-				  <th >Section Name</th>
+				  <th >Questions</th>
 				</tr>
 			</thead>
 			<br>
@@ -31,7 +32,7 @@
 				while(rs.next()){				
 				%>
 				<tr>	
-					 <td><%=rs.getString(2) %></td>							
+					<td><%=rs.getString(2)%></td>			
 					
 			</tr>
 					
@@ -43,9 +44,7 @@
         <tr>
           <td><label for="name">Enter Question:</label></td>
           <td><input type="text" name="question" required autofocus></td>
-        </tr>       
-            
-       
+        </tr>      
         <tr>
           <td colspan="2"><input type="submit" class="submit" /></td>
         </tr>      

@@ -10,23 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.askme.dao.CategoryDAOImpl;
+import com.askme.dao.AnswerDAOImpl;
+import com.askme.dao.QuestionDAOImpl;
 import com.askme.dao.SectionDAOImpl;
-import com.askme.model.Category;
-import com.askme.model.Section;
-
+import com.askme.model.Answer;
+import com.askme.model.Question;
 
 /**
- * Servlet implementation class AddSection
+ * Servlet implementation class AddAnswersServlet
  */
-@WebServlet("/AddSectionServlet")
-public class AddSection extends HttpServlet {
+@WebServlet("/AddAnswersServlet")
+public class AddAnswersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddSection() {
+    public AddAnswersServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,9 +44,7 @@ public class AddSection extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-response.setContentType("text/html");
-		
+		//doGet(request, response);
 		try {
 			PrintWriter out=response.getWriter();
 		} catch (IOException e1) {
@@ -54,15 +52,17 @@ response.setContentType("text/html");
 			e1.printStackTrace();
 		}
 	
+	
+	
 	try {
-		 CategoryDAOImpl ObjcatDao=new  CategoryDAOImpl();
-		 SectionDAOImpl sectionDao=new  SectionDAOImpl();
-		String categoryName=(request.getParameter("selectCategoryName"));	
-		int id=ObjcatDao.findCategoryId(categoryName);
-		String sectionName=(request.getParameter("sectionName"));	
-		Section section=new Section(sectionName,id);
-		sectionDao.insertSection(section);			
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Section.jsp");
+		String answer=(request.getParameter("answer"));	
+		String question=(request.getParameter("question"));	
+		QuestionDAOImpl questionDao=new QuestionDAOImpl();
+		int id=questionDao.findQuestionId(question);
+		Answer answers=new Answer(answer,id);
+		AnswerDAOImpl answerDao=new AnswerDAOImpl();
+		answerDao.insertAnswer(answers);	  
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Answers.jsp");
 		requestDispatcher.forward(request, response);
 	} catch (ServletException e) {
 		// TODO Auto-generated catch block
@@ -71,9 +71,6 @@ response.setContentType("text/html");
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
-}
-	
 	}
-
+	}
 
