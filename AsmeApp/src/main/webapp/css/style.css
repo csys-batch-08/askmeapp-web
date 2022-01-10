@@ -1,8 +1,9 @@
 #toolbar
-{
+{   
     background-color: black;
     width: 100%;
     height: 10px;
+    position:sticky;
  }
 
 #header {
@@ -28,9 +29,11 @@
     padding: 15px;
 }
 #head{ 
-    font-size:larger;}
+    font-size:larger;
+    }
 #head1{ 
-    font-size:xx-large;}
+    font-size:xx-large;
+    }
 
 .button {
     display: block;
@@ -50,5 +53,5 @@
   }
         
   
-    
+   
 

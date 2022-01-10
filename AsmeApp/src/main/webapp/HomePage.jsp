@@ -11,19 +11,36 @@
 <title>Home</title>
 <link rel=stylesheet type=text/css href=css/style.css>
  <style>
+ *{
+ margin:0;
+ padding:0;}
        body {
-          background-image: url('images/askQuestion.jpg');
-        background-repeat: no-repeat;
+         background-image: url('images/askQuestion.jpg');
+         background-repeat: no-repeat;
          background-attachment: fixed;  
          background-size: cover;
           
        }
-       box{
-       margin-left:550px;
-       margin-top:300px;
-       
-       }
-       
+         #box{
+     margin-right:10px;
+     padding:100px;}
+      #box1{
+     margin-left:-10px;  
+    padding-left:150px;
+     margin-top:-100px;   
+    }
+     
+      table, th, td {
+                border: 2px solid white;
+                text-align:center;
+            }
+            th, td {
+                padding: 12px;
+                background-color:none;
+            }
+            .title{
+            padding-left:600px;}
+    
        
         </style>
 </head>
@@ -35,9 +52,8 @@
         <div id=header>
       <img src="images/simpleform.png">
       <ul>
-          <li><a href="ReadMore.jsp">About Us</a></li>
-          <li><a href="AskmeQuestion.jsp">Ask a Question</a></li>
-          <li><a href="Comment.jsp">Leave a Reply</a></li>
+          <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>
+          
          
       </ul>
     </div>
@@ -49,9 +65,10 @@
 		UserRatingDAOImpl userRatingDao=new UserRatingDAOImpl();
         ResultSet rs=userRatingDao.showRating();
 		%>	
-   		<table border="5" align="right">
+   		<table align="right" >
+   		<h2 class="title" align="center">Frequently viewed Section</h2>
 			<thead>
-			<tr><th><h2>Frequently viewed Section</h2></th></tr>
+			
 				<tr>				
 				   <th>Section Name</th>
 				   <th>Rating</th>
@@ -65,22 +82,22 @@
 				%>
 				<tr>	
 									
-					<td><%=rs.getString(1) %></td>	
-					<td><%=rs.getInt(2) %></td>		
+					<td ><%=rs.getString(1) %></a></td>	
+					<td ><%=rs.getInt(2) %></td>		
 				
 			</tr>					
 			<%} %>
 					</tbody>
 		           </table><br><br>
    </form>
-    <center>
    
-    
+   
+  <form id="box1">    
 <%  
 		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
         ResultSet rs1=categoryDao.showAllCategory();
 		%>	
-   		<table border="5" align="center"  >
+   		<table align="center" >
 			<thead>
 				<td> <h2>Category List</h2></td>
 			</thead>
@@ -92,12 +109,12 @@
 				%>
 				<tr>	
 									
-					<td><a href="SectionDetails.jsp?cusid=<%=rs1.getInt(1)%>"><%=rs1.getString(2)%></a></td>		
+					<td><a href="SectionDetails.jsp?cusid=<%=rs1.getInt(1)%>"><%=rs1.getString(2)%></a></td>	
 				
 			</tr>					
 			<%} %>
 					</tbody>
-		           </table><br><br>
-  </center> 
+		           </table></form><br><br>
+ 
 </body>
 </html>

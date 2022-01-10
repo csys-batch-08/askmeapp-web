@@ -7,9 +7,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Question List</title>
 </head>
-<body>
+<body style="background-color:powderblue;">
   <p>Question List</p>
 <%  
 		QuestionDAOImpl questionDao=new QuestionDAOImpl();
@@ -37,5 +37,6 @@
 			<%} %>
 					</tbody>
 		           </table><br><br>
+		            <li><a href="Admin.jsp">Back to Home Page</a></li>
 </body>
 </html>

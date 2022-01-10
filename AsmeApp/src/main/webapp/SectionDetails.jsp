@@ -10,6 +10,9 @@
 <title>Section Details</title>
 <link rel=stylesheet type=text/css href=css/style.css>
  <style>
+  *{
+ margin:0;
+ padding:0;}
        body {
           background-image: url('images/askQuestion.jpg');
         background-repeat: no-repeat;
@@ -17,6 +20,26 @@
          background-size: cover;
           
        }
+       #box{
+     margin-right:10px;
+     padding:100px;}
+      #box1{
+     margin-left:-10px;  
+    padding-left:150px;
+     margin-top:-200px;   
+    }
+     
+      table, th, td {
+                border: 2px solid white;
+                text-align:center;
+            }
+            th, td {
+                padding: 12px;
+                background-color:none;
+            }
+            .title{
+            padding-left:600px;}
+    
         </style>
 </head>
 <body>
@@ -33,14 +56,15 @@
     </div>
     <div id=head>
   
-
+<form id="box">
  <%  
 		UserRatingDAOImpl userRatingDao=new UserRatingDAOImpl();
         ResultSet rs2=userRatingDao.showRating();
 		%>	
  <table border="5" align="right">
+ 	<h2 class="title" align="center">Frequently viewed Section</h2>
 			<thead>
-			<tr><th><h2>Frequently viewed Section</h2></th></tr>
+			
 				<tr>				
 				   <th>Section Name</th>
 				   <th>Rating</th>
@@ -60,12 +84,12 @@
 			</tr>					
 			<%} %>
 					</tbody>
-		           </table><br><br>
+		           </table></form><br><br>
 <%int cid = Integer.parseInt(request.getParameter("cusid"));
  session.setAttribute("category_id", cid);
 SectionDAOImpl sectionDAOImpl = new SectionDAOImpl();
 ResultSet rs = sectionDAOImpl.showSectionName(cid);
- %>		           
+ %>	<form id="box1">           
 <table border="2" align="left">
 			<thead>
 				<tr>
@@ -89,6 +113,6 @@ ResultSet rs = sectionDAOImpl.showSectionName(cid);
 					</tbody>
 		           </table><br><br>
 
-
+</form>	
 </body>
 </html>

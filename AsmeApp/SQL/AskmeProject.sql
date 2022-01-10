@@ -6,7 +6,7 @@ create table user_detail(user_id number generated always as identity(start with 
                         constraint pk_user_id primary key(user_id));
  desc user_detail;                       
  select * from user_detail;                      
-
+commit;
 create table category_detail(category_id number generated always as identity(start with 1 increment by 1),
                             category_name varchar2(20)unique,
                             constraint pk_category_id primary key(category_id));
@@ -16,11 +16,12 @@ delete from category_detail where category_id=24;
  desc category_detail;                           
 select * from category_detail;
 create table section_detail(section_id number generated always as identity(start with 200 increment by 1),
-                             section_name varchar2(100) not null,
+                             section_name varchar2(100) unique,
                              category_id number,
                              rating number(10) default 0,
                              constraint pk_section_id primary key(section_id),
                              constraint fk_category_id foreign key(category_id) references category_detail(category_id));
+alter table section_details add unique (section_name);                            
  select * from section_details;  
 commit;
  desc section_details;
@@ -32,7 +33,7 @@ create table question_details(question_id  number generated always as identity(s
                              constraint fk_section foreign key(section_id) references section_details(section_id));
  desc question_details;                            
 select * from question_details;           
-delete from question_details;
+
 create table ask_me_questions(ask_id   number generated always as identity(start with 500 increment by 1),
                    user_id number,
                    category_id number,
@@ -44,8 +45,8 @@ create table ask_me_questions(ask_id   number generated always as identity(start
                    constraint fk_sect foreign key(section_id) references section_details(section_id),
                    constraint fk_question_id foreign key(question_id) references question_details(question_id) );
 desc ask_me_questions;   
-select * from ask_me_questions; 
-delete from ask_me_questions;
+select * from ask_me_questions;
+
 create table comment_by_user(comment_id  number generated always as identity(start with 400 increment by 1),
                      user_id number,
                      category_id number,
@@ -57,15 +58,19 @@ create table comment_by_user(comment_id  number generated always as identity(sta
                      constraint fk_sec foreign key(section_id) references section_details(section_id));
 desc comment_by_user;   
 select * from comment_by_user;
-drop table comments_by_users;
-delete from comment_by_user;
+
 commit;                  
 
 create table answer(answers varchar(1000) not null,question_id number,
 constraint fk_ques foreign key(question_id) references question_details(question_id) );
 select * from answer;
  select * from section_details;
- delete from section_details;
+
  select * from category_detail;
 
 select answers from answer where question_id=362;
+update section_details set rating=3 where section_id=266;
+
+
+
+select distinct user_detail.email,comment_by_user.comments from ( user_detail  inner join comment_by_user using(user_id));

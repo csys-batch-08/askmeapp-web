@@ -8,7 +8,7 @@
 <link rel=stylesheet type=text/css href=css/style.css>
 <style>
        body {
-          background-image: url('images/question.jpg');
+          background-image: url('images/master1.jpg');
         background-repeat: no-repeat;
          background-attachment: fixed;  
          background-size: cover;
@@ -18,7 +18,7 @@
 </style>
 </head>
 <body>
-<center><img src="vanakkam.jpg" height="150px" width="150px">
+
 <style>
     
   * {
@@ -31,7 +31,7 @@
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    background-image: url('bg.jpg');
+   
    
   }
   
@@ -95,7 +95,7 @@
     </div>
     <div id=head> 
     <center> 
-	<div class="container">
+	<div class="container">	
    <form name="comment" action="CommentServlet"  method="post">
       <table>
         <tr>
@@ -110,5 +110,6 @@
     </form>		
     </center> 
     </div>	
+     <li><a href="Admin.jsp">Back to Home Page</a></li>
 </body>
 </html>

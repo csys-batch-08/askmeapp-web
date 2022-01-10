@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    
+   
 </head>
 <body style="background-color:powderblue;">
 <center><h1>Welcome Admin</h1></center>
@@ -26,7 +26,7 @@ li a {
 }
 
 li a.active {
-  background-color: #04AA6D;
+  background-color:#0099FF;
   color: white;
 }
 
@@ -44,9 +44,12 @@ li a:hover:not(.active) {
    <li><a href="Question.jsp">Questions</a></li>
     <li><a href="Answers.jsp">Answers</a></li>
     <li><a href="CommentsView.jsp">Comment_by_User</a></li>
+    <li><a href="Login.jsp">Logout</a></li>
 </ul>
 
-   
+
+ 
+ 
 
     
 </body>

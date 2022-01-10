@@ -6,6 +6,10 @@
 <meta charset="ISO-8859-1">
 <title>Register</title>
  <style>
+  * {
+    margin: 0;
+    padding:0;
+  }
         body {
           background-image: url('images/question.jpg');
           background-repeat: no-repeat;
@@ -17,10 +21,6 @@
 </head>
 <body>
  <style>
-    
-  * {
-    margin: 0
-  }
   
   .container {
     display: flex;
@@ -84,7 +84,7 @@
       <table>
         <tr>
           <td><label for="name">User Name:</label></td>
-          <td><input type="text" name="name" id="name"  pattern="[A-Za-z0-9]{3,10}"required autofocus></td>
+          <td><input type="text" name="name" id="name"  pattern="[A-Za-z0-9]{3,10}" "required autofocus></td>
         </tr>
         <tr>
           <td><label for="email">Email:</label></td>

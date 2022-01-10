@@ -2,6 +2,8 @@ package com.askme.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.askme.exception.EmailAlreadyExistsException;
 import com.askme.impl.UserDAOImpl;
 import com.askme.model.User;
 
@@ -45,25 +48,45 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException  {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html");
-		
-			PrintWriter out=response.getWriter();
-			try {
+		  response.setContentType("text/html");		
+			PrintWriter out=response.getWriter();			
 		//doGet(request, response);
 		String name=(request.getParameter("name"));
 		String email=(request.getParameter("email"));
-		String password=(request.getParameter("password"));
-		
+		String password=(request.getParameter("password"));		
 		User Objuser=new User(name,email,password);
-		UserDAOImpl userDao=new UserDAOImpl();
-		userDao.insertUser(Objuser);
+		UserDAOImpl userDao=new UserDAOImpl();	
+		try {
+			ResultSet rs=userDao.emailExists(Objuser);	
+			if(rs.next()) {
+			if(email.equals(rs.getString(3)))
+						{
+					throw new EmailAlreadyExistsException();
+				}
+			}
+			userDao.insertUser(Objuser);
+			response.sendRedirect("Login.jsp");}
+		
+			catch(EmailAlreadyExistsException e)
+			{
+				response.sendRedirect("ErrorMessage.jsp?message="+e.getMessage()+"&url=Register.jsp");
+			}
+		
+			
+		 
 //		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Login.jsp");		
 //			requestDispatcher.forward(request, response);
-			response.sendRedirect("Login.jsp");
-		} catch (IOException e) {
+			
+		
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+						catch (IOException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+			
 		
 	}
 

@@ -1,6 +1,7 @@
 package com.askme.controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+import com.askme.exception.PasswordIncorrect;
 import com.askme.impl.AskmeDAOImpl;
 import com.askme.impl.QuestionDAOImpl;
 import com.askme.impl.SectionDAOImpl;
@@ -46,29 +49,30 @@ public class AskQuestionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		 HttpSession session=request.getSession();
-		try {
+		 HttpSession session=request.getSession();		
 			PrintWriter out=response.getWriter();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();		}
-	
+		
 	try {
-		String questions=(request.getParameter("question"));	
+		int question_id=Integer.parseInt(session.getAttribute("quesId").toString());
+		
+		
+		//String questions=(request.getParameter("question"));		
 		int user_Id=Integer.parseInt(session.getAttribute("userid").toString());
 		//System.out.println(user_Id);
 		int cat_id=Integer.parseInt(session.getAttribute("category_id").toString());
 		//System.out.println(cat_id);
 		int sec_id=Integer.parseInt(session.getAttribute("secid").toString());
-		QuestionDAOImpl questionDao=new QuestionDAOImpl();
-		int question_id=questionDao.findQuestionId(questions);
-		System.out.println(question_id);
+		
 		AskmeDAOImpl askmeDao=new AskmeDAOImpl();
 		AskMe askme=new AskMe(user_Id,cat_id,sec_id,question_id);
 		askmeDao.askmequestions(askme);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("UserHome.jsp");
 		requestDispatcher.forward(request, response);
-	} catch (ServletException e) {
+		
+		
+	}
+	
+	 catch (ServletException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (IOException e) {

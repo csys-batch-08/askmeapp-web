@@ -2,6 +2,8 @@ package com.askme.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.askme.exception.EmailAlreadyExistsException;
+import com.askme.exception.PasswordIncorrect;
 import com.askme.impl.AdminDAOImpl;
 import com.askme.impl.UserDAOImpl;
 import com.askme.model.User;
@@ -46,48 +50,52 @@ public class LoginServlet extends HttpServlet {
 	        HttpSession session=request.getSession();
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
+			User user=new User(null,email,password);
 			UserDAOImpl userDao = new UserDAOImpl();
 			AdminDAOImpl adminDao=new AdminDAOImpl();
-			User currentUser = userDao.validateUser(email, password);
-			 try {
+			ResultSet rs;
+			try {
+			User currentUser=userDao.validateUser1(email, password);
+			User adminUser=adminDao.validateAdmin(email, password);
+			if(currentUser!=null) {
+				if(email.equals(currentUser.getEmailId()) && password.equals(currentUser.getPassword()))
+					{
+							int user_id=0;
+							user_id=userDao.findUserId(email);
+			//				System.out.println(user_id);
+							session.setAttribute("userid", user_id);
+							RequestDispatcher requestDispatcher=request.getRequestDispatcher("UserHome.jsp");
+							requestDispatcher.forward(request, response);}
 				
-				if(currentUser==null)
+			}
+			else if(adminUser!=null)
+			{
+				if(email.equals(adminUser.getEmailId()) && password.equals(adminUser.getPassword()))
 				{
-					User adminuser=adminDao.validateAdmin(email, password);					
-						//System.out.println("Welcome Admin ");
-						//session.setAttribute("LOGGED_IN_ADMIN",adminuser.getName());
 					
-						RequestDispatcher requestDispatcher=request.getRequestDispatcher("Admin.jsp");
-						requestDispatcher.forward(request, response);
-						
-						
-						
-
-				}
-					else 
-					{   
-						//System.out.println("Welcome User ");
-						//session.setAttribute("LOGGED_IN_USER",currentUser.getName());
-						int user_id=0;
-						user_id=userDao.findUserId(email);
-						System.out.println(user_id);
-						session.setAttribute("userid", user_id);
-						RequestDispatcher requestDispatcher=request.getRequestDispatcher("UserHome.jsp");
-						requestDispatcher.forward(request, response);
-						
-						
-					}
-					
-					
-					
-				
-				
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-				// TODO Auto-generated catch block
+					RequestDispatcher requestDispatcher=request.getRequestDispatcher("Admin.jsp");
+					requestDispatcher.forward(request, response);
+			}
 			}
 				
-		}
+
+			else {
+				throw new PasswordIncorrect();
+			}}
+				
+			catch(PasswordIncorrect iv) {
+
+				response.sendRedirect("ErrorMessage.jsp?message="+iv.getMessage()+"&url=Login.jsp");
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
 	}
+	
+}	
+				
+		
+	
 
 

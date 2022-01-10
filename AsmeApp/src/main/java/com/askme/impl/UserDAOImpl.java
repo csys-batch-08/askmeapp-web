@@ -74,8 +74,7 @@ public class UserDAOImpl implements UserDAOInterface {
 			pstmt.setString(1,email);
 			int i=pstmt.executeUpdate();
 			System.out.println("Selected user deleted");
-			pstmt.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,7 +83,7 @@ public class UserDAOImpl implements UserDAOInterface {
 	}
       //Login-Validate User
 	 
-		public  User validateUser(String email,String password) {
+		public  User validateUser1(String email,String password) {
 			// TODO Auto-generated method stub'
 			String validateQuery="select * from user_detail where role='USER' and email='"+email +"' and password='"+password+"'" ;
 			Connection con=ConnectionUtil.getDbConnection();
@@ -152,7 +151,38 @@ public class UserDAOImpl implements UserDAOInterface {
 		return rs;
 	}
 	
-
+	public ResultSet emailExists(User user) throws SQLException
+	{
+		
+		
+		String selectQuery="select * from user_detail where email=?";
+		
+		ConnectionUtil conUtil = new ConnectionUtil();
+		Connection con = conUtil.getDbConnection();
+		ResultSet rs=null;
+		PreparedStatement pstmt=null;		
+			pstmt = con.prepareStatement(selectQuery);
+			pstmt.setString(1,user.getEmailId());
+		   rs= pstmt.executeQuery();		
+		return rs;
+	}
+	
+	public ResultSet validateUser(User user) throws SQLException 
+	{
+		
+		
+		String selectQuery="select * from user_detail where role='USER' and email=? and password=?";
+		ConnectionUtil conUtil = new ConnectionUtil();
+		Connection con = conUtil.getDbConnection();
+		ResultSet rs=null;
+		PreparedStatement pstmt=null;		
+			pstmt = con.prepareStatement(selectQuery);
+			
+			pstmt.setString(1,user.getEmailId());
+			pstmt.setString(2, user.getPassword());
+		   rs= pstmt.executeQuery();		
+		return rs;
+	}
 		
 	}
 	

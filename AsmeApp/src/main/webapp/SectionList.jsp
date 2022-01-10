@@ -7,9 +7,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Section List</title>
 </head>
-<body>
+<body style="background-color:powderblue;">
   <h1> Section List</h1>
    
 <%  
@@ -40,6 +40,6 @@
 			<%} %>
 					</tbody>
 		           </table><br><br>
-
+ <li><a href="Admin.jsp">Back to Home Page</a></li>
 </body>
 </html>

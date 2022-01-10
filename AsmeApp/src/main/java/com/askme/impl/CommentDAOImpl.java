@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.askme.dao.CommentDAOInterface;
+import com.askme.model.AdminCommentView;
 import com.askme.model.Comment;
 import com.askme.util.ConnectionUtil;
 
@@ -59,4 +60,5 @@ public class CommentDAOImpl implements CommentDAOInterface{
 			return rs;
 		}
 		
+	
 }

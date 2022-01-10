@@ -16,6 +16,7 @@ import com.askme.impl.CommentDAOImpl;
 import com.askme.impl.QuestionDAOImpl;
 import com.askme.model.AskMe;
 import com.askme.model.Comment;
+import com.askme.model.Question;
 
 /**
  * Servlet implementation class CommentServlet
@@ -64,6 +65,11 @@ public class CommentServlet extends HttpServlet {
 			CommentDAOImpl commentDao=new CommentDAOImpl();
 			Comment commentObj=new Comment(user_Id,cat_id,sec_id,comment);
 			commentDao.insertComment(commentObj);
+			//System.out.println("Comment inserted");
+			Question question=new Question(comment,sec_id);
+			QuestionDAOImpl questionDao=new QuestionDAOImpl();
+			questionDao.insertQuestion(question);
+			//System.out.println("Question inserted");
 			RequestDispatcher requestDispatcher=request.getRequestDispatcher("CommentMessage.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ServletException e) {

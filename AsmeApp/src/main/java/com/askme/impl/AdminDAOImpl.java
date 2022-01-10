@@ -4,6 +4,7 @@ package com.askme.impl;
 
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,6 +14,7 @@ import com.askme.model.User;
 import com.askme.util.ConnectionUtil;
 
 public class AdminDAOImpl implements AdminDAOInterface {
+	
 	public  User validateAdmin(String email,String password) {
 		// TODO Auto-generated method stub'
 		String validateQuery="select * from user_detail where role='ADMIN'and email='"+email +"' and password='"+password+"'" ;
@@ -35,6 +37,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		}
 		return user;
 	}
+
 	
+
 
 }

@@ -1,25 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%@page import="com.askme.impl.QuestionDAOImpl"%>  
+     <%@page import="com.askme.exception.NoQuestionException"%>  
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Ask a Question</title>
+<style>
+       body {
+          background-image: url('images/question.jpg');
+        background-repeat: no-repeat;
+         background-attachment: fixed;  
+         background-size: cover;
+          
+       }
+        </style>
 </head>
 <body>
     
 <% int s_id = Integer.parseInt(request.getParameter("id3"));
 		QuestionDAOImpl questionDao=new QuestionDAOImpl();
-		ResultSet rs=questionDao.showQuestion(s_id);%>
-		 <h1> Question List</h1>
-	   
+		ResultSet rs=questionDao.showQuestion(s_id);
+		ResultSet rs1=questionDao.showQuestion(s_id);	
+		if(rs1.next()){
+		%>
+		
+		
+		 <h1 style=color:white> Question List</h1>
+
    		<table border="2">
 			<thead>
 				<tr>
-				  <th >Questions</th>
+				  <th style=color:white>Questions</th>
 				</tr>
 			</thead>
 			<br>
@@ -29,13 +44,20 @@
 				while(rs.next()){				
 				%>
 			<tr>	
-				<td><%=rs.getString(2)%></td>
-				<td>><button><a href="Answer.jsp?quesId=<%=rs.getInt(1)%>"> View Answer</a></button>		
+				<td style=color:white><%=rs.getString(2)%></td>		
+				
+				<td><button ><a href="Answer.jsp?quesId=<%=rs.getInt(1)%>&question=<%=rs.getString(2)%>"> View Answer</a></button>	</td>	
 			</tr>
 					
 			<%} %>
 					</tbody>
-		           </table><br><br>
+		           </table>
+		           <br><br>
+		           <%}else{
+		        	   %>
+		        	   <h1>No Questions Found</h1>
+		        <% }%>   
+		            <li><a href="UserHome.jsp" style=color:white>Back to Home Page</a></li>
 		        
 </body>
 </html>

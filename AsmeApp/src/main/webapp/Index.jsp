@@ -14,6 +14,10 @@
           background-size: cover;
           
         }
+         * {
+    margin: 0;
+    padding:0;
+  }
         </style>
 </head>
 <body>
@@ -31,11 +35,11 @@
       </ul>
     </div>
     <div id=head>
-    <center>
-    <h1 style=color:blanchedalmond ><i> Welcome to Askme</i></h1></div></center>
+    <center><br><br>
+    <h1 style=color:blanchedalmond ><i> Welcome to Askme</i></h1></div></center><br><br>
     <div id=head1>
        <center>  <h3 style=color:blanchedalmond>All Answer At Your FingerTips</h3></div></center>
-       <center>  
+      
        
 </body>
 </html>
