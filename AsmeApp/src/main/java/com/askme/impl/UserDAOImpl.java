@@ -176,8 +176,7 @@ public class UserDAOImpl implements UserDAOInterface {
 		Connection con = conUtil.getDbConnection();
 		ResultSet rs=null;
 		PreparedStatement pstmt=null;		
-			pstmt = con.prepareStatement(selectQuery);
-			
+			pstmt = con.prepareStatement(selectQuery);			
 			pstmt.setString(1,user.getEmailId());
 			pstmt.setString(2, user.getPassword());
 		   rs= pstmt.executeQuery();		

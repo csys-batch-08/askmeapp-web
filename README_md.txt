@@ -3,7 +3,7 @@
 
 #### objective
 ASKME app help to make right choice/selection.
-User can read the review posted by others through ASKME app & can post their experiences as a review. 
+User can read a file & can post their experiences as a ratings. 
 
 ### Features
 * Category List
@@ -12,7 +12,7 @@ User can read the review posted by others through ASKME app & can post their exp
 * User can read a file
 * View questions and get related answers
 *User can Leave a reply 
-*Place User Rating
+*Update User Rating
 
 ## Admin
 
@@ -54,6 +54,8 @@ Admin Password : setadmin11
 
 17.Admin Can view Answers
 
+18.Admin Can view Comments and provide related answers.
+
 ## User
 
 User EmailId: sumimp@gmail.com
@@ -66,16 +68,16 @@ UserPassword: sarvesh21
 
 1.User Can select Category
 
-2.User Can select section based on category
+2.User Can view section based on category
 
 3.User Can view and  read file
 
-4.User Can ask a question
+4.User Can view question and view related Answer
 
-5.User Can Leave a Reply 
+5.User Can Leave a Reply by Comments
 
-6.User Can view Frequently viewed section
+6.User Can view Frequent section
 
-7.User Can update their ratings
+7.User Can Place their ratings
 
 
