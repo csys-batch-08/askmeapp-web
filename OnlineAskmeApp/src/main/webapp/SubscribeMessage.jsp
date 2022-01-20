@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.askmeapp.impl.CategoryDAOImpl"%>   
-      <%@page import="com.askmeapp.impl.UserRatingDAOImpl"%>   
+     <%@page import="com.askmeapp.impl.UserDAOImpl"%>   
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import=" javax.servlet.http.HttpSession"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home</title>
+<title>Subscriber Message</title>
 <link rel=stylesheet type=text/css href=assets/css/style.css>
  <style>
  *{
@@ -45,34 +45,32 @@
         </style>
 </head>
 <body>
-
  <div id="toolbar">
     </div>
     <div id="container">
         <div id=header>
       <img src="assets/images/simpleform.png">
       <ul>
-         <li><a href="UserHome.jsp" style=color:white> Home </a></li>
+          <li><a href="UserHome.jsp" style=color:white> Go Home </a></li>
           <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>
           
          
       </ul>
     </div>
     <div id=head>
-    
- <form id="box">    
-    
-<%  
-		UserRatingDAOImpl userRatingDao=new UserRatingDAOImpl();
-        ResultSet rs=userRatingDao.showRating();
+  
+ <%    int user_Id=Integer.parseInt(session.getAttribute("userid").toString());
+		UserDAOImpl userDao=new UserDAOImpl();
+		System.out.println("id"+user_Id);
+        ResultSet rs=userDao.showAllSection(user_Id);
 		%>	
-   		<table align="right" >
-   		<h2 class="title" align="center">Frequently viewed Section</h2>
+ <table border="5" align="right">
+ 	<h2 class="title" >Recently Post</h2>
 			<thead>
 			
 				<tr>				
 				   <th>Section Name</th>
-				   <th>Rating</th>
+				  
 				</tr>
 			</thead>
 			<br>
@@ -83,39 +81,14 @@
 				%>
 				<tr>	
 									
-					<td ><%=rs.getString(1) %></a></td>	
-					<td ><%=rs.getInt(2) %></td>		
+					<td><%=rs.getString(1) %></td>	
+						
 				
 			</tr>					
 			<%} %>
 					</tbody>
-		           </table><br><br>
-   </form>
-   
-   
-  <form id="box1">    
-<%  
-		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
-        ResultSet rs1=categoryDao.showAllCategory();
-		%>	
-   		<table align="center" >
-			<thead>
-				<td> <h2>Category List</h2></td>
-			</thead>
-			<br>
-			<br>
-			<tbody>
-				<%
-				while(rs1.next()){				
-				%>
-				<tr>	
-									
-					<td><a href="SectionDetails.jsp?cusid=<%=rs1.getInt(1)%>"><%=rs1.getString(2)%></a></td>	
-				
-			</tr>					
-			<%} %>
-					</tbody>
-		           </table></form><br><br>
- 
+		           </table>
+		           
+		           
 </body>
 </html>

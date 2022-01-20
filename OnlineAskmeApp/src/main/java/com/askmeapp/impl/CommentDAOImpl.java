@@ -13,6 +13,7 @@ import java.util.List;
 import com.askmeapp.dao.CommentDAOInterface;
 import com.askmeapp.model.AdminCommentView;
 import com.askmeapp.model.Comment;
+import com.askmeapp.model.User;
 import com.askmeapp.util.ConnectionUtil;
 
 
@@ -61,9 +62,9 @@ public class CommentDAOImpl implements CommentDAOInterface{
 			return rs;
 		}
 		//Find comment Id
-		public int findCommentId(String comments)
+		public int findCommentId(int sectionId)
 		{
-			String findUserId="select comment_id from comment_by_user where comments='"+comments+"'";
+			String findUserId="select comment_id from comment_by_user where section_id='"+sectionId+"'";
 			Connection con=ConnectionUtil.getDbConnection();
 			Statement stmt;
 			int commentId=0;

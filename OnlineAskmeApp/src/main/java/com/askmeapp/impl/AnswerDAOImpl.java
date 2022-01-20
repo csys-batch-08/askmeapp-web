@@ -12,6 +12,7 @@ import com.askmeapp.model.Question;
 import com.askmeapp.util.ConnectionUtil;
 
 public class AnswerDAOImpl implements AnswerDAOInterface{
+	//insert
 	public void insertAnswer(Answer answer) {
 		//Query-insert 
 		String insertQuery ="insert into answer(answers,question_id) values(?,?)";
@@ -56,27 +57,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 			}
 			
 		}
-		//Delete 
-		public void deletedetails(String delete) {
-			String deleteQuery="delete from answer where question_id=?";
-			//get connection
-			Connection con=ConnectionUtil.getDbConnection();
-			System.out.println("Connection successfully");
-			PreparedStatement pstmt;
-			try {
-				pstmt = con.prepareStatement(deleteQuery);
-				pstmt.setString(1,delete);
-				pstmt.executeUpdate();
-				System.out.println("Your answer deleted");
-				pstmt.close();
-				con.close();
-			} 
-			catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
+		
 	public  ResultSet showAllAnswer()
 	{
 		
@@ -99,7 +80,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 	//Show Answer by quesId
 	public  ResultSet showAnswer(int quesId)
 	{
-		String query = "select * from answer where question_id=?";
+		String query = "select * from answer where question_id=? where status='active'";
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection con = conUtil.getDbConnection();
 		ResultSet rs=null;

@@ -1,6 +1,7 @@
 package com.askmeapp.controller;
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import javax.servlet.RequestDispatcher;
@@ -21,7 +22,7 @@ import com.askmeapp.model.User;
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/LoginServlet")
+//@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -47,6 +48,7 @@ public class LoginServlet extends HttpServlet {
 		 PrintWriter out=response.getWriter();
 	        HttpSession session=request.getSession();
 			String email = request.getParameter("email");
+			session.setAttribute("Email", email);
 			String password = request.getParameter("password");
 			User user=new User(null,email,password);
 			UserDAOImpl userDao = new UserDAOImpl();
@@ -60,11 +62,22 @@ public class LoginServlet extends HttpServlet {
 					{
 							int user_id=0;
 							user_id=userDao.findUserId(email);
-			//				System.out.println(user_id);
+						System.out.println(user_id);
 							session.setAttribute("userid", user_id);
-							RequestDispatcher requestDispatcher=request.getRequestDispatcher("UserHome.jsp");
-							requestDispatcher.forward(request, response);}
-				
+							String subscriber=userDao.findSubscriber(user_id);
+							System.out.println("subscriber"+subscriber);
+							if(subscriber=="yes") {
+								System.out.println("helo");
+								response.sendRedirect("UserHome.jsp");																						
+							}
+							else {
+								System.out.println("msg");
+								response.sendRedirect("SubscribeMessage.jsp?user=userid");
+										
+																	
+							}
+								
+							}
 			}
 			else if(adminUser!=null)
 			{

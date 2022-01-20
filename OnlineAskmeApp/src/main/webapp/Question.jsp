@@ -12,8 +12,6 @@
     <button type="submit">Add Question</button></form><br><br>
     <form action="UpdateQuestion.jsp">
     <button type="submit">Update Question</button></form><br><br>
-    <form action="DeleteQuestion.jsp">
-    <button type="submit">Delete Question</button></form><br><br>
     <form action="QuestionList.jsp">
     <button type="submit">Question List</button></form><br><br>  
      <li><a href="Admin.jsp">Back to Home Page</a></li>

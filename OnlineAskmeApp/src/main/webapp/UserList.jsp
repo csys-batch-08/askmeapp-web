@@ -20,9 +20,11 @@
    		<table border="2">			
 			<thead>
 				<tr>
-				   <th >User_name</th>
-				   <th>Email_id</th>
-					<th>Password</th>
+				<th>User id</th>
+				   <th >User Name</th>
+				   <th>Email id</th>
+					
+					<th>Subscriber</th>
 				</tr>
 			</thead>
 			<br>
@@ -31,10 +33,12 @@
 				<%
 				while(rs.next()){				
 				%>
-				<tr>	
+				<tr>
+				<td><%=rs.getInt(1)%></td>	
 					 <td><%=rs.getString(2) %></td>					
 				    <td><%=rs.getString(3) %></td>
-					<td><%=rs.getString(4)%></td>
+					
+				     <td><%=rs.getString(6)%></td>
 					
 			</tr>
 					

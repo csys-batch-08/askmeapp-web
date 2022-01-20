@@ -10,7 +10,7 @@
 <title> User Answer</title>
 <style>
        body {
-          background-image: url('images/useit.jpg');
+          background-image: url('assets/images/cloud.jpg');
         background-repeat: no-repeat;
          background-attachment: fixed;  
          background-size: cover;

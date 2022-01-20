@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Category List</title>
 </head>
 <body style="background-color:powderblue;">
 	<p>CategoryList</p>

@@ -15,7 +15,7 @@ select * from category_detail;
 delete from category_detail where category_id=24;
  desc category_detail;                           
 select * from category_detail;
-create table section_detail(section_id number generated always as identity(start with 200 increment by 1),
+create table section_details(section_id number generated always as identity(start with 200 increment by 1),
                              section_name varchar2(100) unique,
                              category_id number,
                              rating number(10) default 0,
@@ -72,6 +72,9 @@ select answers from answer where question_id=362;
 update section_details set rating=3 where section_id=266;
 
 
+create table subscribe_user(user_id number,
+                            section_name varchar2(100),
+                            CONSTRAINT  user_fk foreign key(user_id) references user_detail(user_id));
+select * from  subscribe_user;     
 
-select distinct user_detail.email,comment_by_user.comments from ( user_detail  inner join comment_by_user using(user_id));
-select ask_me_questions.question_id from (user_detail inner join ask_me_questions using(user_id))where user_id=101;
+desc subscribe_user;

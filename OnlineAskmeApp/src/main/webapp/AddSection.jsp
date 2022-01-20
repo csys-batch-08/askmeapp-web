@@ -51,8 +51,7 @@
         </tr>
         <tr>
           <td colspan="2"><input type="submit" class="submit" /></td>
-        </tr>      
-       
+        </tr>             
       </table>
     </form>
  <li><a href="Admin.jsp">Back to Home Page</a></li>

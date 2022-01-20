@@ -1,6 +1,7 @@
 package com.askmeapp.impl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,27 +59,7 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		}
 		
 	}
-	//Delete section details
-	public void deletedetails(String delete) {
-		String deleteQuery="delete from section_details where section_name=?";
-		//get connection
-		Connection con=ConnectionUtil.getDbConnection();
-		System.out.println("Connection successfully");
-		PreparedStatement pstmt;
-		try {
-			pstmt = con.prepareStatement(deleteQuery);
-			pstmt.setString(1,delete);
-			pstmt.executeUpdate();
-			System.out.println("Deleted successfully");
-			pstmt.close();
-			con.close();
-		} 
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+	
      
 	//Find section
 	public  int findSectionId(String sectionName)
@@ -102,33 +83,12 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		return sectionId;
 		
 	}
-	//List of Section
-	public  ResultSet showAllSection()
-	{
-		List<Section> sectionList=new ArrayList<Section>();
-		
-		String selectQuery="select * from section_details";
-		
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection con = conUtil.getDbConnection();
-		ResultSet rs=null;
-		Statement stmt;
-		try {
-			stmt = con.createStatement();
-			 rs=stmt.executeQuery(selectQuery);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-		
-		return rs;
-	}
+	
 	
 	//Search by category name
 	public  ResultSet showSectionName(int id)
 	{
-		String query = "select * from section_details where category_id=?";
+		String query = "select * from section_details where category_id=? and status='active'";
 		ConnectionUtil conUtil = new ConnectionUtil();
 		Connection con = conUtil.getDbConnection();
 		ResultSet rs=null;
@@ -145,8 +105,27 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		
 		return rs;
 	}
+	//show all
+		public  ResultSet showAllSection()
+		{
+			String query = "select * from section_details";
+			ConnectionUtil conUtil = new ConnectionUtil();
+			Connection con = conUtil.getDbConnection();
+			ResultSet rs=null;
+			PreparedStatement stmt;
+			try {
+				stmt = con.prepareStatement(query);
+				 rs=stmt.executeQuery();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
 			
-			
+			return rs;
+		}
+	
+		
 }
 
 

@@ -61,7 +61,7 @@ public class UpdateCategoryServlet extends HttpServlet {
 		int id=categoryDao.findCategoryId(oldCategoryName);
 		String newCategoryName=(request.getParameter("newCategoryName"));		
 		Category Objcategory2=new Category(newCategoryName);	    
-	    categoryDao.update(newCategoryName, id);;
+	    categoryDao.update(newCategoryName, id);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Categories.jsp");
 		requestDispatcher.forward(request, response);
 	} catch (ServletException e) {

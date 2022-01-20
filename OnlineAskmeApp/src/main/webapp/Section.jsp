@@ -12,8 +12,6 @@
     <button type="submit">Add Section</button></form><br><br>
     <form action="UpdateSection.jsp">
     <button type="submit">Update Section</button></form><br><br>
-    <form action="DeleteSection.jsp">
-    <button type="submit">Delete Section</button></form><br><br>
     <form action="SectionList.jsp">
     <button type="submit">Section List</button></form><br><br> 
     <li><a href="Admin.jsp">Back to Home Page</a></li>	 

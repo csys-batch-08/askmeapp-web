@@ -14,7 +14,7 @@ import com.askmeapp.util.ConnectionUtil;
 
 
 public class UserRatingDAOImpl implements UserRatingDAOInterface {
-	public static void updateRating(int rating,int sectionId){
+	public  void updateRating(int rating,int sectionId){
 		String updateQuery="update section_details set rating=? where section_id=?";
 		//get connection
 		Connection con=ConnectionUtil.getDbConnection();

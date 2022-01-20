@@ -14,8 +14,7 @@ import com.askmeapp.util.ConnectionUtil;
 
 
 public class AskmeDAOImpl implements AskmeDAOInterface {
-	
-	
+	//insert	
 		public  void askmequestions(AskMe askMe) {
 			String insertQuery ="insert into ask_me_questions(user_id,category_id,section_id,question_id) values(?,?,?,?)";
 			   //DB connection 

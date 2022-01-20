@@ -14,13 +14,15 @@
     <p>CategoryList</p>
 <%  
 		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
-        ResultSet rs=categoryDao.showAllCategory();
+        ResultSet rs=categoryDao.AllCategory();
 		%>
 	
    		<table border="2">
 			<thead>
 				<tr>
 				   <th >Category Name</th>
+				   <th>Status</th>
+				   
 				</tr>
 			</thead>
 			<br>
@@ -30,8 +32,9 @@
 				while(rs.next()){				
 				%>
 				<tr>	
-					 <td><%=rs.getString(2) %></td>					
-					
+					 <td><%=rs.getString(2) %></td>	
+					 <td><%=rs.getString(3) %></td>					
+					 
 			</tr>
 					
 			<%} %>
@@ -43,8 +46,8 @@
       <table>
         <tr>
           <td><label for="name">Enter Category Name</label></td>
-          <td><input type="text" name="CategoryName" pattern="[A-Za-z]{10, }" required autofocus></td>
-        </tr><br>
+          <td><input type="text" name="CategoryName1" pattern="[A-Za-z]{10, }" required autofocus></td>
+        </tr><br><br>
         <tr>
           <td colspan="2"><input type="submit" class="submit" /></td>
         </tr>      

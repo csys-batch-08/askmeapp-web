@@ -7,7 +7,7 @@
 <title>Comment message</title>
 <style>
         body {
-          background-image: url('assets/images/question.jpg');
+          background-image: url('assets/images/cloud.jpg');
           background-repeat: no-repeat;
           background-attachment: fixed;  
           background-size: cover;

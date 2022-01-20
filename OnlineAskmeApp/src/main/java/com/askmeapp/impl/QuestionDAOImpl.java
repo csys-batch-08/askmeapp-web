@@ -62,27 +62,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		}
 		
 	}
-	//Delete 
-	public void deletedetails(String delete) {
-		String deleteQuery="delete from question_details where question_description=?";
-		//get connection
-		Connection con=ConnectionUtil.getDbConnection();
-		System.out.println("Connection successfully");
-		PreparedStatement pstmt;
-		try {
-			pstmt = con.prepareStatement(deleteQuery);
-			pstmt.setString(1,delete);
-			int i=pstmt.executeUpdate();
-			System.out.println("Your question deleted");
-			pstmt.close();
-			con.close();
-		} 
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+	
      
 	//Find 
 	public  int findQuestionId(String quesdes)
@@ -131,7 +111,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		public ResultSet showQuestion(int id)
 		{
 			
-			String query = "select * from question_details where section_id=?";
+			String query = "select * from question_details where section_id=? and status='active'";
 			ConnectionUtil conUtil = new ConnectionUtil();
 			Connection con = conUtil.getDbConnection();
 			ResultSet rs=null;
@@ -148,7 +128,29 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			
 			return rs;
 		}
-	
+		//Find section Id
+		public int findSectionId(int qId)
+		{
+			String findUserId="select section_id from question_details where question_id='"+qId+"'";
+			Connection con=ConnectionUtil.getDbConnection();
+			Statement stmt;
+			int sectionId=0;
+			try {
+				stmt = con.createStatement();
+				ResultSet rs=stmt.executeQuery(findUserId);
+				if(rs.next())
+				{
+			       sectionId=rs.getInt(1);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return sectionId;
+			
+		}
+		
 	
 
 }

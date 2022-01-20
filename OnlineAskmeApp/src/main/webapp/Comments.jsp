@@ -84,7 +84,7 @@
     </div>
     <div id="container">
         <div id=header>
-      <img src="images/simpleform.png">
+      <img src="assets/images/simpleform.png">
       <ul>
          
           <li><a href="UserHome.jsp" style=color:white>Home</a></li>
