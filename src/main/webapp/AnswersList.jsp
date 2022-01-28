@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.chainsys.impl.AnswerDAOImpl"%>  
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Answer List</title>
 </head>
 <body style="background-color:powderblue;">
   <p>Answer List</p>
-<%  
-		AnswerDAOImpl answerDao=new AnswerDAOImpl();
-        ResultSet rs=answerDao.showAllAnswer();
-		%>
-	
    		<table border="2">
 			<thead>
 				<tr>
@@ -26,15 +19,13 @@
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs.next()){				
-				%>
-				<tr>	
-					 <td><%=rs.getString(1) %></td>						
-					<td><%=rs.getString(3) %></td>
+			<c:forEach var="AnswerList" items="${answerList}">
+				<tr>
+				<td>${AnswerList.answers}</td>				
+				<td>${AnswerList.status}</td>					
+								
 			</tr>
-					
-			<%} %>
+					</c:forEach>
 					</tbody>
 		           </table><br><br>
  <li><a href="Admin.jsp">Back to Home Page</a></li>			           

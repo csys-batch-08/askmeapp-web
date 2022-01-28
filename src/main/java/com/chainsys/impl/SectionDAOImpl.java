@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.chainsys.dao.SectionDAOInterface;
+import com.chainsys.model.Category;
 import com.chainsys.model.Section;
+import com.chainsys.model.User;
 import com.chainsys.util.ConnectionUtil;
 
 
@@ -26,21 +28,24 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		//Get all values
 		try {
 			pst = con.prepareStatement(insertQuery);
+			System.out.println(section.getSectionName());
 			pst.setString(1,section.getSectionName());
+			System.out.println(section.getCategoryId());
 			pst.setInt(2,section.getCategoryId());
+			System.out.println(section.getImage());
 			pst.setString(3, section.getImage());
-			pst.executeUpdate();
-			System.out.println("Section inserted");
+			int i=pst.executeUpdate();
+			System.out.println("Section inserted"+i);
 		}
 		catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			System.out.println("Values not inserted ");
 		}
 		
 	}
 	//Update 
-	public void update(String update,int id){
+	public void update(Section section){
 		String updateQuery="update section_details set section_name=?  where section_id=?";
 		//get connection
 		Connection con=ConnectionUtil.getDbConnection();
@@ -48,14 +53,13 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		PreparedStatement pstmt=null;
 		try {
 			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setString(1, update);			
-			pstmt.setInt(2, id);
-			pstmt.executeUpdate();
-			System.out.println("Updated successfully");
-			pstmt.close();
-			con.close();
+			pstmt.setString(1, section.getSectionName());			
+			pstmt.setInt(2, section.getSectionId());
+			int i=pstmt.executeUpdate();
+			System.out.println("Updated successfully"+i);
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -78,53 +82,78 @@ public class SectionDAOImpl implements SectionDAOInterface{
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return sectionId;
 		
 	}
-	
-	
 	//Search by category name
-	public  ResultSet showSectionName(int id)
+	public List<Section> showSectionName(Category category)
 	{
-		String query = "select * from section_details where category_id=? and status='active'";
+		
+        List<Section> sectionList=new ArrayList<Section>();
+		
+		String selectQuery="select section_id,section_name from section_details where category_id=? and status='active'";
 		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection con = conUtil.getDbConnection();
+		Connection con = conUtil.getDbConnection();	
+		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		PreparedStatement stmt;
 		try {
-			stmt = con.prepareStatement(query);
-			stmt.setInt(1, id);
-			 rs=stmt.executeQuery();
+			pstmt = con.prepareStatement(selectQuery);			
+			pstmt.setInt(1,category.getCategoryId());
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Section section=new Section();	
+				section.setSectionId(rs.getInt(1));
+				section.setSectionName(rs.getString(2));				
+				sectionList.add(section);
+				}
+			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}		
 		
-		return rs;
+		return sectionList;
 	}
+
+
+	
+	
 	//show all
-		public  ResultSet showAllSection()
-		{
-			String query = "select * from section_details";
-			ConnectionUtil conUtil = new ConnectionUtil();
-			Connection con = conUtil.getDbConnection();
-			ResultSet rs=null;
-			PreparedStatement stmt;
-			try {
-				stmt = con.prepareStatement(query);
-				 rs=stmt.executeQuery();
+				public List<Section> showAllSection()
+				{
+					
+		            List<Section> sectionList=new ArrayList<Section>();
+					
+					String selectQuery="select section_id,section_name,status from section_details";
+					ConnectionUtil conUtil = new ConnectionUtil();
+					Connection con = conUtil.getDbConnection();	
+					PreparedStatement pstmt=null;
+					ResultSet rs=null;
+					try {
+						pstmt = con.prepareStatement(selectQuery);
+						rs=pstmt.executeQuery();
+						while(rs.next()) {
+							Section section=new Section();
+							section.setSectionId(rs.getInt(1));
+							section.setSectionName(rs.getString(2));
+							section.setStatus(rs.getString(3));
+							sectionList.add(section);
+							}
+						
+						
+					} catch (SQLException e) {
+					
+						e.printStackTrace();
+					}		
+					
+					return sectionList;
+				}
 				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}		
-			
-			return rs;
-		}
+		
 	
 		
 }

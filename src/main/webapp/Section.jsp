@@ -12,7 +12,7 @@
     <button type="submit">Add Section</button></form><br><br>
     <form action="UpdateSection.jsp">
     <button type="submit">Update Section</button></form><br><br>
-    <form action="SectionList.jsp">
+    <form action="SectionList">
     <button type="submit">Section List</button></form><br><br> 
     <li><a href="Admin.jsp">Back to Home Page</a></li>	 
 </body>

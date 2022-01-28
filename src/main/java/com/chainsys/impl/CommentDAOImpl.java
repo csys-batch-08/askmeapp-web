@@ -34,17 +34,17 @@ public class CommentDAOImpl implements CommentDAOInterface{
 			pst.setInt(3, comment.getSectionId());	
 			pst.setString(4, comment.getComments());	
 			pst.executeUpdate();
-			System.out.println("Your comments received successfully!!\t Reply Shortly");
+			//System.out.println("Your comments received successfully!!\t Reply Shortly");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Fill it");
+			//System.out.println("Fill it");
 		}
 	}
 	//List of User
 		public  ResultSet showAllComment()
 		{			
-			String selectQuery="select * from comment_by_user";
+			String selectQuery="select user_id,comments from comment_by_user";
 			
 			ConnectionUtil conUtil = new ConnectionUtil();
 			Connection con = conUtil.getDbConnection();
@@ -88,13 +88,13 @@ public class CommentDAOImpl implements CommentDAOInterface{
 			String deleteQuery="delete from comment_by_user where comment_id=?";
 			//get connection
 			Connection con=ConnectionUtil.getDbConnection();
-			System.out.println("Connection successfully");
+			//System.out.println("Connection successfully");
 			PreparedStatement pstmt=null;
 			try {
 				pstmt = con.prepareStatement(deleteQuery);
 				pstmt.setInt(1,commentId);
 				int i=pstmt.executeUpdate();
-				System.out.println("Selected comment deleted");
+				//System.out.println("Selected comment deleted");
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

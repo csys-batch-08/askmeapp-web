@@ -27,14 +27,14 @@ public class RegisterServlet extends HttpServlet {
      */
     public RegisterServlet() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		
@@ -46,14 +46,14 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException  {
-		// TODO Auto-generated method stub
+	
 		  response.setContentType("text/html");		
 			PrintWriter out=response.getWriter();			
-		//doGet(request, response);
+		
 		String name=(request.getParameter("name"));
 		String email=(request.getParameter("email"));
 		String password=(request.getParameter("password"));		
-		User Objuser=new User(name,email,password);
+		User Objuser=new User(0,name,email,password,null);
 		UserDAOImpl userDao=new UserDAOImpl();	
 		try {
 			ResultSet rs=userDao.emailExists(Objuser);	

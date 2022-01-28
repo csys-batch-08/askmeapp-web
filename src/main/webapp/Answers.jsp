@@ -12,7 +12,7 @@
     <button type="submit">Add Answer</button></form><br><br>  
      <form action="UpdateAnswer.jsp">
     <button type="submit">Update Answer</button></form><br><br>
-    <form action="AnswersList.jsp">
+    <form action="AnswerList">
     <button type="submit">Answer List</button></form><br><br> 
      <li><a href="Admin.jsp">Back to Home Page</a></li>
 </body>

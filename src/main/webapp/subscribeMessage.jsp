@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.chainsys.impl.UserDAOImpl"%>   
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import=" javax.servlet.http.HttpSession"%>
+     
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,45 +48,19 @@
         <div id=header>
       <img src="assets/images/simpleform.png">
       <ul>
-          <li><a href="UserHome.jsp" style=color:white> Go Home </a></li>
-          <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>
+          <li><a href="userHome.jsp" style=color:white> Go Home </a></li>
+          <li><a href="readMore.jsp" style=color:white>About Us</a></li>
           
          
       </ul>
     </div>
     <div id=head>
-  
- <%    int user_Id=Integer.parseInt(session.getAttribute("userid").toString());
-		UserDAOImpl userDao=new UserDAOImpl();
-		//System.out.println("id"+user_Id);
-        ResultSet rs=userDao.showAllSection(user_Id);%>	
-		<center> <h2 style=color:yellow>Welcome Subscriber<h1>&#128512;</h1></h2></center>
+<center> <h2 style=color:yellow>Welcome Subscriber<h1>&#128512;</h1></h2></center>
 		
       <table border="5" >
- 	<h2 >Recently Post!!!</h2>
-			<thead>
-			
-				<tr>				
-				   <th>Section Name<h1>&#128071;</h1></th>
-				   
-				</tr>
-			</thead>
-			<br>
-			<br>
-			<tbody>
-				<%
-				while(rs.next()){				
-				%>
-				<tr>	
-									
-					<td><%=rs.getString(1) %></td>	
-						
-				
-			</tr>					
-			<%} %>
-					</tbody>
-		           </table>
-		         
+      <form action="UserSubscriber" align="center"><br><br>
+      <center><button type="submit" class="button">Recently Post!!!</button></form> </center>
+ 	
 		           
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.chainsys.model;
 public class SubscribeUser {
 	private int userId;
 	private String sectionName;
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -21,7 +22,7 @@ public class SubscribeUser {
 	}
 	public SubscribeUser() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public SubscribeUser(int userId, String sectionName) {
 		super();

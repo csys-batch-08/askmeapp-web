@@ -103,7 +103,7 @@
     </form>
     <br>
     
-      <p style=color:white>Already have an account? <a href="Login.jsp" style=color:white>Sign in</a></p>
+      <p style=color:white>Already have an account? <a href="login.jsp" style=color:white>Sign in</a></p>
     </div>
 
    

@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.chainsys.impl.CategoryDAOImpl"%>   
-     <%@page import="com.chainsys.impl.SectionDAOImpl"%>   
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,32 +10,30 @@
 <body style="background-color:powderblue;">
  
     <p>CategoryList</p>
-<%  
-		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
-        ResultSet rs=categoryDao.showAllCategory();
-		%>
-	
    		<table border="2">
 			<thead>
 				<tr>
+				<th>Category Id</th>
 				   <th >Category Name</th>
+				   <th>Status</th>
+				   
 				</tr>
 			</thead>
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs.next()){				
-				%>
-				<tr>	
-					 <td><%=rs.getString(2) %></td>					
-					
+				<c:forEach var="cList" items="${categoryList}">
+				<tr>
+				
+					 <td>${cList.categoryId}</td>					
+				    <td>${cList.categoryName}</td>	
+				     <td>${cList.status}</td>					
+				    				
 			</tr>
-					
-			<%} %>
+					</c:forEach>
 					</tbody>
 		           </table><br><br>
- <form name="section"  action="AddSectionServlet"  method="post">
+ <form name="section"  action="AddSectionServlet">
      
       <table>
        <tr>

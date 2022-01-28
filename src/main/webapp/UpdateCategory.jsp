@@ -1,45 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="com.chainsys.impl.CategoryDAOImpl"%> 
-  
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+   
+   <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Update Category</title>
+ 
 </head>
 <body style="background-color:powderblue;">
-    <h1>Update Category</h1>
-    <p>CategoryList</p>
-<%  
-		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
-        ResultSet rs=categoryDao.showAllCategory();
-		%>
-	
-   		<table border="2">
-			<thead>
-				<tr>
-				   <th >Category Name</th>
-				</tr>
-			</thead>
-			<br>
-			<br>
-			<tbody>
-				<%
-				while(rs.next()){				
-				%>
-				<tr>	
-					 <td><%=rs.getString(2) %></td>					
-					
-			</tr>
-					
-			<%} %>
-					</tbody>
-		           </table><br><br>
+    <h1>Update Category</h1>     		
 		           
- <form name="category" class="category" action="UpdateCategoryServlet"  method="post">
+ <form name="category" class="category" action="UpdateCategoryServlet"  method="post" >
      
       <table>
         <tr>

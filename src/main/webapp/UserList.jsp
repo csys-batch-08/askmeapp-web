@@ -1,48 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@page import="com.chainsys.impl.UserDAOImpl"%> 
-  <%@page import="com.chainsys.model.User"%>  
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+  
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>User List</title>
+
 </head>
 <body style="background-color:powderblue;">
 <p>User List</p>
-<%  
-		UserDAOImpl userDao=new UserDAOImpl();
-        ResultSet rs=userDao.showAllUser();
-		%>
-	
    		<table border="2">			
 			<thead>
 				<tr>
-				<th>User id</th>
+				<th>User Id</th>
 				   <th >User Name</th>
-				   <th>Email id</th>
-					
+				   <th>Email Id</th>					
 					<th>Subscriber</th>
 				</tr>
 			</thead>
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs.next()){				
-				%>
+				<c:forEach var="UserList" items="${userList}">
 				<tr>
-				<td><%=rs.getInt(1)%></td>	
-					 <td><%=rs.getString(2) %></td>					
-				    <td><%=rs.getString(3) %></td>
-					
-				     <td><%=rs.getString(6)%></td>
-					
+				<td>${UserList.userId }</td>	
+					 <td>${UserList.name}</td>					
+				    <td>${UserList.emailId}</td>					
+				     <td>${UserList.subscriber}</td>					
 			</tr>
-					
-			<%} %>
+					</c:forEach>
+			
 					</tbody>
 		           </table>
 <br>

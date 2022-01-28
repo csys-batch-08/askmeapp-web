@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.chainsys.dao.UserRatingDAOInterface;
+import com.chainsys.model.User;
+import com.chainsys.model.UserRating;
 import com.chainsys.util.ConnectionUtil;
 
 
@@ -25,12 +27,11 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 			pstmt.setInt(1,rating);
 			pstmt.setInt(2, count);
 			pstmt.setInt(3,sectionId);
-			pstmt.executeUpdate();
-			System.out.println("Rating Updated successfully");
-			pstmt.close();
-			con.close();
+			pstmt.executeUpdate("commit");
+			//System.out.println("Rating Updated successfully");
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -56,26 +57,35 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 		return null;
 	}
 	//priority by rating
-	public ResultSet showRating()
-	{
-		
-		String selectQuery="select section_name,rating,rating_count from section_details  where status='active' order by rating DESC";
-		
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection con = conUtil.getDbConnection();
-		ResultSet rs=null;
-		Statement stmt;
-		try {
-			stmt = con.createStatement();
-			 rs=stmt.executeQuery(selectQuery);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-		
-		return rs;
-	}
 	
+			public List<UserRating> showRating()
+			{
+				
+	            List<UserRating> userRatingList=new ArrayList<UserRating>();
+				
+				String selectQuery="select section_name,rating,rating_count from section_details  where status='active'";
+				ConnectionUtil conUtil = new ConnectionUtil();
+				Connection con = conUtil.getDbConnection();	
+				PreparedStatement pstmt=null;
+				ResultSet rs=null;
+				try {
+					pstmt = con.prepareStatement(selectQuery);
+					rs=pstmt.executeQuery();
+					while(rs.next()) {
+						UserRating ratingList=new UserRating();
+						ratingList.setSectionName(rs.getString(1));
+						ratingList.setRating(rs.getInt(2));
+						ratingList.setRateCount(rs.getInt(3));
+						userRatingList.add(ratingList);
+						}					
+					
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}		
+				
+				return userRatingList;
+			}
+			
 	
 }

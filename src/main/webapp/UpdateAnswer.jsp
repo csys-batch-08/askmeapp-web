@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.chainsys.impl.AnswerDAOImpl"%>   
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,33 +10,29 @@
 <body style="background-color:powderblue;">
 <h1>Update Answer</h1>
     <p>Answer List</p>
-<%  
-		AnswerDAOImpl answerDao=new AnswerDAOImpl();
-        ResultSet rs=answerDao.showAllAnswer();
-		%>
 	
    		<table border="2">
 			<thead>
 				<tr>
 				  <th >Answers</th>
-				   
+				  <th>question Id</th>
+				   <th>Status</th>
 				</tr>
 			</thead>
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs.next()){				
-				%>
-				<tr>	
-					 <td><%=rs.getString(1) %></td>						
-					
+				<c:forEach var="AnswerList" items="${answerList}">
+				<tr>
+				<td>${AnswerList.answers}</td>	
+					 <td>${AnswerList.questionId}</td>					
+				    <td>${AnswerList.status}</td>					
+								
 			</tr>
-					
-			<%} %>
+					</c:forEach>
 					</tbody>
 		           </table><br><br>
-<form name="answer"  action="UpdateAnswerServlet"  method="post">
+<form name="answer"  action="UpdateAnswerServlet" >
      
       <table>
         <tr>

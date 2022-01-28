@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.chainsys.impl.CategoryDAOImpl"%>   
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+     
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,29 +10,28 @@
 </head>
 <body style="background-color:powderblue;">
 	<p>CategoryList</p>
-<%  
-		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
-        ResultSet rs=categoryDao.AllCategory();
-		%>
+
 	
    		<table border="2">
 			<thead>
 				<tr>
+				<th>Category Id</th>
 				   <th >Category Name</th>
+				   <th>Status</th>
 				</tr>
 			</thead>
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs.next()){				
-				%>
-				<tr>	
-					 <td><%=rs.getString(2) %></td>					
-					
+			<c:forEach var="cList" items="${categoryList}">
+				<tr>
+				
+					 <td>${cList.categoryId}</td>					
+				    <td>${cList.categoryName}</td>	
+				     <td>${cList.status}</td>					
+				    				
 			</tr>
-					
-			<%} %>
+					</c:forEach>			
 					</tbody>
 		           </table><br><br>
  <li><a href="Admin.jsp">Back to Home Page</a></li>		           

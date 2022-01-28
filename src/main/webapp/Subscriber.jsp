@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.chainsys.impl.UserDAOImpl"%> 
-  <%@page import="com.chainsys.model.User"%>  
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.sql.ResultSet"%>
+    
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,35 +10,21 @@
 </head>
 <body style="background-color:powderblue;">
 <center><h2>Subscriber List</h2></center>
-<%UserDAOImpl userDao=new UserDAOImpl();
-   List<User> userList=new ArrayList<User>();
-   userList=userDao.subscribeUser();
-%>
-<table>
+<table border="2">
 <thead>
-	<tr>
-  		<th>S.no</th>
+	<tr>  		
 		<th>User Name</th>
 		<th>Email</th>
 	</tr>
 	</thead>
 <tbody>
-<%
-int i = 0;
-for (User user: userList ) {
-i++;
-%>
-<tr>
+<c:forEach var="SubscriberList" items="${subscriberList}">
+<tr>					
+					 <td>${SubscriberList.name}</td>					
+				    <td>${SubscriberList.emailId}</td>					    				
+			</tr>
+</c:forEach>
 
-
-<td><%=i%></td>
-<td> <%=user.getName()%></td>
-<td> <%=user.getEmailId()%></td>
-</tr>
-
-<%
-}
-%>
 </tbody>
 </table>
  <form name="subscriber"  action="SubscriberServlet1"  method="post">

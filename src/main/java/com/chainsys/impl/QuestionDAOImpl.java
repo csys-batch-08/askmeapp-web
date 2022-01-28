@@ -1,8 +1,6 @@
 package com.chainsys.impl;
 
 import java.sql.Connection;
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +10,7 @@ import java.util.List;
 
 import com.chainsys.dao.QuestionDAOInterface;
 import com.chainsys.model.Question;
-import com.chainsys.model.Section;
+
 import com.chainsys.util.ConnectionUtil;
 
 
@@ -29,35 +27,34 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		//Get all values
 		try {
 			pst = con.prepareStatement(insertQuery);
-			pst.setString(1,question.getQuestion());
+			pst.setString(1,question.getQuestions());
 			pst.setInt(2,question.getSectionId());	
-			pst.executeUpdate();
-			System.out.println("Question inserted");
+			int i=pst.executeUpdate();
+			System.out.println("Question inserted"+i);
 		}
 		catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			System.out.println("Value not inserted ");
 		}
 		
 	}
 	//Update 
-	public void update(String update,int id){
+	public void update(Question question){
 		String updateQuery="update question_details set question_description=? where question_id=?";
 		//get connection
 		Connection con=ConnectionUtil.getDbConnection();
-		System.out.println("Connection successfully");		
+		//System.out.println("Connection successfully");		
 		PreparedStatement pstmt=null;
 		try {
 			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setString(1, update);
-			pstmt.setInt(2, id);		
+			pstmt.setString(1,question.getQuestions());
+			pstmt.setInt(2, question.getQuestionId());		
 			int i=pstmt.executeUpdate();
-			System.out.println(i+"row updated");
-			pstmt.close();
-			con.close();
+			System.out.println("row updated"+i);
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -80,38 +77,46 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return questionId;
 		
 	}
-	//List 
-	public  ResultSet showAllQuestion()
+	//List	
+	public List<Question> showAllQuestion()
 	{
 		
-		String selectQuery="select * from question_details";
+        List<Question> questionList=new ArrayList<Question>();
 		
+		String selectQuery="select question_id,question_description,status from question_details";
 		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection con = conUtil.getDbConnection();
+		Connection con = conUtil.getDbConnection();	
+		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		Statement stmt;
 		try {
-			stmt = con.createStatement();
-			 rs=stmt.executeQuery(selectQuery);
+			pstmt = con.prepareStatement(selectQuery);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Question question=new Question();
+				question.setQuestionId(rs.getInt(1));
+				question.setQuestions(rs.getString(2));
+				question.setStatus(rs.getString(3));				
+				questionList.add(question);}		
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}		
 		
-		return rs;
+		return questionList;
 	}
+	
 	//Search by Question
 		public ResultSet showQuestion(int id)
 		{
 			
-			String query = "select * from question_details where section_id=? and status='active'";
+			String query = "select question_description from question_details where section_id=? and status='active'";
 			ConnectionUtil conUtil = new ConnectionUtil();
 			Connection con = conUtil.getDbConnection();
 			ResultSet rs=null;
@@ -122,7 +127,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 				 rs=stmt.executeQuery();
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}		
 			
@@ -144,7 +149,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 				}
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			return sectionId;

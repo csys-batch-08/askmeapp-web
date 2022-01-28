@@ -4,36 +4,45 @@ import java.util.Objects;
 
 public class Answer {
 	
-	private String answer;
-	private int question_id;
-	public String getAnswer() {
-		return answer;
+	private String answers;
+	private int questionId;
+	private String status;
+	
+	public String getAnswers() {
+		return answers;
 	}
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setAnswers(String answers) {
+		this.answers = answers;
 	}
 	public int getQuestion_id() {
-		return question_id;
+		return questionId;
 	}
 	public void setQuestion_id(int question_id) {
-		this.question_id = question_id;
+		this.questionId = question_id;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	@Override
 	public String toString() {
-		return "Answer [answer=" + answer + ", question_id=" + question_id + "]";
+		return "Answer [answers=" + answers + ", question_id=" + questionId + ", status=" + status + "]";
 	}
 	public Answer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Answer(String answer, int question_id) {
+	public Answer(String answers, int question_id, String status) {
 		super();
-		this.answer = answer;
-		this.question_id = question_id;
+		this.answers = answers;
+		this.questionId = question_id;
+		this.status = status;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(answer, question_id);
+		return Objects.hash(answers, questionId, status);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -44,8 +53,10 @@ public class Answer {
 		if (getClass() != obj.getClass())
 			return false;
 		Answer other = (Answer) obj;
-		return Objects.equals(answer, other.answer) && question_id == other.question_id;
+		return Objects.equals(answers, other.answers) && questionId == other.questionId
+				&& Objects.equals(status, other.status);
 	}
+	
 	
 
 }

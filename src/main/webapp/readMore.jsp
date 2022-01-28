@@ -23,7 +23,7 @@
         <div id=header>
       <img src="assets/images/simpleform.png">
       <ul>
-      		<li><a href="UserHome.jsp" style=color:white>Home</a></li>
+      		<li><a href="userHome.jsp" style=color:white>Home</a></li>
               
       </ul>
     </div>

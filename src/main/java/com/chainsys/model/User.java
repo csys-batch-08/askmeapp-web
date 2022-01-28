@@ -2,9 +2,25 @@ package com.chainsys.model;
 import java.util.Objects;
 
 public class User {
+	private int userId;
 	private String name;
 	private String emailId;
 	private String password;
+	private String subscriber;
+	
+	
+	public String getSubscriber() {
+		return subscriber;
+	}
+	public void setSubscriber(String subscriber) {
+		this.subscriber = subscriber;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public String getName() {
 		return name;
 	}
@@ -14,7 +30,7 @@ public class User {
 	public String getEmailId() {
 		return emailId;
 	}
-	public void setEmail_id(String emailId) {
+	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
 	public String getPassword() {
@@ -23,22 +39,26 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", name=" + name + ", emailId=" + emailId + ", password=" + password
+				+ ", subscriber=" + subscriber + "]";
+	}
 	public User() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	public User(String name, String emailId, String password) {
+	public User(int userId, String name, String emailId, String password, String subscriber) {
 		super();
+		this.userId = userId;
 		this.name = name;
 		this.emailId = emailId;
 		this.password = password;
-	}
-	@Override
-	public String toString() {
-		return "\nUserName=" + name + "\n  emailId=" + emailId + "\n password=" + password;
+		this.subscriber = subscriber;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(emailId, name, password);
+		return Objects.hash(emailId, name, password, subscriber, userId);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -50,7 +70,8 @@ public class User {
 			return false;
 		User other = (User) obj;
 		return Objects.equals(emailId, other.emailId) && Objects.equals(name, other.name)
-				&& Objects.equals(password, other.password);
+				&& Objects.equals(password, other.password) && Objects.equals(subscriber, other.subscriber)
+				&& userId == other.userId;
 	}
 	
 	

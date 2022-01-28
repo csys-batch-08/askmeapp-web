@@ -29,15 +29,15 @@ public class EditAnswerServlet extends HttpServlet {
      */
     public EditAnswerServlet() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class EditAnswerServlet extends HttpServlet {
 		//System.out.println("ques"+qId);
 		String answer=request.getParameter("answer");
 		//System.out.println("ans"+answer);
-		Answer answer1=new Answer(answer,qId);
+		Answer answer1=new Answer(answer,qId,null);
 		AnswerDAOImpl answerDao=new AnswerDAOImpl();
 		answerDao.insertAnswer(answer1);	
 		int sId=questionDao.findSectionId(qId);
@@ -68,7 +68,7 @@ public class EditAnswerServlet extends HttpServlet {
 		
 			requestDispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		

@@ -28,8 +28,8 @@
       <img src="assets/images/simpleform.png">
      <ul>
          
-          <li><a href="Register.jsp" style=color:white>SignUp</a></li>
-          <li><a href="Login.jsp" style=color:white>Log In</a></li>
+          <li><a href="register.jsp" style=color:white>SignUp</a></li>
+          <li><a href="login.jsp" style=color:white>Log In</a></li>
          
          
       </ul>

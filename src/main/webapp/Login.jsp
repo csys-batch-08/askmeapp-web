@@ -77,15 +77,11 @@
     box-shadow: 3px 3px 6px rgb(255, 214, 176);
   }
 </style>
-<%
-String loggedInAsAdmin = (String) session.getAttribute("LOGGED_IN_ADMIN");
-String loggedInAsUser = (String) session.getAttribute("LOGGED_IN_USER");
-
-%>		
+	
    
   <div class="container">
     <h1 style=color:white>Login</h1>
-    <form name="login" class="loginform" action="LoginServlet" method="post">
+    <form name="login" class="loginform" action="LoginServlet1" >
       <table>       
         <tr>
           <td><label for="email">Enter Email Id:</label></td>
@@ -103,7 +99,7 @@ String loggedInAsUser = (String) session.getAttribute("LOGGED_IN_USER");
       
     </form>	
       <div>
-       <a href="ForgotPassword.jsp" style=color:white>Forgot password?</a>
+       <a href="forgotPassword.jsp" style=color:white>Forgot password?</a>
        </div>
 	</div>	
 	

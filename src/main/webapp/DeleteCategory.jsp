@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.chainsys.impl.CategoryDAOImpl"%>   
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,15 +9,11 @@
 </head>
 <body style="background-color:powderblue;">
     <h1>Delete Category</h1>
-    <p>CategoryList</p>
-<%  
-		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
-        ResultSet rs=categoryDao.AllCategory();
-		%>
-	
+    <p>CategoryList</p>	
    		<table border="2">
 			<thead>
 				<tr>
+				   <th>Category Id</th>
 				   <th >Category Name</th>
 				   <th>Status</th>
 				   
@@ -28,16 +22,15 @@
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs.next()){				
-				%>
-				<tr>	
-					 <td><%=rs.getString(2) %></td>	
-					 <td><%=rs.getString(3) %></td>					
-					 
+				<c:forEach var="CategoryList" items="${categoryList}">
+				<tr>
+				
+					 <td>${CategoryList.categoryId}</td>					
+				    <td>${CategoryList.categoryName}</td>	
+				     <td>${CategoryList.status}</td>					
+				    				
 			</tr>
-					
-			<%} %>
+					</c:forEach>	
 					</tbody>
 		           </table><br><br>
 		           

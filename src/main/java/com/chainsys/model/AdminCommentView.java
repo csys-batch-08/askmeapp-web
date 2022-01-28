@@ -5,6 +5,7 @@ import java.util.Objects;
 public class AdminCommentView {
 	private String email;
 	private String comment;
+	
 	public String getEmail() {
 		return email;
 	}

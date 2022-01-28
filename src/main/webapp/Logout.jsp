@@ -1,29 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.chainsys.impl.CategoryDAOImpl"%>   
-      <%@page import="com.chainsys.impl.UserRatingDAOImpl"%>   
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Log out</title>
+<title>Home</title>
 <link rel=stylesheet type=text/css href=assets/css/style.css>
  <style>
+ *{
+ margin:0;
+ padding:0;}
        body {
-          background-image: url('assets/images/askQuestion.jpg');
-        background-repeat: no-repeat;
+         background-image: url('assets/images/cloud.jpg');
+         background-repeat: no-repeat;
          background-attachment: fixed;  
          background-size: cover;
           
        }
-       box{
-       margin-left:550px;
-       margin-top:300px;
-       
-       }
-       
+         #box{
+     margin-right:10px;
+     padding:100px;}
+      #box1{
+     margin-left:-10px;  
+    padding-left:150px;
+     margin-top:-100px;   
+    }
+     
+      table, th, td {
+                border: 2px solid white;
+                text-align:center;
+            }
+            th, td {
+                padding: 12px;
+                background-color:none;
+            }
+            .title{
+            padding-left:600px;}
+    
        
         </style>
 </head>
@@ -33,9 +47,11 @@
     </div>
     <div id="container">
         <div id=header>
-      <img src="images/simpleform.png">
+      <img src="assets/images/simpleform.png">
       <ul>
-          <li><a href="Index.jsp" style=color:white>Log out</a></li>        
+         <li><a href="UserHome.jsp" style=color:white> Home </a></li>
+          <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>
+          
          
       </ul>
     </div>
@@ -43,13 +59,11 @@
     
  <form id="box">    
     
-<%  
-		UserRatingDAOImpl userRatingDao=new UserRatingDAOImpl();
-        ResultSet rs=userRatingDao.showRating();
-		%>	
-   		<table border="5" align="right">
+
+   		<table align="right" >
+   		<h2 class="title" align="center">Frequently viewed Section</h2>
 			<thead>
-			<tr><th><h2>Frequently viewed Section</h2></th></tr>
+			
 				<tr>				
 				   <th>Section Name</th>
 				   <th>Rating</th>
@@ -58,44 +72,43 @@
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs.next()){				
-				%>
-				<tr>	
-									
-					<td><%=rs.getString(1) %></td>	
-					<td><%=rs.getInt(2) %></td>		
+			
+			<c:forEach var="userRatingList"  items="${userRatingList}">
+			
+			 <c:set var = "rate"  value="${userRatingList.rating/userRatingList.rateCount}" />			
+				<tr>
+				<td>${userRatingList.sectionName}</td>
+				<td>${rate}</td>
+				    				
+			</tr>
+					</c:forEach>		
 				
-			</tr>					
-			<%} %>
 					</tbody>
 		           </table><br><br>
    </form>
-    <center>
    
-    
-<%  
-		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
-        ResultSet rs1=categoryDao.showAllCategory();
-		%>	
-   		<table border="5" align="center"  >
+   
+  <form id="box1">    
+	
+   		<table align="center" >
 			<thead>
 				<td> <h2>Category List</h2></td>
 			</thead>
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs1.next()){				
-				%>
-				<tr>	
-									
-					<td><a href="SectionDetails.jsp?cusid=<%=rs1.getInt(1)%>"><%=rs1.getString(2)%></a></td>		
+				<c:forEach var="userCategoryList" items="${userCategoryList}">
+				<tr>
 				
-			</tr>					
-			<%} %>
+					 <td><a href="SectionDetails.jsp?cusid=${userCategoryList.categoryId}">${userCategoryList.categoryName}</a></td>					
+				    		
+				    				
+			</tr>
+					</c:forEach>						
+						
+			
 					</tbody>
-		           </table><br><br>
-  </center> 
+		           </table></form><br><br>
+ 
 </body>
 </html>

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-       <%@page import="com.chainsys.impl.SectionDAOImpl"%>  
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+      <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,32 +10,26 @@
 <body style="background-color:powderblue;">
    <h1>Update Section</h1>
     <p>Section List</p>
-<%  
-		SectionDAOImpl sectionDao=new SectionDAOImpl();
-        ResultSet rs=sectionDao.showAllSection();
-		%>
-	
    		<table border="2">
 			<thead>
 				<tr>
 				  <th >Section Name</th>
 				   <th >Category Id</th>
+				   <th>Status</th>
 				   
 				</tr>
 			</thead>
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs.next()){				
-				%>
-				<tr>	
-					 <td><%=rs.getString(2) %></td>	
-					  <td><%=rs.getInt(3) %></td>						
-					
+				<c:forEach var="SectionList" items="${sectionList}">
+				<tr>
+				<td>${SectionList.sectionId }</td>	
+					 <td>${SectionList.sectionName}</td>					
+				    <td>${SectionList.status}</td>					
+								
 			</tr>
-					
-			<%} %>
+					</c:forEach>
 					</tbody>
 		           </table><br><br>
 		           

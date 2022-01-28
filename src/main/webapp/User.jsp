@@ -8,7 +8,7 @@
 </head>
 <body style="background-color:powderblue;">
 		 <center><h1>User</h1></centre>
-    <form action="UserList.jsp">
+    <form action="UserList" >
     <button type="submit">User List</button></form>
  <li><a href="Admin.jsp">Back to Home Page</a></li>  
 </body>

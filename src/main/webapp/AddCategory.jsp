@@ -8,7 +8,7 @@
 </head>
 <body style="background-color:powderblue;">
 <h1>Category</h1>
- <form name="category" action="CategoryName"  method="post">     
+ <form name="category" action="AddCategoryServlet"  method="post">     
       <table>
         <tr>
           <td><label for="name">Category Name</label></td>

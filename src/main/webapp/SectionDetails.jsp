@@ -1,9 +1,6 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="com.chainsys.impl.SectionDAOImpl"%>
-<%@page import="com.chainsys.impl.UserRatingDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@page import="java.text.DecimalFormat"%>
+    pageEncoding="ISO-8859-1"%>    
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,8 +47,8 @@
         <div id=header>
       <img src="assets/images/simpleform.png">
       <ul>
-          <li><a href="UserHome.jsp" style=color:white> Home </a></li>
-          <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>
+          <li><a href="userHome.jsp" style=color:white> Home </a></li>
+          <li><a href="readMore.jsp" style=color:white>About Us</a></li>
           
          
       </ul>
@@ -59,11 +56,6 @@
     <div id=head>
   
 <form id="box">
-
- <%  
-		UserRatingDAOImpl userRatingDao=new UserRatingDAOImpl();
-        ResultSet rs2=userRatingDao.showRating();
-		%>	
  <table border="5" align="right">
  	<h2 class="title" align="center">Frequently viewed Section</h2>
 			<thead>
@@ -76,46 +68,37 @@
 			<br>
 			<br>
 			<tbody>
-			<%DecimalFormat df = new DecimalFormat("0.00");%>
-				<%
-				while(rs2.next()){	
-					Double rating=(double)(rs2.getInt(2)/rs2.getInt(3));
-					double rating1=Double.parseDouble(df.format(rating));
-				%>
-				<tr>	
-									
-					<td><%=rs2.getString(1) %></td>	
-					<td ><%=rating1%></td>		
-				
-			</tr>					
-			<%} %>
+			<c:forEach var="userRatingList"  items="${userRatingList}">
+			
+			 <c:set var = "rate"  value="${userRatingList.rating/userRatingList.rateCount}" />			
+				<tr>
+				<td>${userRatingList.sectionName}</td>
+				<td>${rate}</td>
+				    				
+			</tr>
+					</c:forEach>	
 					</tbody>
 		           </table></form><br><br>
-<%int cid = Integer.parseInt(request.getParameter("cusid"));
- session.setAttribute("category_id", cid);
-SectionDAOImpl sectionDAOImpl = new SectionDAOImpl();
-ResultSet rs = sectionDAOImpl.showSectionName(cid);
- %>	<form id="box1">           
+	<form id="box1">           
 <table border="2" align="left">
 			<thead>
 				<tr>
-				   <th >Section Name</th>
+				   <th >Section List</th>
 				</tr>
 			</thead>
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs.next()){				
-				%>
+			<c:forEach var="SectionList"  items="${sectionList}">
+				
 				<tr>	
 									
-					<td><a href="SectionContent.jsp?id1=<%=rs.getInt(1)%>&sectionname=<%=rs.getString(2)%>"><%=rs.getString(2)%></a></td>
+					<td><a href="SectionContent.jsp?id1=${SectionList.sectionId}&sectionname=${SectionList.sectionName}">${SectionList.sectionName}</a></td>
 					
 				
 			</tr>
 					
-			<%} %>
+			</c:forEach>
 					</tbody>
 		           </table><br><br>
 

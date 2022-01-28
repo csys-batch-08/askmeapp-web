@@ -5,17 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import com.chainsys.model.Category;
 import com.chainsys.util.ConnectionUtil;
 
 public interface CategoryDAOInterface {
 	public void insertCategory(Category category);	
-	public void update(String categoryName,int id);	 
+	public void update(Category category);	 
 	public  int findCategoryId(String categoryName);	
-	public ResultSet showAllCategory();
+	public List<Category> showAllCategory();
 	public void updateInactive(int id);	
-	public ResultSet AllCategory();
+	public List<Category> AllCategory();
 	public String findStatus(int id);
 	public void updateActive(int id);		
 }

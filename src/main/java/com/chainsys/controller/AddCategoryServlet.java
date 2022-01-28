@@ -20,7 +20,7 @@ import com.chainsys.model.User;
 /**
  * Servlet implementation class category
  */
-@WebServlet("/CategoryName")
+@WebServlet("/AddCategoryServlet")
 public class AddCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,26 +29,27 @@ public class AddCategoryServlet extends HttpServlet {
      */
     public AddCategoryServlet() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	public AddCategoryServlet(String categoryName) {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
+	 * @throws IOException 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException  {
+
 		//doGet(request, response);
 		response.setContentType("text/html");
 		HttpSession session=request.getSession();
@@ -56,26 +57,22 @@ public class AddCategoryServlet extends HttpServlet {
 		try {
 			PrintWriter out=response.getWriter();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
 	
 	try {
 		String categoryName=(request.getParameter("categoryName"));			
-		Category Objcategory=new Category(categoryName);
+		Category Objcategory=new Category(0,categoryName,null);
 	    CategoryDAOImpl ObjcatDao=new  CategoryDAOImpl();
 	   ObjcatDao.insertCategory(Objcategory);
-	    int cat_id=0;
-		cat_id=ObjcatDao.findCategoryId(categoryName);
+	   
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Categories.jsp");
 		requestDispatcher.forward(request, response);
 	} catch (ServletException e) {
-		// TODO Auto-generated catch block
+
 		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	} 
 	
 }
 	

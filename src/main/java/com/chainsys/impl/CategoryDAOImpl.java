@@ -30,14 +30,14 @@ public class CategoryDAOImpl implements CategoryDAOInterface{
 			System.out.println("Category inserted");
 		}
 		catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			System.out.println("Value not inserted ");
 		}
 		
 	}
 	//Update 
-	public void update(String categoryName,int id){
+	public void update(Category category){
 		String updateQuery="update category_detail set category_name=?  where category_id=?";
 		//get connection
 		Connection con=ConnectionUtil.getDbConnection();
@@ -45,12 +45,15 @@ public class CategoryDAOImpl implements CategoryDAOInterface{
 		PreparedStatement pstmt=null;
 		try {
 			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setString(1, categoryName);
-			pstmt.setInt(2, id);		
-			pstmt.close();
-			con.close();
+			//System.out.println(category.getCategoryName());
+			//System.out.println(category.getCategoryId());
+			pstmt.setString(1, category.getCategoryName());
+			pstmt.setInt(2, category.getCategoryId());
+			int i=pstmt.executeUpdate();
+			//System.out.println("updated successfully"+i);
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -73,7 +76,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface{
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return categoryId;
@@ -92,7 +95,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface{
 				int i=pstmt.executeUpdate();
 				System.out.println("category inactive update successfully "+i);				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}			
 			String updateQuery1="update section_details set status='Inactive' where category_id=?";		
@@ -113,7 +116,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface{
 				int i=pstmt2.executeUpdate();
 				System.out.println("question update successfully "+i);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			String updateQuery3="update  answer set status=(select status from question_details where answer.question_id=question_details.question_id)";		
@@ -124,7 +127,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface{
 				System.out.println("answer update successfully "+i);
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			
@@ -144,7 +147,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface{
 						int i=pstmt.executeUpdate();
 						System.out.println("update  active successfully "+i);
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+
 						e.printStackTrace();
 					}
 					String updateQuery1="update section_details set status='active' where category_id=?";		
@@ -155,7 +158,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface{
 						int i=pstmt1.executeUpdate();
 						System.out.println("section update successfully "+i);
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+
 						e.printStackTrace();
 					}
 					String updateQuery2="update question_details set status=(select status from section_details where question_details.section_id=section_details.section_id)";		
@@ -166,7 +169,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface{
 						pstmt2.executeUpdate("commit");
 						System.out.println("question update successfully "+i);
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+
 						e.printStackTrace();
 					}
 					String updateQuery3="update  answer set status=(select status from question_details where answer.question_id=question_details.question_id)";		
@@ -177,57 +180,76 @@ public class CategoryDAOImpl implements CategoryDAOInterface{
 						System.out.println("answer update successfully "+i);
 						
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+
 						e.printStackTrace();
 					}
 					
 					
 				}
-	//List of category for user
-	public ResultSet showAllCategory()
-	{
-		
-		
-		String selectQuery="select * from category_detail where status='active'";
-		
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection con = conUtil.getDbConnection();
-		ResultSet rs=null;
-		Statement stmt;
-		try {
-			stmt = con.createStatement();
-			rs=stmt.executeQuery(selectQuery);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-		
-		return rs;
-	}
-	
 	//List of category for admin
-		public ResultSet AllCategory()
-		{
-			
-			
-			String selectQuery="select * from category_detail";
-			
-			ConnectionUtil conUtil = new ConnectionUtil();
-			Connection con = conUtil.getDbConnection();
-			ResultSet rs=null;
-			Statement stmt;
-			try {
-				stmt = con.createStatement();
-				rs=stmt.executeQuery(selectQuery);
+			public List<Category> showAllCategory()
+			{
+				List<Category> categoryList=new ArrayList<Category>();
 				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}		
-			
-			return rs;
-		}
+				String selectQuery="select category_id,category_name from category_detail where status='active'";
+				
+				ConnectionUtil conUtil = new ConnectionUtil();
+				Connection con = conUtil.getDbConnection();
+				PreparedStatement stmt=null;
+				ResultSet rs=null;
+				
+				try {
+					stmt = con.prepareStatement(selectQuery);
+					rs=stmt.executeQuery();
+					while(rs.next()) {
+						Category category=new Category();	
+						category.setCategoryId(rs.getInt(1));
+						category.setCategoryName(rs.getString(2));						
+						categoryList.add(category);}
+						
+					}
+					
+				 catch (SQLException e) {
+
+					e.printStackTrace();
+				}		
+				
+				return categoryList;
+			}
+		
+	//List of category for admin
+			public List<Category> AllCategory()
+			{
+				List<Category> categoryList=new ArrayList<Category>();
+				
+				String selectQuery="select category_id,category_name,status from category_detail";
+				
+				ConnectionUtil conUtil = new ConnectionUtil();
+				Connection con = conUtil.getDbConnection();
+				PreparedStatement stmt=null;
+				ResultSet rs=null;
+				
+				try {
+					stmt = con.prepareStatement(selectQuery);
+					rs=stmt.executeQuery();
+					while(rs.next()) {
+						Category category=new Category();
+						category.setCategoryId(rs.getInt(1));
+						category.setCategoryName(rs.getString(2));
+						category.setStatus(rs.getString(3));
+						categoryList.add(category);}
+						
+					}
+					
+				 catch (SQLException e) {
+
+					e.printStackTrace();
+				}		
+				
+				return categoryList;
+			}
+		
+	
 	
 		
 	//Find Status

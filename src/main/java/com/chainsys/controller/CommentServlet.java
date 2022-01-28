@@ -64,7 +64,7 @@ public class CommentServlet extends HttpServlet {
 			Comment commentObj=new Comment(user_Id,cat_id,sec_id,comment);
 			commentDao.insertComment(commentObj);
 			//System.out.println("Comment inserted");
-			Question question=new Question(comment,sec_id);
+			Question question=new Question(0,comment,sec_id,null);
 			QuestionDAOImpl questionDao=new QuestionDAOImpl();
 			questionDao.insertQuestion(question);
 			//System.out.println("Question inserted");

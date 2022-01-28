@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Edit Answer</title>
 </head>
-<body>
+<body style="background-color:powderblue;">
 <%String ques=request.getParameter("question");
 session.setAttribute("questions",ques);%>
    <form action="EditAnswerServlet" method="post">   

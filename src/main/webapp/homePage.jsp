@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="java.text.DecimalFormat"%>
-     <%@page import="com.chainsys.impl.CategoryDAOImpl"%>   
-      <%@page import="com.chainsys.impl.UserRatingDAOImpl"%>   
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,8 +49,8 @@
         <div id=header>
       <img src="assets/images/simpleform.png">
       <ul>
-         <li><a href="UserHome.jsp" style=color:white> Home </a></li>
-          <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>
+         <li><a href="userHome.jsp" style=color:white> Home </a></li>
+          <li><a href="readMore.jsp" style=color:white>About Us</a></li>
           
          
       </ul>
@@ -63,10 +59,7 @@
     
  <form id="box">    
     
-<%  
-		UserRatingDAOImpl userRatingDao=new UserRatingDAOImpl();
-        ResultSet rs=userRatingDao.showRating();
-		%>	
+
    		<table align="right" >
    		<h2 class="title" align="center">Frequently viewed Section</h2>
 			<thead>
@@ -79,29 +72,24 @@
 			<br>
 			<br>
 			<tbody>
-			<%DecimalFormat df = new DecimalFormat("0.00");%>
-				<%
-				while(rs.next()){	
-					Double rating=(double)(rs.getInt(2)/rs.getInt(3));
-					double rating1=Double.parseDouble(df.format(rating));
-				%>
-				<tr>	
-									
-					<td ><%=rs.getString(1) %></td>	
-					<td ><%=rating1%></td>		
+			
+			<c:forEach var="userRatingList"  items="${userRatingList}">
+			
+			 <c:set var = "rate"  value="${userRatingList.rating/userRatingList.rateCount}" />			
+				<tr>
+				<td>${userRatingList.sectionName}</td>
+				<td>${rate}</td>
+				    				
+			</tr>
+					</c:forEach>		
 				
-			</tr>					
-			<%} %>
 					</tbody>
 		           </table><br><br>
    </form>
    
    
   <form id="box1">    
-<%  
-		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
-        ResultSet rs1=categoryDao.showAllCategory();
-		%>	
+	
    		<table align="center" >
 			<thead>
 				<td> <h2>Category List</h2></td>
@@ -109,15 +97,16 @@
 			<br>
 			<br>
 			<tbody>
-				<%
-				while(rs1.next()){				
-				%>
-				<tr>	
-									
-					<td><a href="SectionDetails.jsp?cusid=<%=rs1.getInt(1)%>"><%=rs1.getString(2)%></a></td>	
+				<c:forEach var="userCategoryList" items="${userCategoryList}">
+				<tr>
 				
-			</tr>					
-			<%} %>
+					 <td><a href="SectionDetailServlet?cusid=${userCategoryList.categoryId}">${userCategoryList.categoryName}</a></td>					
+				    		
+				    				
+			</tr>
+					</c:forEach>						
+						
+			
 					</tbody>
 		           </table></form><br><br>
  

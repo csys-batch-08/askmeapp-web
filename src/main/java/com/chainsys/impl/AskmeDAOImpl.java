@@ -29,41 +29,22 @@ public class AskmeDAOImpl implements AskmeDAOInterface {
 					pst.setInt(3, askMe.getSectionId());
 					pst.setInt(4, askMe.getQuestionId());
 					pst.executeUpdate();
-					System.out.println("Thank you for your intention to ask a question. However, you have asked any question. Please ask and we will be happy to support you.");
+					//System.out.println("Thank you for your intention to ask a question. However, you have asked any question. Please ask and we will be happy to support you.");
 				}
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("Value not inserted ");
+					//System.out.println("Value not inserted ");
 				}
 				
 			}
-		public void deletedetails(int userId) {
-			String deleteQuery="delete from ask_me_questions where user_id=?";
-			//get connection
-			Connection con=ConnectionUtil.getDbConnection();
-			System.out.println("Connection successfully");
-			PreparedStatement pstmt;
-			try {
-				pstmt = con.prepareStatement(deleteQuery);
-				pstmt.setInt(1, userId);
-				int i=pstmt.executeUpdate();
-				System.out.println("Deleted successfully");
-				pstmt.close();
-				con.close();
-			} 
-			catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
+		
 		
 		public  List<AskMe> showAllAskme()
 		{
 			List<AskMe> askMeList=new ArrayList<AskMe>();
 			
-			String selectQuery="select * from ask_me_questions";
+			String selectQuery="select user_detail.user_name,question_details.question_description from((user_detail inner join ask_me_questions using(user_id))inner join question_details using (question_id));";
 			
 			ConnectionUtil conUtil = new ConnectionUtil();
 			Connection con = conUtil.getDbConnection();

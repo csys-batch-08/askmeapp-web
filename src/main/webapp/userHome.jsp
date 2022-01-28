@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-     <%@page import="com.chainsys.impl.CategoryDAOImpl"%>   
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
+
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,22 +43,24 @@
       <img src="assets/images/simpleform.png">
       <ul>
          
-          <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>          
+          <li><a href="readMore.jsp" style=color:white>About Us</a></li>          
           
-           <li><a href="Index.jsp" style=color:white>Logout</a></li>
+           <li><a href="index.jsp" style=color:white>Logout</a></li>
          
          
       </ul>
     </div>
     <div id=head>
-    <center>
+   <center>
    <br><br> <h1 style=color:blanchedalmond ><i> Welcome to Askme</i></h1></div></center><br><br>
     <div id=head1>
-       <center>  <h3 style=color:blanchedalmond>All Answer At Your FingerTips</h3></div></center>
-       <center>   <form action="HomePage.jsp"><br><br>
-           <button type="submit" class="button">Read More....</button></center>
-        </form>
-   
+       <center><h3 style=color:blanchedalmond >All Answer At Your FingerTips</h3></center>
+      
+      <form action="UserCategoryList" align="center"><br><br>
+      <center><button type="submit" class="button">Read More....</button></form> </center> 
+     
+    </div>  
+   </div>
    <form action="SubscribeServle1" method="get">
    <button type="submit"  class=" btn" style="float:right" ><i style="font-size:24px" class="fa">&#xf0f3;</i>Subscribe Here</button>
    </form>
