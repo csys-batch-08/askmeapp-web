@@ -88,25 +88,33 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 				
 				return answerList;
 			}
+			
 	//Show Answer by quesId
-	public  ResultSet showAnswer(int quesId)
+	public List<Answer> showAnswer(Question question)
 	{
-		String query = "select answers from answer where question_id=? and status='active'";
+		
+        List<Answer> answerList=new ArrayList<Answer>();
+		
+        String query = "select answers from answer where question_id=? and status='active'";
 		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection con = conUtil.getDbConnection();
+		Connection con = conUtil.getDbConnection();	
+		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		PreparedStatement stmt;
 		try {
-			stmt = con.prepareStatement(query);
-			stmt.setInt(1, quesId);
-			 rs=stmt.executeQuery();
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1,question.getQuestionId());
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Answer answer=new Answer();
+				answer.setAnswers(rs.getString(2));				
+				answerList.add(answer);}				
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}		
 		
-		return rs;
+		return answerList;
 	}
 	//Find 
 		public int findQuestionId(String answers)
@@ -124,7 +132,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 				}
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			return questionId;

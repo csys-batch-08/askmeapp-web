@@ -17,6 +17,6 @@
 </head>
 <body>
 <br><center><h1 style=color:white>Your comments received successfully!!	 Reply Shortly</h1></center>
-<a href="UserHome.jsp" style=color:white>Back to Home Page</a>
+<a href="userHome.jsp" style=color:white>Back to Home Page</a>
 </body>
 </html>

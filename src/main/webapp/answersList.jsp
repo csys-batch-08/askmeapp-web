@@ -28,6 +28,6 @@
 					</c:forEach>
 					</tbody>
 		           </table><br><br>
- <li><a href="Admin.jsp">Back to Home Page</a></li>			           
+ <li><a href="admin.jsp">Back to Home Page</a></li>			           
 </body>
 </html>

@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.chainsys.dao.QuestionDAOInterface;
 import com.chainsys.model.Question;
-
+import com.chainsys.model.Section;
 import com.chainsys.util.ConnectionUtil;
 
 
@@ -113,26 +113,39 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 	}
 	
 	//Search by Question
-		public ResultSet showQuestion(int id)
+		
+		public List<Question> showQuestion(Section section)
 		{
 			
-			String query = "select question_description from question_details where section_id=? and status='active'";
+	        List<Question> questionList=new ArrayList<Question>();
+			
+	        String query = "select question_id,question_description from question_details where section_id=? and status='active'";
 			ConnectionUtil conUtil = new ConnectionUtil();
-			Connection con = conUtil.getDbConnection();
+			Connection con = conUtil.getDbConnection();	
+			PreparedStatement pstmt=null;
 			ResultSet rs=null;
-			PreparedStatement stmt;
 			try {
-				stmt = con.prepareStatement(query);
-				stmt.setInt(1, id);
-				 rs=stmt.executeQuery();
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, section.getSectionId());
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					Question question=new Question();
+					question.setQuestionId(rs.getInt(1));
+					question.setQuestions(rs.getString(2));
+									
+					questionList.add(question);}		
 				
 			} catch (SQLException e) {
-
+			
 				e.printStackTrace();
 			}		
 			
-			return rs;
+			return questionList;
 		}
+		
+		
+		
+		
 		//Find section Id
 		public int findSectionId(int qId)
 		{

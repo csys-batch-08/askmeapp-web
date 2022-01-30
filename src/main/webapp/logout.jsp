@@ -49,8 +49,8 @@
         <div id=header>
       <img src="assets/images/simpleform.png">
       <ul>
-         <li><a href="UserHome.jsp" style=color:white> Home </a></li>
-          <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>
+         <li><a href="userHome.jsp" style=color:white> Home </a></li>
+          <li><a href="readMore.jsp" style=color:white>About Us</a></li>
           
          
       </ul>

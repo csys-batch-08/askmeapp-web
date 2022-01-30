@@ -34,7 +34,7 @@ public class UpdateSectionServlet extends HttpServlet {
 		String update=(request.getParameter("newSectionName"));
 		Section section =new Section(id,update,0,null,null);
 		sectionDao.update(section);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Section.jsp");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("section.jsp");
 		requestDispatcher.forward(request, response);
 	} catch (ServletException e) {
 

@@ -40,8 +40,8 @@ public class UpdateCategoryServlet extends HttpServlet {
 		String newCategoryName=(request.getParameter("newCategoryName"));		
 		Category Objcategory2=new Category(id,newCategoryName,null);	    
 	    categoryDao.update(Objcategory2);
-		System.out.println("hai");
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Categories.jsp");
+		
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("categories.jsp");
 		requestDispatcher.forward(request, response);
 	} catch (ServletException e) {
 

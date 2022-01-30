@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.chainsys.dao.UserRatingDAOInterface;
+import com.chainsys.model.Section;
 import com.chainsys.model.User;
 import com.chainsys.model.UserRating;
 import com.chainsys.util.ConnectionUtil;
@@ -16,19 +17,21 @@ import com.chainsys.util.ConnectionUtil;
 
 
 public class UserRatingDAOImpl implements UserRatingDAOInterface {
-	public  void updateRating(int rating,int count,int sectionId){
-		String updateQuery="update section_details set rating=?,rating_count=? where section_id=?";
+	//rating update
+	public  void updateRating(UserRating userRating){
+		String updateQuery="update section_details set rating=?,rating_count=? where section_name=?";
 		//get connection
 		Connection con=ConnectionUtil.getDbConnection();
 		System.out.println("Connection successfully");		
 		PreparedStatement pstmt=null;
 		try {
-			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setInt(1,rating);
-			pstmt.setInt(2, count);
-			pstmt.setInt(3,sectionId);
-			pstmt.executeUpdate("commit");
-			//System.out.println("Rating Updated successfully");
+			pstmt = con.prepareStatement(updateQuery);			
+			pstmt.setInt(1,userRating.getRating());
+			pstmt.setInt(2, userRating.getRateCount());
+			pstmt.setString(3,userRating.getSectionName());
+			pstmt.executeUpdate();
+			System.out.println("helo");
+			System.out.println("Rating Updated successfully");
 			
 		} catch (SQLException e) {
 
@@ -38,24 +41,7 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 	}
 	
 		
-	public  ResultSet findRating(String sectionName)
-	{
-		String findRating="select rating,rating_count from section_details where section_name='"+sectionName+"'";
-		Connection con=ConnectionUtil.getDbConnection();
-		Statement stmt;
-		int rating=0;
-		try {
-			stmt = con.createStatement();
-			ResultSet rs=stmt.executeQuery(findRating);
-			return rs;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
+	
 	//priority by rating
 	
 			public List<UserRating> showRating()
@@ -86,6 +72,40 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 				
 				return userRatingList;
 			}
+			
+			//User Place Rating
+			public  List<UserRating> findRating(Section section)
+			{
+				
+				List<UserRating> rateList=new ArrayList<UserRating>();
+				String findRating="select rating,rating_count from section_details where section_name=?";
+				Connection con=ConnectionUtil.getDbConnection();
+				PreparedStatement pst=null;
+					
+				PreparedStatement pstmt=null;
+				ResultSet rs=null;
+				try {
+					
+					pstmt = con.prepareStatement(findRating);
+					pstmt.setString(1, section.getSectionName());
+					rs=pstmt.executeQuery();
+					while(rs.next()) {
+						UserRating rate=new UserRating();
+						rate.setRating(rs.getInt(1));
+						rate.setRateCount(rs.getInt(2));						
+						rateList.add(rate);
+						}			
+					
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}		
+				
+				return rateList;
+			}
+
+
+
 			
 	
 }

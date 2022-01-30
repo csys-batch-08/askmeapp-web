@@ -1,11 +1,7 @@
-<%@page import="java.io.FileReader"%>
-<%@page import="java.io.File"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="java.sql.ResultSet"%>
-<%@page import="com.chainsys.impl.SectionDAOImpl"%>
-<%@page import="com.chainsys.impl.UserRatingDAOImpl"%>
-<%@page import="java.text.DecimalFormat"%>
+   <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,29 +35,23 @@ padding:0;}
 
 <div id="toolbar">
     </div>
-     <%String content= request.getParameter("sectionname");
-    int section_id= Integer.parseInt(request.getParameter("id1"));
-						session.setAttribute("sectionName", content);
-						session.setAttribute("secid",section_id);%>
+    
             
    
     <div id="container">
         <div id=header>
       <img src="assets/images/simpleform.png">
       <ul>
-            <li><a href="UserHome.jsp" style=color:white> Home </a></li>
-            <li><a href="ReadMore.jsp" style=color:white>About Us</a></li>          	  
-           <li><a href="AskmeQuestion.jsp?id3=<%=section_id%>"style=color:white>Ask a question</a></li>
-            <li> <a href="Comments.jsp" style=color:white>Leave a Reply</a></li>         
+            <li><a href="userHome.jsp" style=color:white> Home </a></li>
+            <li><a href="readMore.jsp" style=color:white>About Us</a></li>          	  
+           <li><a href="AskMeQuestionServlet"style=color:white>Ask a question</a></li>
+            <li> <a href="comments.jsp" style=color:white>Leave a Reply</a></li>         
       </ul>
     </div>
     <div id=head>
 
 <form id="box">
- <%  
-		UserRatingDAOImpl userRatingDao=new UserRatingDAOImpl();
-        ResultSet rs2=userRatingDao.showRating();
-		%>	
+ 
  <table  align="right">
  <h2 class="title" align="center">Frequently viewed Section</h2>
 			<thead>
@@ -74,32 +64,29 @@ padding:0;}
 			<br>
 			<br>
 			<tbody>
-			<%DecimalFormat df = new DecimalFormat("0.00");%>
-				<%
-				while(rs2.next()){	
-					Double rating=(double)(rs2.getInt(2)/rs2.getInt(3));
-					double rating1=Double.parseDouble(df.format(rating));
-				%>
-				<tr>	
-									
-					<td><%=rs2.getString(1) %></td>	
-					<td ><%=rating1%></td>		
-				
-			</tr>					
-			<%} %>
+			<c:forEach var="userRatingList"  items="${userRatingList}">
+			
+			 <c:set var = "rate"  value="${userRatingList.rating/userRatingList.rateCount}" />			
+				<tr>
+				<td>${userRatingList.sectionName}</td>
+				<td>${rate}</td>
+				    				
+			</tr>
+					</c:forEach>
 					</tbody>
 		           </table></form><br><br>
-  <form id="box1" action="UserRatingServlet" method="post">   
+ <c:set var="content" value="${sectionName }"></c:set>
+  <form id="box1" action="UserRatingServlet?sName=${sectionName}" method="post">   
      
       <label>Click To Read a File: </label> 
-      <a href="assets/images/<%=content %>.pdf"><%=content %></a><br><br>
-     <center>   
+      <a href="assets/images/${content}.pdf">${content}</a><br><br>
+       <center>   
        <h2><b>Place Your Rating</b></h2>
         <h3>From 1....10 </h3>
         <input type="text" name="rating" pattern="[0-9]{1,10}">                 
         <button type="submit">Submit Rating</button>
         </center>
-    </form>
+        </form>
    
     
     

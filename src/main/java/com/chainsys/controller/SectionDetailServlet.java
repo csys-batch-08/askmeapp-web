@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.chainsys.impl.SectionDAOImpl;
+import com.chainsys.impl.UserRatingDAOImpl;
 import com.chainsys.model.Category;
 import com.chainsys.model.Section;
+import com.chainsys.model.UserRating;
 
 
 @WebServlet("/SectionDetailServlet")
@@ -22,14 +24,17 @@ public class SectionDetailServlet extends HttpServlet {
        
     
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int cid = Integer.parseInt(request.getParameter("cusid"));
-		HttpSession session=request.getSession();
+		UserRatingDAOImpl userRatingDao=new UserRatingDAOImpl();		
+		 HttpSession session=request.getSession();
+		 List<UserRating> userRatingList=userRatingDao.showRating();
+			request.setAttribute("userRatingList", userRatingList);
+		int cid = Integer.parseInt(request.getParameter("cusid"));		
 		 session.setAttribute("categoryid", cid);
 		 Category category =new Category(cid,null,null);
 		SectionDAOImpl sectionDAOImpl = new SectionDAOImpl();
 		List<Section> sectionList= sectionDAOImpl.showSectionName(category);
 		request.setAttribute("sectionList", sectionList);				
-		RequestDispatcher req=request.getRequestDispatcher("SectionDetails.jsp");
+		RequestDispatcher req=request.getRequestDispatcher("sectionDetail.jsp");
 		req.forward(request, response);
 		
 

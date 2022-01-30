@@ -153,8 +153,7 @@ public class SectionDAOImpl implements SectionDAOInterface{
 					return sectionList;
 				}
 				
-		
-	
+				
 		
 }
 

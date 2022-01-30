@@ -27,7 +27,7 @@ public class QuestionList extends HttpServlet {
 		 HttpSession session=request.getSession();
 		   List<Question> questionList=questionDao.showAllQuestion();
 			request.setAttribute("questionList", questionList);
-			RequestDispatcher req=request.getRequestDispatcher("QuestionList.jsp");
+			RequestDispatcher req=request.getRequestDispatcher("questionList.jsp");
 			req.forward(request, response);
 		
 	}

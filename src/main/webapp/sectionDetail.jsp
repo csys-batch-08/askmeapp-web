@@ -93,7 +93,7 @@
 				
 				<tr>	
 									
-					<td><a href="SectionContent.jsp?id1=${SectionList.sectionId}&sectionname=${SectionList.sectionName}">${SectionList.sectionName}</a></td>
+					<td><a href="SectionContentServlet?secid=${SectionList.sectionId}&sectionname=${SectionList.sectionName}">${SectionList.sectionName}</a></td>
 					
 				
 			</tr>

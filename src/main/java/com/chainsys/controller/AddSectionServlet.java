@@ -47,7 +47,7 @@ public class AddSectionServlet extends HttpServlet {
 		System.out.println("image"+image);
 		Section section=new Section(0,sectionName,id,null,image);
 		sectionDao.insertSection(section);	
-		RequestDispatcher req1=request.getRequestDispatcher("Section.jsp");
+		RequestDispatcher req1=request.getRequestDispatcher("section.jsp");
 		req1.forward(request, response);
 		
 	} 

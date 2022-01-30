@@ -22,61 +22,36 @@ import com.chainsys.model.Question;
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CommentServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		 HttpSession session=request.getSession();
-			try {
-				PrintWriter out=response.getWriter();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();		}
-		
+
+		 
+			
 		try {
+			HttpSession session=request.getSession();
+			PrintWriter out=response.getWriter();
 			String comment=(request.getParameter("comment"));	
 			session.setAttribute("comments", comment);
-			int user_Id=Integer.parseInt(session.getAttribute("userid").toString());
+			int userId=Integer.parseInt(session.getAttribute("userid").toString());
 			//System.out.println(user_Id);
-			int cat_id=Integer.parseInt(session.getAttribute("category_id").toString());
+			int catId=Integer.parseInt(session.getAttribute("categoryid").toString());
 			//System.out.println(cat_id);
-			int sec_id=Integer.parseInt(session.getAttribute("secid").toString());
+			int secId=Integer.parseInt(session.getAttribute("sectionId").toString());
 			//System.out.println(sec_id);
 			CommentDAOImpl commentDao=new CommentDAOImpl();
-			Comment commentObj=new Comment(user_Id,cat_id,sec_id,comment);
+			Comment commentObj=new Comment(userId,catId,secId,comment);
 			commentDao.insertComment(commentObj);
 			//System.out.println("Comment inserted");
-			Question question=new Question(0,comment,sec_id,null);
+			Question question=new Question(0,comment,secId,null);
 			QuestionDAOImpl questionDao=new QuestionDAOImpl();
 			questionDao.insertQuestion(question);
 			//System.out.println("Question inserted");
-			RequestDispatcher requestDispatcher=request.getRequestDispatcher("CommentMessage.jsp");
+			RequestDispatcher requestDispatcher=request.getRequestDispatcher("commentMessage.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ServletException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 		}
 	}
 

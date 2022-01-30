@@ -40,7 +40,7 @@ public class UpdateQuestionServlet extends HttpServlet {
 			String update=(request.getParameter("newquestion"));
 			Question question=new Question(id,update,0,null);
 			questionDao.update(question);
-			RequestDispatcher requestDispatcher=request.getRequestDispatcher("Question.jsp");
+			RequestDispatcher requestDispatcher=request.getRequestDispatcher("question.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ServletException e) {
 			e.printStackTrace();

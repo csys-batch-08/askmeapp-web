@@ -24,50 +24,22 @@ import com.chainsys.model.User;
 public class AddCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddCategoryServlet() {
-        super();
-
-    }
-
-	public AddCategoryServlet(String categoryName) {
-
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @throws IOException 
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException  {
 
-		//doGet(request, response);
-		response.setContentType("text/html");
-		HttpSession session=request.getSession();
 		
-		try {
-			PrintWriter out=response.getWriter();
-		} catch (IOException e1) {
-
-			e1.printStackTrace();
-		}
+		
+		
+		
 	
 	try {
+		HttpSession session=request.getSession();
 		String categoryName=(request.getParameter("categoryName"));			
 		Category Objcategory=new Category(0,categoryName,null);
 	    CategoryDAOImpl ObjcatDao=new  CategoryDAOImpl();
 	   ObjcatDao.insertCategory(Objcategory);
 	   
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Categories.jsp");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("categories.jsp");
 		requestDispatcher.forward(request, response);
 	} catch (ServletException e) {
 

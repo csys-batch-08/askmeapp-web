@@ -22,28 +22,9 @@ import com.chainsys.model.User;
 public class AdminSubscriberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminSubscriberServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+
 		String sectionName=request.getParameter("sectionName");
 		SubscribeUser user=new SubscribeUser();
 		UserDAOImpl userDao=new UserDAOImpl();		
@@ -61,14 +42,14 @@ public class AdminSubscriberServlet extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Sent Message Successfully');");
-			out.println("location='Subscriber.jsp';");
+			out.println("location='subscriber.jsp';");
 			out.println("</script>");
 		}
 		else
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Message not send');");
-			out.println("location='Subscriber.jsp';");
+			out.println("location='subscriber.jsp';");
 			out.println("</script>");
 
 		}

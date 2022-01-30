@@ -64,28 +64,33 @@ public class AskmeDAOImpl implements AskmeDAOInterface {
 			return askMeList;
 		}
 		
-		public ResultSet FindUserId( int userId,int quesId)		{
+		public List<AskMe> FindUserId( AskMe askMe)		{
+			List<AskMe> askList=new ArrayList<AskMe>();
 			
-			
-			String selectQuery="select ask_me_questions.question_id from (user_detail inner join ask_me_questions using(user_id))where user_id='"+userId+"' and question_id='"+quesId+"'";
+			String selectQuery="select ask_me_questions.question_id from (user_detail inner join ask_me_questions using(user_id))where user_id=? and question_id=?";
 			
 			ConnectionUtil conUtil = new ConnectionUtil();
 			Connection con = conUtil.getDbConnection();
+			PreparedStatement pst = null;
 			ResultSet rs=null;
-			Statement stmt;
-			//int quesId=0;
 			try {
-				stmt = con.createStatement();
-				rs=stmt.executeQuery(selectQuery);
-				
+				pst = con.prepareStatement(selectQuery);				
+				pst.setInt(1,askMe.getUserId());	
+				pst.setInt(2, askMe.getQuestionId());
+				rs=pst.executeQuery();
+			    while(rs.next()) {
+			    	AskMe ask=new AskMe();
+			    	ask.setQuestionId(rs.getInt(3));
+			    	askList.add(askMe);
+			    }
 				
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}		
 			
-			return rs;
+			return askList;
 		}
 		
 }

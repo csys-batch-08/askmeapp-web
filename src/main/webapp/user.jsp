@@ -7,9 +7,9 @@
 <title>User</title>
 </head>
 <body style="background-color:powderblue;">
-		 <center><h1>User</h1></centre>
+		<h1 >User</h1>
     <form action="UserList" >
     <button type="submit">User List</button></form>
- <li><a href="Admin.jsp">Back to Home Page</a></li>  
+ <li><a href="admin.jsp">Back to Home Page</a></li>  
 </body>
 </html>

@@ -41,7 +41,7 @@ public class AddQuestionServlet extends HttpServlet {
 	Question question=new Question(0,questions,id,null);
 	
 	questionDao.insertQuestion(question);	  
-	response.sendRedirect("Question.jsp");
+	response.sendRedirect("question.jsp");
 //		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Question.jsp");
 //		requestDispatcher.forward(request, response); 
 	}

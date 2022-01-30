@@ -22,19 +22,16 @@
 			<tbody>
 				<c:forEach var="CommentList" items="${commentList}">
 				<tr>
-				<td>${CommentList.email }</td>	
+				<td>${CommentList.email }</td>					
 					 <td>${CommentList.comment}</td>					
-				    				
-				    <td><a href="EditAnswer.jsp?question=${CommentList.comment}">Edit</a> 			
-			
-					
-					 					
+				    <c:set var="comment" value="${CommentList.comment}"/>				
+				    <td><a href="editAnswer.jsp">Edit</a> 				 					
 					
 			</tr>
 					
 			</c:forEach>
 					</tbody>
 		           </table><br><br>
-     <li><a href="Admin.jsp">Back to Home Page</a></li>
+     <li><a href="admin.jsp">Back to Home Page</a></li>
 </body>
 </html>

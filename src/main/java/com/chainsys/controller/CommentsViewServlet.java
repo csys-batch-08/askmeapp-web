@@ -29,7 +29,7 @@ public class CommentsViewServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		List<AdminCommentView> commentList=commentDao.commentView();
 		request.setAttribute("commentList", commentList);
-		RequestDispatcher req=request.getRequestDispatcher("CommentsView.jsp");
+		RequestDispatcher req=request.getRequestDispatcher("commentsView.jsp");
 		req.forward(request, response);
 		
 	}

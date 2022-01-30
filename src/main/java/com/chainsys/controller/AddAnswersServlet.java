@@ -42,7 +42,7 @@ public class AddAnswersServlet extends HttpServlet {
 		Answer answers=new Answer(answer,id,null);	
 		AnswerDAOImpl answerDao=new AnswerDAOImpl();
 		answerDao.insertAnswer(answers);	
-		response.sendRedirect("Answers.jsp");
+		response.sendRedirect("answers.jsp");
 //		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Answers.jsp");
 //		requestDispatcher.forward(request, response);
 		

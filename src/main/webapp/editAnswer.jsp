@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="com.chainsys.impl.QuestionDAOImpl"%>  
+     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +8,9 @@
 <title>Edit Answer</title>
 </head>
 <body style="background-color:powderblue;">
-<%String ques=request.getParameter("question");
-session.setAttribute("questions",ques);%>
-   <form action="EditAnswerServlet" method="post">   
+
+<c:set var="question" value="${comment}"/>
+   <form action="EditAnswerServlet?question=${question}" method="post">   
         <table>
             <thead>
                 <tr>
@@ -20,5 +20,7 @@ session.setAttribute("questions",ques);%>
         </table>
         <button type="submit">Submit Answer</button>
     </form>
+    
+    <li><a href="admin.jsp">Back to Home Page</a></li>
 </body>
 </html>

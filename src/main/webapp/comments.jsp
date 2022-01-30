@@ -87,8 +87,8 @@
       <img src="assets/images/simpleform.png">
       <ul>
          
-          <li><a href="UserHome.jsp" style=color:white>Home</a></li>
-           <li><a href="Index.jsp" style=color:white>Logout</a></li>
+          <li><a href="userHome.jsp" style=color:white>Home</a></li>
+           <li><a href="index.jsp" style=color:white>Logout</a></li>
          
          
       </ul>
@@ -103,13 +103,13 @@
           <td><input type="text" name="comment" pattern="[A-Za-z]{10,}+" required autofocus></td>
         </tr>      
         <tr>
-       <td colspan="2"><input type="submit" class="submit" /></td>  
+       <td colspan="2"><input type="submit" class="submit" />Click</td>  
         </tr>      
        
       </table>
     </form>		
     </center> 
     </div>	
-     <li><a href="Admin.jsp">Back to Home Page</a></li>
+     <li><a href="userHome.jsp">Back to Home Page</a></li>
 </body>
 </html>

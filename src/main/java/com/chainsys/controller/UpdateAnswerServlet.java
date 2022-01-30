@@ -39,7 +39,7 @@ public class UpdateAnswerServlet extends HttpServlet {
 			String update=(request.getParameter("newanswer"));
 			Answer answer=new Answer(update,id,null);
 			answerDao.update(answer);
-			response.sendRedirect("Answers.jsp");
+			response.sendRedirect("answers.jsp");
 //			RequestDispatcher requestDispatcher=request.getRequestDispatcher("Answers.jsp");
 //			requestDispatcher.forward(request, response);
 		} 

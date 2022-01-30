@@ -39,12 +39,12 @@ public class DeleteCategoryServlet extends HttpServlet {
 		if(status.equals("active")) {	
 			System.out.println("inactive");
 	    categoryDao.updateInactive(id);
-	    response.sendRedirect("Categories.jsp");
+	    response.sendRedirect("categories.jsp");
 	    }
 		else {
 			System.out.println("active ");
 			categoryDao.updateActive(id);
-			response.sendRedirect("Categories.jsp");
+			response.sendRedirect("categories.jsp");
 		}
 
 	} catch (IOException e) {

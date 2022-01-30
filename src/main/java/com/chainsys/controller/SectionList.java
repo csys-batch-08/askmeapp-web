@@ -26,7 +26,7 @@ public class SectionList extends HttpServlet {
 		 HttpSession session=request.getSession();
 		   List<Section> sectionList=sectionDao.showAllSection();
 			request.setAttribute("sectionList", sectionList);
-			RequestDispatcher req=request.getRequestDispatcher("SectionList.jsp");
+			RequestDispatcher req=request.getRequestDispatcher("sectionList.jsp");
 			req.forward(request, response);
 		
        

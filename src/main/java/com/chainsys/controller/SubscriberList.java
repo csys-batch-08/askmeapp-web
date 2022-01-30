@@ -24,7 +24,7 @@ public class SubscriberList extends HttpServlet {
 		   HttpSession session=request.getSession();
 		   List<User> subscriberList=userDao.subscribeUser();
 			request.setAttribute("subscriberList", subscriberList);			
-			RequestDispatcher req=request.getRequestDispatcher("Subscriber.jsp");
+			RequestDispatcher req=request.getRequestDispatcher("subscriber.jsp");
 			req.forward(request, response);
 		
 		

@@ -24,32 +24,14 @@ import com.chainsys.model.Answer;
 public class EditAnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EditAnswerServlet() {
-        super();
-
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+
 		try {
 		HttpSession session=request.getSession();
 		QuestionDAOImpl questionDao=new QuestionDAOImpl();
-		String question=(String) session.getAttribute("questions");
+		String question=request.getParameter("question");
+		//String question=(String) session.getAttribute("questions");
 		//System.out.println("question"+question);
 		int qId=questionDao.findQuestionId(question);
 		//System.out.println("ques"+qId);
@@ -64,7 +46,7 @@ public class EditAnswerServlet extends HttpServlet {
 		int commentId=commentDao.findCommentId(sId);
 		System.out.println("CommentId"+commentId);
 		commentDao.deletedetails(commentId);		
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("Admin.jsp");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("admin.jsp");
 		
 			requestDispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {

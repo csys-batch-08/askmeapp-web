@@ -8,12 +8,12 @@
 </head>
 <body  style="background-color:powderblue;">
  <center><h1>Section</h1></centre>
-    <form action="AddSection.jsp">
+    <form action="addSection.jsp">
     <button type="submit">Add Section</button></form><br><br>
-    <form action="UpdateSection.jsp">
+    <form action="updateSection.jsp">
     <button type="submit">Update Section</button></form><br><br>
     <form action="SectionList">
     <button type="submit">Section List</button></form><br><br> 
-    <li><a href="Admin.jsp">Back to Home Page</a></li>	 
+    <li><a href="admin.jsp">Back to Home Page</a></li>	 
 </body>
 </html>
