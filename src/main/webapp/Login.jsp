@@ -81,7 +81,7 @@
    
   <div class="container">
     <h1 style=color:white>Login</h1>
-    <form name="login" class="loginform" action="LoginServlet1" >
+    <form name="login" class="loginform" action="LoginServlet" >
       <table>       
         <tr>
           <td><label for="email">Enter Email Id:</label></td>

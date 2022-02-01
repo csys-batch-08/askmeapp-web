@@ -20,34 +20,35 @@
     
 		
 		 <h1 style=color:white> Question List</h1>
-
+       <c:set var="QuestionList" value="${questionList}"/>
+			<c:choose>
+			<c:when test="${not empty QuestionList }">
+			
    		<table border="2">
 			<thead>
 				<tr>
-				  <th style=color:white>Questions</th>
+				  <th  style=color:white>Questions</th>
 				</tr>
 			</thead>
 			<br>
 			<br>
 			<tbody>
-			<c:set var="QuestionList" value="${questionList}"/>
-			<c:choose>
-			<c:when test="${not empty QuestionList }">
-			<c:forEach var="QuestionList"  items="${questionList}">						
+								
 				<tr>
+				<c:forEach var="QuestionList"  items="${questionList}">	
 				<td>${QuestionList.questions}</td>
 				<td><button ><a href="AnswerServlet?quesId=${QuestionList.questionId }&question=${QuestionList.questions}"> View Answer</a></button>	</td>
 				    				
 			</tr>
-					</c:forEach>	
-				</c:when>
+				</c:forEach>	
+				
 					</tbody>
 		           </table>
-		           <br><br>
+		           </c:when>
 		           <c:otherwise>
 		           <c:out value="No Questions Found"/>
 		           </c:otherwise>
-		        	</c:choose>   
+		       </c:choose>   
 		            <li><a href="userHome.jsp" style=color:white>Back to Home Page</a></li>
 		        
 </body>

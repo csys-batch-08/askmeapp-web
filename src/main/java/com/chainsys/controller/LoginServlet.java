@@ -18,9 +18,10 @@ import com.chainsys.exception.PasswordIncorrect;
 import com.chainsys.impl.AdminDAOImpl;
 import com.chainsys.impl.UserDAOImpl;
 import com.chainsys.model.User;
-@WebServlet("/LoginServlet1")
 
 
+
+@WebServlet("/LoginServlet")
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

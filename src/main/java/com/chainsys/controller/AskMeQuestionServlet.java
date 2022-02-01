@@ -26,10 +26,11 @@ public class AskMeQuestionServlet extends HttpServlet {
   
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          HttpSession session=request.getSession();
+         System.out.println("helo");
          QuestionDAOImpl questionDao=new QuestionDAOImpl();
-         int id= (int) session.getAttribute("sId");
-         System.out.println("sId"+id);
-         Section section=new Section(id,null,0,null,null);
+         int secId=Integer.parseInt(session.getAttribute("sectionId").toString());
+         System.out.println("sId"+secId);
+         Section section=new Section(secId,null,0,null,null);
          List<Question> questionList=questionDao.showQuestion(section);
          request.setAttribute("questionList", questionList);
          RequestDispatcher req=request.getRequestDispatcher("askQuestion.jsp");

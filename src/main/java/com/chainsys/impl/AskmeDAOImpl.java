@@ -92,6 +92,9 @@ public class AskmeDAOImpl implements AskmeDAOInterface {
 			
 			return askList;
 		}
+
+
+		
 		
 }
 	

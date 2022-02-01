@@ -1,6 +1,7 @@
 package com.chainsys.impl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +12,6 @@ import java.util.List;
 import com.chainsys.dao.AnswerDAOInterface;
 import com.chainsys.model.Answer;
 import com.chainsys.model.Question;
-import com.chainsys.model.User;
 import com.chainsys.util.ConnectionUtil;
 
 public class AnswerDAOImpl implements AnswerDAOInterface{
@@ -106,7 +106,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Answer answer=new Answer();
-				answer.setAnswers(rs.getString(2));				
+				answer.setAnswers(rs.getString(1));				
 				answerList.add(answer);}				
 			
 		} catch (SQLException e) {
@@ -138,6 +138,8 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 			return questionId;
 			
 		}
+
+	
 		
 	}
 
