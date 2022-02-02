@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <link rel=stylesheet type=text/css href=assets/css/style.css>
@@ -25,7 +25,7 @@
     </div>
     <div id="container">
         <div id=header>
-      <img src="assets/images/simpleform.png">
+      <img src="assets/images/simpleform.png" alt="ShowImage">
      <ul>
          
           <li><a href="register.jsp" style=color:white>SignUp</a></li>

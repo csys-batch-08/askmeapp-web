@@ -3,17 +3,13 @@ package com.chainsys.impl;
 import java.sql.Connection;
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.chainsys.dao.CommentDAOInterface;
-import com.chainsys.model.AdminCommentView;
 import com.chainsys.model.Comment;
-import com.chainsys.model.User;
 import com.chainsys.util.ConnectionUtil;
 
 
@@ -77,7 +73,7 @@ public class CommentDAOImpl implements CommentDAOInterface{
 				}
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			return commentId;
@@ -93,11 +89,10 @@ public class CommentDAOImpl implements CommentDAOInterface{
 			try {
 				pstmt = con.prepareStatement(deleteQuery);
 				pstmt.setInt(1,commentId);
-				int i=pstmt.executeUpdate();
-				//System.out.println("Selected comment deleted");
+				pstmt.executeUpdate();				
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			

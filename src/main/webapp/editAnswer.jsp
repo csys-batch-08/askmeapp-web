@@ -2,15 +2,15 @@
     pageEncoding="ISO-8859-1"%>
      <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Edit Answer</title>
 </head>
 <body style="background-color:powderblue;">
 
-<c:set var="question" value="${comment}"/>
-   <form action="EditAnswerServlet?question=${question}" method="post">   
+
+   <form action="EditAnswerServlet1" method="post">   
         <table>
             <thead>
                 <tr>

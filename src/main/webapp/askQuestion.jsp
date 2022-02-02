@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Ask a Question</title>
@@ -38,9 +38,9 @@
 				<c:forEach var="QuestionList"  items="${questionList}">	
 				<td>${QuestionList.questions}</td>
 				<td><button ><a href="AnswerServlet?quesId=${QuestionList.questionId }&question=${QuestionList.questions}"> View Answer</a></button>	</td>
-				    				
+				</c:forEach>    				
 			</tr>
-				</c:forEach>	
+					
 				
 					</tbody>
 		           </table>

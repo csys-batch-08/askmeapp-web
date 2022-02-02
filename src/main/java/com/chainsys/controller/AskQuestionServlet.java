@@ -33,25 +33,31 @@ public class AskQuestionServlet extends HttpServlet {
 	try {
 		HttpSession session=request.getSession();		
 		PrintWriter out=response.getWriter();
-		int questionId=Integer.parseInt(session.getAttribute("questionId").toString());		
-		//String questions=(request.getParameter("question"));		
+		int questionId=Integer.parseInt(session.getAttribute("questionId").toString());	
+		System.out.println("qId"+questionId);
+		String questions=(request.getParameter("question"));		
 		int userId=Integer.parseInt(session.getAttribute("userid").toString());
-		//System.out.println(userId);
+		System.out.println("uId"+userId);
 		int catId=Integer.parseInt(session.getAttribute("categoryid").toString());
-		//System.out.println(cat_id);
+		System.out.println("cId"+catId);
 		int secId=Integer.parseInt(session.getAttribute("sectionId").toString());
+		System.out.println("sId"+secId);
 		AskmeDAOImpl askmeDao=new AskmeDAOImpl();
 		AskMe askMe=new AskMe(userId,0,0,questionId);
 		List<AskMe> askList=askmeDao.FindUserId(askMe);
-		boolean ans=askList.isEmpty();
+		boolean ans = false;
+		ans=askList.isEmpty();
 		if(ans==true) {
-				throw new AlreadyUsedQuestionException();			
+			AskMe askme=new AskMe(userId,catId,secId,questionId);
+			askmeDao.askmequestions(askme);
+			RequestDispatcher requestDispatcher=request.getRequestDispatcher("userHome.jsp");
+			requestDispatcher.forward(request, response);						
 			}			
 		else {
-		AskMe askme=new AskMe(userId,catId,secId,questionId);
-		askmeDao.askmequestions(askme);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("userHome.jsp");
-		requestDispatcher.forward(request, response);}
+			
+			throw new AlreadyUsedQuestionException();
+			
+		}
 		
 		
 	}

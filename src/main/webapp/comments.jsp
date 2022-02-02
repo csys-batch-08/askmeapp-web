@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Comments</title>
@@ -94,9 +94,9 @@
       </ul>
     </div>
     <div id=head> 
-    <center> 
-	<div class="container">	
-   <form name="comment" action="CommentServlet"  method="post">
+   <div class="container">	
+ <form name="comment" action="CommentServlet"  method="post">
+  
       <table>
         <tr>
           <td><label for="name" style=color:white>Enter your Comments:</label></td>
@@ -107,9 +107,10 @@
         </tr>      
        
       </table>
-    </form>		
-    </center> 
+      </div>
+   </form>
+   
     </div>	
-     <li><a href="userHome.jsp">Back to Home Page</a></li>
+   <a href="userHome.jsp">Back to Home Page</a>
 </body>
 </html>

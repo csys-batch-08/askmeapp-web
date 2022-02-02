@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
        <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title> User Answer</title>
@@ -18,7 +18,10 @@
 </head>
 <body>
  <p style=color:white>Answer List</p>
-
+<c:set var="AnswerList" value="${answerList}"/>
+			<c:choose>
+			<c:when test="${not empty AnswerList }">
+	
 	<form action="AskQuestionServlet" method="post">
    		<table border="2">
 			<thead>
@@ -30,25 +33,28 @@
 			<br>
 			<br>
 			<tbody>
-			<c:set var="AnswerList" value="${answerList}"/>
-			<c:choose>
-			<c:when test="${not empty AnswerList }">
-			<c:forEach var="AnswerList"  items="${answerList}">						
+			
+								
 				<tr>
+				<c:forEach var="AnswerList"  items="${answerList}">	
 				<td>${AnswerList.answers}</td>
-				<td colspan="2"><input type="submit">Okay</td> 
-				    				
-			</tr>
-					</c:forEach>	
-				</c:when>
+				<td colspan="2"><input type="submit"></td> 
+				</c:forEach>	
+								
+			
+					</tr>
+				
 					</tbody>
 		           </table>
-		           <br><br>
+		           </form>
+		            </c:when>
+		          
+		          
 		           <c:otherwise>
 		           <c:out value="No Answers Found"/>
 		           </c:otherwise>
-		        	</c:choose>   
-				
-		            <li><a href="userHome.jsp" style=color:white>Back to Home Page</a></li>
+		   	</c:choose>        
+				<a href="userHome.jsp" style=color:white>Back to Home Page</a>
+		           
 </body>
 </html>

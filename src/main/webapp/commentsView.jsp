@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
       <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>CommentView</title>
@@ -24,9 +24,9 @@
 				<tr>
 				<td>${CommentList.email }</td>					
 					 <td>${CommentList.comment}</td>					
-				    <c:set var="comment" value="${CommentList.comment}"/>				
+				    		
 				    <td><a href="editAnswer.jsp">Edit</a> 				 					
-					
+					<c:set var="comment" scope="session" value="${CommentList.comment}"/>		
 			</tr>
 					
 			</c:forEach>

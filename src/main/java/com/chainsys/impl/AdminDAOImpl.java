@@ -1,7 +1,5 @@
 package com.chainsys.impl;
 import java.sql.Connection;
-
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,13 +10,14 @@ import com.chainsys.util.ConnectionUtil;
 
 public class AdminDAOImpl implements AdminDAOInterface {
 	
-	public  User validateAdmin(String email,String password) {
+	public  User validateAdmin(String email,String password) throws SQLException {
 		String validateQuery="select email,password from user_detail where role='ADMIN'and email='"+email +"' and password='"+password+"'" ;
-		Connection con=ConnectionUtil.getDbConnection();
+		Connection con=null;
+		Statement stmt=null;
 		User user=null;
 		try {
-			//System.out.println(validateQuery);
-			Statement stmt= con.createStatement();
+			con=ConnectionUtil.getDbConnection();
+			 stmt= con.createStatement();
 			ResultSet rs=stmt.executeQuery(validateQuery);
 			//validate user input
 			if(rs.next())
@@ -28,8 +27,16 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		} 
 		catch (SQLException e) {
 
-			e.printStackTrace();
-			//System.out.println("Statement error");
+			e.getMessage();
+			
+		}
+		finally {
+			if(stmt!=null) {
+				stmt.close();
+			}
+			if(con!=null) {
+				con.close();
+			}
 		}
 		return user;
 	}
