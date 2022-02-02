@@ -1,9 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-
-
-
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,6 +21,7 @@ import com.chainsys.model.Answer;
 public class EditAnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;       
   
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)  {
 
 		try {
@@ -47,7 +46,7 @@ public class EditAnswerServlet extends HttpServlet {
 		commentDao.deletedetails(commentId);		
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("admin.jsp");		
 			requestDispatcher.forward(request, response);
-		} catch (ServletException | IOException e) {
+		} catch (ServletException | IOException | SQLException e) {
 
 			e.printStackTrace();
 		}

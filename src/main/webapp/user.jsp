@@ -10,6 +10,6 @@
 		<h1 >User</h1>
     <form action="UserList" >
     <button type="submit">User List</button></form>
- <li><a href="admin.jsp">Back to Home Page</a></li>  
+ <a href="admin.jsp">Back to Home Page</a>
 </body>
 </html>

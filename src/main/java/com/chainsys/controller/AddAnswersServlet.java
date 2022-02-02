@@ -1,9 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-
-import java.io.PrintWriter;
-import java.util.List;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,9 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.chainsys.impl.AnswerDAOImpl;
 import com.chainsys.impl.QuestionDAOImpl;
-import com.chainsys.impl.SectionDAOImpl;
 import com.chainsys.model.Answer;
-import com.chainsys.model.Question;
 
 /**
  * Servlet implementation class AddAnswersServlet
@@ -27,30 +23,26 @@ public class AddAnswersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		//try {
-		
+	
+		try {
 		QuestionDAOImpl questionDao=new QuestionDAOImpl();
-		 HttpSession session=request.getSession();
-//		   List<Question> questionList=questionDao.showAllQuestion();
-//			request.setAttribute("questionList", questionList);
-			
-			
+		 HttpSession session=request.getSession();		
 		String answer=(request.getParameter("answer"));	
 		String question=(request.getParameter("question"));	
 		int id=questionDao.findQuestionId(question);
 		Answer answers=new Answer(answer,id,null);	
 		AnswerDAOImpl answerDao=new AnswerDAOImpl();
-		answerDao.insertAnswer(answers);	
-	//	response.sendRedirect("answers.jsp");
+		
+			answerDao.insertAnswer(answers);
+			
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("answers.jsp");
 		requestDispatcher.forward(request, response);
-		
-//	} 
-//		catch (ServletException e) {
-//
-//		e.printStackTrace();
-//	} 
-	}
-	}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}	
+	
+	}}
 

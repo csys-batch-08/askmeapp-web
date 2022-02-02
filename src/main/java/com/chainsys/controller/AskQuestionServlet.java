@@ -2,7 +2,6 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -26,6 +25,7 @@ public class AskQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		 
@@ -66,7 +66,7 @@ public class AskQuestionServlet extends HttpServlet {
 		
 	}
 	
-	 catch (ServletException e) {
+	  catch (SQLException e) {
 
 		e.printStackTrace();
 	} 
