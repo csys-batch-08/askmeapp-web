@@ -1,7 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -24,17 +24,26 @@ public class AskMeQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         HttpSession session=request.getSession();
+		try {
+		HttpSession session=request.getSession();
          System.out.println("helo");
          QuestionDAOImpl questionDao=new QuestionDAOImpl();
          int secId=Integer.parseInt(session.getAttribute("sectionId").toString());
          System.out.println("sId"+secId);
          Section section=new Section(secId,null,0,null,null);
-         List<Question> questionList=questionDao.showQuestion(section);
+         List<Question> questionList;
+		
+			questionList = questionDao.showQuestion(section);
+	
          request.setAttribute("questionList", questionList);
          RequestDispatcher req=request.getRequestDispatcher("askQuestion.jsp");
 			req.forward(request, response);
+		} catch (SQLException e) {
+	
+			e.printStackTrace();
+		}
          
 		
 	}

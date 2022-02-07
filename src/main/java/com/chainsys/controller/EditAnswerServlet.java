@@ -25,10 +25,9 @@ public class EditAnswerServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)  {
 
 		try {
-			System.out.println("helo");
+			
 		HttpSession session=request.getSession();
 		QuestionDAOImpl questionDao=new QuestionDAOImpl();
-		//String question=request.getParameter("question");
 		String question=(String) session.getAttribute("comment");
 		System.out.println("question"+question);
 		int qId=questionDao.findQuestionId(question);

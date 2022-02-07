@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,60 +16,84 @@ import com.chainsys.util.ConnectionUtil;
 public class QuestionDAOImpl implements QuestionDAOInterface {
 	
 	
-	public void insertQuestion(Question question) {
+	@Override
+	public void insertQuestion(Question question) throws SQLException {
 		//Query-insert 
 		String insertQuery ="insert into question_details(question_description,section_id) values(?,?)";
-	   //DB connection 
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection con = ConnectionUtil.getDbConnection();
+	   //DB connection 		
+		Connection con =null;
 		PreparedStatement pst = null;
 		//Get all values
 		try {
+			 con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(insertQuery);
 			pst.setString(1,question.getQuestions());
 			pst.setInt(2,question.getSectionId());	
-			int i=pst.executeUpdate();
-			System.out.println("Question inserted"+i);
+			pst.executeUpdate();
+			
 		}
 		catch (SQLException e) {
 
-			e.printStackTrace();
-			System.out.println("Value not inserted ");
+			e.getMessage();
+			
+		}
+		finally {
+			
+			if (pst != null) {
+				pst.close();
+			}
+			if (con != null) {
+				con.close();
+			}
 		}
 		
 	}
 	//Update 
-	public void update(Question question){
+	@Override
+	public void update(Question question) throws SQLException{
 		String updateQuery="update question_details set question_description=? where question_id=?";
 		//get connection
-		Connection con=ConnectionUtil.getDbConnection();
-		//System.out.println("Connection successfully");		
+		Connection con=null;
+				
 		PreparedStatement pstmt=null;
 		try {
+			con=ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(updateQuery);
 			pstmt.setString(1,question.getQuestions());
 			pstmt.setInt(2, question.getQuestionId());		
-			int i=pstmt.executeUpdate();
-			System.out.println("row updated"+i);
+			pstmt.executeUpdate();
+			
 			
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
+		}
+        finally {
+			
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
 		}
 		
 	}
 	
      
 	//Find 
-	public  int findQuestionId(String quesdes)
+	@Override
+	public  int findQuestionId(String quesdes) throws SQLException
 	{
 		String findUserId="select question_id from question_details where question_description='"+quesdes+"'";
-		Connection con=ConnectionUtil.getDbConnection();
-		Statement stmt;
+		Connection con=null;
+		PreparedStatement stmt=null;
+		
 		int questionId=0;
 		try {
-			stmt = con.createStatement();
-			ResultSet rs=stmt.executeQuery(findUserId);
+			 con=ConnectionUtil.getDbConnection();			 
+			stmt = con.prepareStatement(findUserId);
+			ResultSet rs=stmt.executeQuery();
 			if(rs.next())
 			{
 			questionId=rs.getInt(1);
@@ -78,25 +101,37 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
+		} finally {
+			
+			
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
 		}
+		
 		return questionId;
 		
 	}
 	//List	
-	public List<Question> showAllQuestion()
+	@Override
+	public List<Question> showAllQuestion() throws SQLException
 	{
 		
         List<Question> questionList=new ArrayList<Question>();
 		
 		String selectQuery="select question_id,question_description,status from question_details";
-		ConnectionUtil conUtil = new ConnectionUtil();
-		Connection con = conUtil.getDbConnection();	
+		
+		Connection con=null;
 		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+		
 		try {
+			con =ConnectionUtil.getDbConnection();	
 			pstmt = con.prepareStatement(selectQuery);
-			rs=pstmt.executeQuery();
+			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Question question=new Question();
 				question.setQuestionId(rs.getInt(1));
@@ -106,28 +141,40 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			
 		} catch (SQLException e) {
 		
-			e.printStackTrace();
-		}		
+			e.getMessage();
+		}	
+		finally {
+			
+			
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
 		
 		return questionList;
 	}
 	
 	//Search by Question
 		
-		public List<Question> showQuestion(Section section)
+		@Override
+		public List<Question> showQuestion(Section section) throws SQLException
 		{
 			
 	        List<Question> questionList=new ArrayList<Question>();
 			
 	        String query = "select question_id,question_description from question_details where section_id=? and status='active'";
-			ConnectionUtil conUtil = new ConnectionUtil();
-			Connection con = conUtil.getDbConnection();	
+			
+			Connection con=null;
 			PreparedStatement pstmt=null;
-			ResultSet rs=null;
+		
 			try {
+				 con =ConnectionUtil.getDbConnection();	
 				pstmt = con.prepareStatement(query);
 				pstmt.setInt(1, section.getSectionId());
-				rs=pstmt.executeQuery();
+				ResultSet rs=pstmt.executeQuery();
 				while(rs.next()) {
 					Question question=new Question();
 					question.setQuestionId(rs.getInt(1));
@@ -137,8 +184,18 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 				
 			} catch (SQLException e) {
 			
-				e.printStackTrace();
-			}		
+				e.getMessage();
+			}
+			finally {
+				
+				
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (con != null) {
+					con.close();
+				}
+			}
 			
 			return questionList;
 		}
@@ -147,15 +204,18 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		
 		
 		//Find section Id
-		public int findSectionId(int qId)
+		@Override
+		public int findSectionId(int qId) throws SQLException
 		{
 			String findUserId="select section_id from question_details where question_id='"+qId+"'";
-			Connection con=ConnectionUtil.getDbConnection();
-			Statement stmt;
+			Connection con=null;
+			PreparedStatement stmt=null;
+			
 			int sectionId=0;
 			try {
-				stmt = con.createStatement();
-				ResultSet rs=stmt.executeQuery(findUserId);
+				 con=ConnectionUtil.getDbConnection();
+				stmt = con.prepareStatement(findUserId);
+				ResultSet rs=stmt.executeQuery();
 				if(rs.next())
 				{
 			       sectionId=rs.getInt(1);
@@ -163,7 +223,16 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 				
 			} catch (SQLException e) {
 
-				e.printStackTrace();
+				e.getMessage();
+			}
+			finally {
+				
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (con != null) {
+					con.close();
+				}
 			}
 			return sectionId;
 			

@@ -1,8 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-
-
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.impl.CategoryDAOImpl;
 import com.chainsys.model.Category;
@@ -29,14 +27,17 @@ public class CategoryList extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		 
-		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
-        HttpSession session=request.getSession();
-		   List<Category> categoryList=categoryDao.AllCategory();
-			request.setAttribute("categoryList", categoryList);
+		try { 
+		CategoryDAOImpl categoryDao = new CategoryDAOImpl();
+		List<Category> categoryList;		
+			categoryList = categoryDao.AllCategory();		
+		request.setAttribute("categoryList", categoryList);
+		RequestDispatcher req = request.getRequestDispatcher("categoryList.jsp");
+		req.forward(request, response);
+		} catch (SQLException e) {
 			
-			RequestDispatcher req=request.getRequestDispatcher("categoryList.jsp");
-			req.forward(request, response);
+			e.printStackTrace();
+		}
 	}
 
 }

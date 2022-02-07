@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.impl.AnswerDAOImpl;
 import com.chainsys.impl.QuestionDAOImpl;
@@ -27,22 +26,19 @@ public class AddAnswersServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 	
 		try {
-		QuestionDAOImpl questionDao=new QuestionDAOImpl();
-		 HttpSession session=request.getSession();		
-		String answer=(request.getParameter("answer"));	
-		String question=(request.getParameter("question"));	
-		int id=questionDao.findQuestionId(question);
-		Answer answers=new Answer(answer,id,null);	
-		AnswerDAOImpl answerDao=new AnswerDAOImpl();
-		
+			QuestionDAOImpl questionDao = new QuestionDAOImpl();
+			String answer = (request.getParameter("answer"));
+			String question = (request.getParameter("question"));
+			int id = questionDao.findQuestionId(question);
+			Answer answers = new Answer(answer, id, null);
+			AnswerDAOImpl answerDao = new AnswerDAOImpl();
 			answerDao.insertAnswer(answers);
-			
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("answers.jsp");
-		requestDispatcher.forward(request, response);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
+			requestDispatcher.forward(request, response);
 		} catch (SQLException e) {
-
 			e.printStackTrace();
-		}	
-	
-	}}
+		}
+
+	}
+}
 

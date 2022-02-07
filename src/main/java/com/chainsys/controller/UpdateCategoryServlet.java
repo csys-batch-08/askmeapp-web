@@ -32,13 +32,11 @@ public class UpdateCategoryServlet extends HttpServlet {
 	try {
 		CategoryDAOImpl categoryDao=new CategoryDAOImpl();      
 		String oldCategoryName=(request.getParameter("oldCategoryName"));		
-		
 		int id=categoryDao.findCategoryId(oldCategoryName);
 		String newCategoryName=(request.getParameter("newCategoryName"));		
 		Category Objcategory2=new Category(id,newCategoryName,null);	    
-	    categoryDao.update(Objcategory2);
-		
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("categories.jsp");
+	    categoryDao.update(Objcategory2);		
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("admin.jsp");
 		requestDispatcher.forward(request, response);
 	} catch (ServletException | SQLException e) {
 

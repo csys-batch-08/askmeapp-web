@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.impl.AdminCommentViewDAOImpl;
 import com.chainsys.model.AdminCommentView;
@@ -26,20 +25,17 @@ public class CommentsViewServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-		AdminCommentViewDAOImpl commentDao=new AdminCommentViewDAOImpl();
-		HttpSession session=request.getSession();
-		List<AdminCommentView> commentList;
-		
+			AdminCommentViewDAOImpl commentDao = new AdminCommentViewDAOImpl();
+			List<AdminCommentView> commentList;
 			commentList = commentDao.commentView();
-		
-		request.setAttribute("commentList", commentList);
-		RequestDispatcher req=request.getRequestDispatcher("commentsView.jsp");
-		req.forward(request, response);
+			request.setAttribute("commentList", commentList);
+			RequestDispatcher req = request.getRequestDispatcher("commentsView.jsp");
+			req.forward(request, response);
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

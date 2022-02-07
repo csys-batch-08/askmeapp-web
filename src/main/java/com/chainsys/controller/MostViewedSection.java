@@ -11,33 +11,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chainsys.impl.UserDAOImpl;
-import com.chainsys.model.User;
+import com.chainsys.impl.UserRatingDAOImpl;
+import com.chainsys.model.UserRating;
 
 /**
- * Servlet implementation class SubscriberList
+ * Servlet implementation class MostViewedSection
  */
-@WebServlet("/SubscriberList")
-public class SubscriberList extends HttpServlet {	
-	/**
-	 * 
-	 */
+@WebServlet("/MostViewedSectionServlet")
+public class MostViewedSection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
+  
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-		UserDAOImpl userDao = new UserDAOImpl();
-		List<User> subscriberList;		
-			subscriberList = userDao.subscribeUser();		
-		request.setAttribute("subscriberList", subscriberList);
-		RequestDispatcher req = request.getRequestDispatcher("subscriber.jsp");
+		UserRatingDAOImpl userRatingDao = new UserRatingDAOImpl();
+		List<UserRating> userRatingList;		
+			userRatingList = userRatingDao.showRating();		
+		request.setAttribute("userRatingList", userRatingList);
+		RequestDispatcher req = request.getRequestDispatcher("mostViewedSection.jsp");
 		req.forward(request, response);
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-		}
-		
+		}     
 	}
 
 }

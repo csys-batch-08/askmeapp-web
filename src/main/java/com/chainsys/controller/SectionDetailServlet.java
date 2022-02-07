@@ -1,6 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -23,21 +24,27 @@ public class SectionDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserRatingDAOImpl userRatingDao=new UserRatingDAOImpl();		
-		 HttpSession session=request.getSession();
-		 List<UserRating> userRatingList=userRatingDao.showRating();
-			request.setAttribute("userRatingList", userRatingList);
-		int cid = Integer.parseInt(request.getParameter("cusid"));		
-		 session.setAttribute("categoryid", cid);
-		 Category category =new Category(cid,null,null);
+		try {
+		UserRatingDAOImpl userRatingDao = new UserRatingDAOImpl();
+		HttpSession session = request.getSession();
+		List<UserRating> userRatingList;		
+			userRatingList = userRatingDao.showRating();		
+		request.setAttribute("userRatingList", userRatingList);
+		int cid = Integer.parseInt(request.getParameter("cusid"));
+		session.setAttribute("categoryid", cid);
+		Category category = new Category(cid, null, null);
 		SectionDAOImpl sectionDAOImpl = new SectionDAOImpl();
-		List<Section> sectionList= sectionDAOImpl.showSectionName(category);
-		request.setAttribute("sectionList", sectionList);				
-		RequestDispatcher req=request.getRequestDispatcher("sectionDetail.jsp");
+		List<Section> sectionList = sectionDAOImpl.showSectionName(category);
+		request.setAttribute("sectionList", sectionList);
+		RequestDispatcher req = request.getRequestDispatcher("sectionDetail.jsp");
 		req.forward(request, response);
-		
+		} catch (SQLException e) {
 
- }
+			e.printStackTrace();
+		}
+
+	}
 
 }

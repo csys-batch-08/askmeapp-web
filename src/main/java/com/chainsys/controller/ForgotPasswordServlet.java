@@ -1,6 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,23 +29,26 @@ public class ForgotPasswordServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		 UserDAOImpl userDao=new UserDAOImpl();
-			
-			String email=request.getParameter("email");
-			String password=request.getParameter("password");
-			
-			
-			userDao.update(password,email);
-			
+		try {
+		UserDAOImpl userDao = new UserDAOImpl();
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");		
+			userDao.update(password, email);
 			response.sendRedirect("login.jsp");
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		doGet(request, response);

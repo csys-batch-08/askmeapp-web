@@ -1,10 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-
-
-import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -30,21 +26,21 @@ public class UserRatingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-		HttpSession session=request.getSession();		
-		PrintWriter out=response.getWriter();	
+		HttpSession session=request.getSession();	
+		try {
 		UserRating userRating=new UserRating();
 		String content=request.getParameter("sName");
-		//String content=(String) session.getAttribute("sName");
-		System.out.println("sName"+content);
 		session.setAttribute("sectionName", content);
 		int newRating=Integer.parseInt(request.getParameter("rating"));
-		System.out.println(newRating);
 		SectionDAOImpl sectionDao=new SectionDAOImpl();
-		int id=sectionDao.findSectionId(content);
-		System.out.println("sectionid"+id);
+		int id;
+		
+			id = sectionDao.findSectionId(content);
+		
 		session.setAttribute("sid",id);
 	    UserRatingDAOImpl ObjRatDao=new UserRatingDAOImpl();
 	    Section section=new Section(0,content,0,null,null);
@@ -53,21 +49,18 @@ public class UserRatingServlet extends HttpServlet {
 	    int count=0;
 		for(int i=0;i<userRateList.size();i++) {
 			oldRating = userRateList.get(i).getRating();
-			System.out.println("or"+oldRating);
 			count=userRateList.get(i).getRateCount();	
-			System.out.println("oc"+count);
-			count=count+1;
-			System.out.println("count"+count);
-		    int rating=oldRating+newRating;			
-			System.out.println(rating);
+			count=count+1;			
+		    int rating=oldRating+newRating;				
 			userRating=new UserRating(content,0,rating,count);
 		    ObjRatDao.updateRating(userRating);
-			}
-		
-	    
+			}	    
 		
 	    RequestDispatcher requestDispatcher=request.getRequestDispatcher("userHome.jsp");
 		requestDispatcher.forward(request, response);
-	     
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} 
 		
 }}

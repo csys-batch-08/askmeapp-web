@@ -42,6 +42,19 @@ public class ConnectionUtil {
 			con.close();
 			}
 			}
+			public static void closePreparedStatement(PreparedStatement pstmt,Connection con) {
+				try {
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (con != null) {
+						con.close();
+					}
+				} catch (SQLException e) {
+					e.getMessage();
+				}
+			
+			}
 
 			}
 

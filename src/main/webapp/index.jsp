@@ -36,7 +36,7 @@
     </div>
     <div id=head>
     <center><br><br>
-    <h1 style=color:blanchedalmond ><i> Welcome to Askme</i></h1></div></center><br><br>
+    <h1 style=color:blanchedalmond ><em> Welcome to Askme</em></h1></div></center><br><br>
     <div id=head1>
        <center>  <h3 style=color:blanchedalmond>All Answer At Your FingerTips</h3></div></center>
       

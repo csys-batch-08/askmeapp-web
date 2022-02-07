@@ -1,15 +1,17 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.chainsys.impl.UserDAOImpl;
 import com.chainsys.model.SubscribeUser;
@@ -23,13 +25,14 @@ public class AdminSubscriberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session=request.getSession();
+        try {
 		String sectionName=request.getParameter("sectionName");
-		SubscribeUser user=new SubscribeUser();
 		UserDAOImpl userDao=new UserDAOImpl();		
-		List<User> userList = new ArrayList<User>();
-		userList=userDao.subscribeUser();
+		List<User> userList = new ArrayList<User>();		
+			userList=userDao.subscribeUser();		
 		int id=0;
 		boolean flag=false;
 		for (User user1: userList ) {
@@ -37,21 +40,25 @@ public class AdminSubscriberServlet extends HttpServlet {
 		SubscribeUser users=new SubscribeUser(id,sectionName);
 	    flag=userDao.insertSection(users);
 		}
-		PrintWriter out=response.getWriter();
+		
 		if(flag)
 		{
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Sent Message Successfully');");
-			out.println("location='subscriber.jsp';");
-			out.println("</script>");
+			session.setAttribute("message","Sent Message Successfully");
+			RequestDispatcher req = request.getRequestDispatcher("admin.jsp");
+			req.forward(request, response);
+			
 		}
 		else
 		{
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Message not send');");
-			out.println("location='subscriber.jsp';");
-			out.println("</script>");
+			session.setAttribute("message","Message not send");
+			RequestDispatcher req = request.getRequestDispatcher("subscriber.jsp");
+			req.forward(request, response);
+			
 
+		}
+        } catch (SQLException e) {
+
+			e.printStackTrace();
 		}
 
 	}

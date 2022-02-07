@@ -35,10 +35,10 @@ public class AnswerServlet extends HttpServlet {
          session.setAttribute("question", ques);
          Question question=new Question(qId,null,0,null);
          List<Answer> answerList;		
-			answerList = answerDao.showAnswer(question);		
+		 answerList = answerDao.showAnswer(question);		
          request.setAttribute("answerList", answerList);
          RequestDispatcher req=request.getRequestDispatcher("answer.jsp");
-			req.forward(request, response);
+		 req.forward(request, response);
 		} catch (SQLException e) {
 
 			e.printStackTrace();

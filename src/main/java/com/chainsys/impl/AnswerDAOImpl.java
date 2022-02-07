@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.chainsys.dao.AnswerDAOInterface;
 import com.chainsys.model.Answer;
 import com.chainsys.model.Question;
@@ -14,11 +15,11 @@ import com.chainsys.util.ConnectionUtil;
 
 public class AnswerDAOImpl implements AnswerDAOInterface{
 	//insert
+	@Override
 	public void insertAnswer(Answer answer) throws SQLException {
 		//Query-insert 
 		String insertQuery ="insert into answer(answers,question_id) values(?,?)";
-	   //DB connection 
-		
+	   //DB connection 		
 		Connection con = null;
 		PreparedStatement pst = null;
 		//Get all values
@@ -27,13 +28,13 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 			pst = con.prepareStatement(insertQuery);
 			pst.setString(1,answer.getAnswers());
 			pst.setInt(2,answer.getQuestion_id());	
-			int i=pst.executeUpdate();
-			System.out.println("Answer inserted"+i);
+		    pst.executeUpdate();
+			
 		}
 		catch (SQLException e) {
 
 			e.getMessage();
-			System.out.println("Value not inserted ");
+			
 		}
 		finally {
 			if(pst!=null) {
@@ -47,6 +48,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 	}
 	
 	//Update 
+		@Override
 		public void update(Answer answer) throws SQLException{
 			String updateQuery="update answer set answers=? where question_id=?";
 			//get connection
@@ -62,7 +64,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 				
 			} catch (SQLException e) {
 
-				e.printStackTrace();
+				e.getMessage();
 			}
 			finally {
 				if(pstmt!=null) {
@@ -77,13 +79,14 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 		
 	
 	//Show All
+			@Override
 			public List<Answer> showAllAnswer() throws SQLException
 			{
 				
 	            List<Answer> answerList=new ArrayList<Answer>();
 				
 				String selectQuery="select answers,status from answer";
-				ConnectionUtil conUtil = new ConnectionUtil();
+				
 				Connection con = null;	
 				PreparedStatement pstmt=null;
 				ResultSet rs=null;
@@ -99,7 +102,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 					
 				} catch (SQLException e) {
 				
-					e.printStackTrace();
+					e.getMessage();
 				}
 				finally {
 					if(pstmt!=null) {
@@ -114,6 +117,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 			}
 			
 	//Show Answer by quesId
+	@Override
 	public List<Answer> showAnswer(Question question) throws SQLException
 	{
 		
@@ -136,7 +140,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 			
 		} catch (SQLException e) {
 		
-			e.printStackTrace();
+			e.getMessage();
 		}	
 		finally {
 			if(pstmt!=null) {
@@ -150,6 +154,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 		return answerList;
 	}
 	//Find 
+		@Override
 		public int findQuestionId(String answers) throws SQLException
 		{
 			String findUserId="select question_id from answer where answers='"+answers+"'";
@@ -167,7 +172,7 @@ public class AnswerDAOImpl implements AnswerDAOInterface{
 				
 			} catch (SQLException e) {
 
-				e.printStackTrace();
+				e.getMessage();
 			}
 			finally {
 				if(stmt!=null) {

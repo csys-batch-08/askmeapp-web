@@ -1,7 +1,6 @@
 package com.chainsys.impl;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,249 +15,344 @@ import com.chainsys.util.ConnectionUtil;
 
 public class UserDAOImpl implements UserDAOInterface {
 	
-	//insert user
-		public void insertUser(User user) {
-			//Query-insert User
-			String insertQuery ="insert into user_detail(user_name,email,password) values(?,?,?)";
-		   //DB connection 
-			ConnectionUtil conUtil = new ConnectionUtil();
-			Connection con = ConnectionUtil.getDbConnection();
-			PreparedStatement pst = null;
-			//Get all values
-			try {
-				pst = con.prepareStatement(insertQuery);
-				pst.setString(1, user.getName());
-				pst.setString(2, user.getEmailId());
-				pst.setString(3, user.getPassword());		
-				pst.executeUpdate();
-				System.out.println("Registered successfully");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println(e);
-				System.out.println("Value not inserted ");
-			}
+	// insert user
+	@Override
+	public void insertUser(User user) throws SQLException {
+		// Query-insert User
+		String insertQuery = "insert into user_detail(user_name,email,password) values(?,?,?)";
+		// DB connection		
+		Connection con = null;
+		PreparedStatement pst = null;
+		// Get all values
+		try {
+			con = ConnectionUtil.getDbConnection();
+			pst = con.prepareStatement(insertQuery);
+			pst.setString(1, user.getName());
+			pst.setString(2, user.getEmailId());
+			pst.setString(3, user.getPassword());
+			pst.executeUpdate();
+			
+		} catch (SQLException e) {
+
+			e.getMessage();
 			
 		}
-		//Update user-password
-		public void update(String password,String email){
-			String updateQuery="update user_detail set password=? where email=?";
-			//get connection
-			Connection con=ConnectionUtil.getDbConnection();
-			System.out.println("Connection successfully");		
-			PreparedStatement pstmt=null;
-			try {
-				pstmt = con.prepareStatement(updateQuery);
-				pstmt.setString(1, password);
-				pstmt.setString(2,email);		
-				pstmt.executeUpdate();
-				//System.out.println("Your Password updated successfully ");
-				pstmt.close();
-				con.close();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
-			
-		}
-		
-	      //Login-Validate User
-		 
-			public  User validateUser1(String email,String password) {
-
-				String validateQuery="select * from user_detail where role='USER' and email='"+email +"' and password='"+password+"'" ;
-				Connection con=ConnectionUtil.getDbConnection();
-				User user=null;
-				try {
-					//System.out.println(validateQuery);
-					Statement stmt= con.createStatement();
-					ResultSet rs=stmt.executeQuery(validateQuery);
-					//validate user input
-					if(rs.next())
-					{
-					user=new User(rs.getInt(1),rs.getString(2),email,password,rs.getString(5));
-					}						
-				} 
-				catch (SQLException e) {
-
-					e.printStackTrace();
-					
+		 finally {
+				if (pst != null) {
+					pst.close();
 				}
-				
-				return user;
+				if (con != null) {
+					con.close();
+				}
 			}
-		//Find User
-		public int findUserId(String email)
-		{
-			String findUserId="select user_id from user_detail where email='"+email+"'";
-			Connection con=ConnectionUtil.getDbConnection();
-			Statement stmt;
-			int userId=0;
-			try {
-				stmt = con.createStatement();
-				ResultSet rs=stmt.executeQuery(findUserId);
-				if(rs.next())
-				{
-				userId=rs.getInt(1);
+
+	}
+
+	// Update user-password
+	@Override
+	public void update(String password, String email) throws SQLException {
+		String updateQuery = "update user_detail set password=? where email=?";
+		// get connection
+		Connection con=null;
+		
+		PreparedStatement pstmt = null;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			pstmt = con.prepareStatement(updateQuery);
+			pstmt.setString(1, password);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+
+			e.getMessage();
+		}
+		 finally {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (con != null) {
+					con.close();
+				}
+			}
+
+	}
+
+	// Login-Validate User
+
+	@Override
+	public User validateUser1(String email, String password) throws SQLException {
+		String validateQuery = "select email,password from user_detail where role='USER'and email='" + email
+				+ "' and password='" + password + "'";
+		Connection con = null;
+		Statement stmt = null;
+		User user = null;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(validateQuery);
+			// validate user input
+			if (rs.next()) {
+				user = new User(0, null, email, password, null);
+			}
+		} catch (SQLException e) {
+
+			e.getMessage();
+
+		} finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return user;
+	}
+
+	// Find User
+	@Override
+	public int findUserId(String email) throws SQLException {
+		String findUserId = "select user_id from user_detail where email='" + email + "'";
+		Connection con=null;
+		PreparedStatement stmt=null;
+		int userId = 0;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			stmt = con.prepareStatement(findUserId);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				userId = rs.getInt(1);
 				System.out.println(userId);
-				}
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-			return userId;
-			
+
+		} catch (SQLException e) {
+
+			e.getMessage();
 		}
-		//List of User
-		public List<User> showAllUser()
-		{
-			
-            List<User> userList=new ArrayList<User>();
-			
-			String selectQuery="select user_id,user_name,email,subscriber from user_detail where role='USER'";
-			ConnectionUtil conUtil = new ConnectionUtil();
-			Connection con = conUtil.getDbConnection();	
-			PreparedStatement pstmt=null;
-			ResultSet rs=null;
-			try {
-				pstmt = con.prepareStatement(selectQuery);
-				rs=pstmt.executeQuery();
-				while(rs.next()) {
-					User user=new User();
-					user.setUserId(rs.getInt(1));
-					user.setName(rs.getString(2));
-					user.setEmailId(rs.getString(3));
-					user.setSubscriber(rs.getString(4));
-					userList.add(user);}
-				
-				
-			} catch (SQLException e) {
-			
-				e.printStackTrace();
-			}		
-			
-			return userList;
-		}
-		
-		
-		
-		public  void updateSubscribe(User user){
-			String updateQuery="update user_detail set subscriber='yes' where role='USER' and email=?";
-			//get connection
-			Connection con=ConnectionUtil.getDbConnection();
-			System.out.println("Connection successfully");		
-			PreparedStatement pstmt=null;
-			try {
-				pstmt = con.prepareStatement(updateQuery);
-				pstmt.setString(1,user.getEmailId());			
-				pstmt.executeUpdate();
-				System.out.println("subscribe Updated successfully");
-				pstmt.close();
+		finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (con != null) {
 				con.close();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
 			}
+		}
+		return userId;
+
+	}
+
+	// List of User
+	@Override
+	public List<User> showAllUser() throws SQLException {
+
+		List<User> userList = new ArrayList<User>();
+
+		String selectQuery = "select user_id,user_name,email,subscriber from user_detail where role='USER'";
+		
+		Connection con=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			 con = ConnectionUtil.getDbConnection();
+			pstmt = con.prepareStatement(selectQuery);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setUserId(rs.getInt(1));
+				user.setName(rs.getString(2));
+				user.setEmailId(rs.getString(3));
+				user.setSubscriber(rs.getString(4));
+				userList.add(user);
+			}
+
+		} catch (SQLException e) {
+
+			e.getMessage();
+		}
+		finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			
+			if (con != null) {
+				con.close();
+			}
+		}
+
+		return userList;
+	}
+
+	// Subscriber update
+
+	@Override
+	public void updateSubscribe(User user) throws SQLException {
+		String updateQuery = "update user_detail set subscriber='yes' where role='USER' and email=?";
+		// get connection
+		Connection con=null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			pstmt = con.prepareStatement(updateQuery);
+			pstmt.setString(1, user.getEmailId());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+
+			e.getMessage();
+		}
+		finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			
+			if (con != null) {
+				con.close();
+			}
+		}
+
+	}
+
+	// List of Subscriber
+	@Override
+	public List<User> subscribeUser() throws SQLException {
+		List<User> userList = new ArrayList<User>();
+
+		String selectQuery = "select user_name,email from user_detail where role='USER' and subscriber='yes'";
+
+		
+		Connection con=null;
+		PreparedStatement stmt=null;
+		try {
+			 con = ConnectionUtil.getDbConnection();
+			stmt = con.prepareStatement(selectQuery);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setName(rs.getString(1));
+				user.setEmailId(rs.getString(2));
+				userList.add(user);
+			}
+		} catch (SQLException e) {
+
+			e.getMessage();
+		}
+		finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			
+			if (con != null) {
+				con.close();
+			}
+		}
+
+		return userList;
+	}
+
+	@Override
+	public boolean insertSection(SubscribeUser user) throws SQLException {
+		// Query-insert User
+		String insertQuery = "insert into subscribe_user(user_id,section_name) values(?,?)";
+		// DB connection
+		
+		Connection con = null;
+		PreparedStatement pst = null;
+		// Get all values
+		try {
+			con = ConnectionUtil.getDbConnection();
+			pst = con.prepareStatement(insertQuery);
+			pst.setInt(1, user.getUserId());
+			pst.setString(2, user.getSectionName());
+			pst.executeUpdate();
+			
+		} catch (SQLException e) {
+
+			e.getMessage();
 			
 		}
+		finally {
+			if (pst != null) {
+				pst.close();
+			}
+			
+			if (con != null) {
+				con.close();
+			}
+		}
 		
-			
-			
-		//List of Subscriber
-			public  List<User> subscribeUser()
-			{
-				List<User> userList=new ArrayList<User>();
-				
-				String selectQuery="select user_name,email from user_detail where role='USER' and subscriber='yes'";
-				
-				ConnectionUtil conUtil = new ConnectionUtil();
-				Connection con = conUtil.getDbConnection();
-				PreparedStatement stmt;
-				try {
-					stmt = con.prepareStatement(selectQuery);
-					ResultSet rs=stmt.executeQuery();
-					while(rs.next())
-					{						
-						User user=new User();						
-						user.setName(rs.getString(1));
-						user.setEmailId(rs.getString(2));						
-						userList.add(user);
-					}
-				} catch (SQLException e) {
+		return true;
 
-					e.printStackTrace();
-				}		
-				
-				return userList;
-			}
-			
-			public boolean insertSection(SubscribeUser user) {
-				//Query-insert User
-				String insertQuery ="insert into subscribe_user(user_id,section_name) values(?,?)";
-			   //DB connection 
-				ConnectionUtil conUtil = new ConnectionUtil();
-				Connection con = ConnectionUtil.getDbConnection();
-				PreparedStatement pst = null;
-				//Get all values
-				try {
-					pst = con.prepareStatement(insertQuery);
-					pst.setInt(1, user.getUserId());
-					pst.setString(2, user.getSectionName());						
-					pst.executeUpdate();
-					System.out.println("section insert successfully");
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					System.out.println(e);
-					System.out.println("Value not inserted ");
-				}
-				return true;
-				
-			}
-			//Find User Subscriber
-			public String findSubscriber(int id)
-			{
-				String findSubscriber="select subscriber from user_detail where user_id='"+id+"'";
-				Connection con=ConnectionUtil.getDbConnection();
-				Statement stmt;
-				String subscriber=null;
-				try {
-					stmt = con.createStatement();
-					ResultSet rs=stmt.executeQuery(findSubscriber);
-					if(rs.next())
-					{
-					subscriber=rs.getString(1);
-					}
-					
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return subscriber;
-				
-			}
-			
-			
-			public ResultSet emailExists(User user) throws SQLException
-			{
-				
-				
-				String selectQuery="select * from user_detail where email=?";
-				
-				ConnectionUtil conUtil = new ConnectionUtil();
-				Connection con = conUtil.getDbConnection();
-				ResultSet rs=null;
-				PreparedStatement pstmt=null;		
-					pstmt = con.prepareStatement(selectQuery);
-					pstmt.setString(1,user.getEmailId());
-				   rs= pstmt.executeQuery();		
-				return rs;
-			}
-		
-			
-			}
-		
-	
-	
+	}
 
+	// Find User Subscriber
+	@Override
+	public String findSubscriber(int id) throws SQLException {
+		String findSubscriber = "select subscriber from user_detail where user_id='" + id + "'";
+		Connection con=null;
+		PreparedStatement stmt=null;
+		String subscriber = null;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			stmt = con.prepareStatement(findSubscriber);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				subscriber = rs.getString(1);
+			}
+
+		} catch (SQLException e) {
+
+			e.getMessage();
+		}
+		finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			
+			if (con != null) {
+				con.close();
+			}
+		}
+		
+		return subscriber;
+
+	}
+
+	// Exception
+	@Override
+	public List<User> emailExists(User user) throws SQLException {
+		List<User> userList = new ArrayList<User>();
+
+		String selectQuery = "select user_name,password from user_detail where role='USER' and email=? ";
+
+		
+		Connection con=null;
+		PreparedStatement stmt=null;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			stmt = con.prepareStatement(selectQuery);
+			stmt.setString(1, user.getEmailId());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				user.setName(rs.getString(1));
+				user.setPassword(rs.getString(2));
+				userList.add(user);
+			}
+		} catch (SQLException e) {
+
+			e.getMessage();
+		}
+		finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			
+			if (con != null) {
+				con.close();
+			}
+		}
+
+		return userList;
+	}
+
+}

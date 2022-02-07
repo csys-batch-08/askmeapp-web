@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.impl.CategoryDAOImpl;
 import com.chainsys.model.Category;
@@ -31,7 +30,7 @@ public class AddCategoryServlet extends HttpServlet {
 		
 		 try {
 	
-		HttpSession session=request.getSession();
+		
 		String categoryName=(request.getParameter("categoryName"));			
 		Category Objcategory=new Category(0,categoryName,null);
 	    CategoryDAOImpl ObjcatDao=new  CategoryDAOImpl();
@@ -39,7 +38,7 @@ public class AddCategoryServlet extends HttpServlet {
 		ObjcatDao.insertCategory(Objcategory);
 	
 	   
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("categories.jsp");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("admin.jsp");
 		
 			requestDispatcher.forward(request, response);}
 		catch (ServletException | IOException | SQLException e) {

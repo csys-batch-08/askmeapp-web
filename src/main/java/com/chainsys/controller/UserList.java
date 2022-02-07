@@ -1,6 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -28,13 +29,19 @@ public class UserList extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		UserDAOImpl userDao=new UserDAOImpl();
+		try {
+		UserDAOImpl userDao=new UserDAOImpl();		
+		List<User> userList;
 		
-		List<User> userList=userDao.showAllUser();
+			userList = userDao.showAllUser();
+	
 		request.setAttribute("userList", userList);
 		RequestDispatcher req=request.getRequestDispatcher("userList.jsp");
 		req.forward(request, response);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 	}
 
 }

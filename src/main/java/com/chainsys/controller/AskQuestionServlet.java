@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -28,14 +27,12 @@ public class AskQuestionServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		 
+		HttpSession session=request.getSession();	
 		
 	try {
-		HttpSession session=request.getSession();		
-		PrintWriter out=response.getWriter();
+				
 		int questionId=Integer.parseInt(session.getAttribute("questionId").toString());	
-		System.out.println("qId"+questionId);
-		String questions=(request.getParameter("question"));		
+		System.out.println("qId"+questionId);				
 		int userId=Integer.parseInt(session.getAttribute("userid").toString());
 		System.out.println("uId"+userId);
 		int catId=Integer.parseInt(session.getAttribute("categoryid").toString());
@@ -44,25 +41,29 @@ public class AskQuestionServlet extends HttpServlet {
 		System.out.println("sId"+secId);
 		AskmeDAOImpl askmeDao=new AskmeDAOImpl();
 		AskMe askMe=new AskMe(userId,0,0,questionId);
-		List<AskMe> askList=askmeDao.FindUserId(askMe);
-		boolean ans = false;
-		ans=askList.isEmpty();
-		if(ans==true) {
+		List<AskMe> askList=null;
+		askList=askmeDao.FindUserId(askMe);
+		
+		if(askList==null) {
+			throw new AlreadyUsedQuestionException();					
+			}			
+		else {
 			AskMe askme=new AskMe(userId,catId,secId,questionId);
 			askmeDao.askmequestions(askme);
 			RequestDispatcher requestDispatcher=request.getRequestDispatcher("userHome.jsp");
 			requestDispatcher.forward(request, response);						
-			}			
-		else {
-			
-			throw new AlreadyUsedQuestionException();
-			
 		}
-		
 		
 	}
 	catch(AlreadyUsedQuestionException e) {
-		response.sendRedirect("errorMessage.jsp?message="+e.getMessage()+"&url=userHome.jsp");
+		try {
+			session.setAttribute("invalid", e.getMessage());
+			RequestDispatcher requestDispatcher=request.getRequestDispatcher("answer.jsp");
+			requestDispatcher.forward(request, response);
+			
+			}catch (IOException s) {
+				e.getMessage();
+			}
 		
 	}
 	

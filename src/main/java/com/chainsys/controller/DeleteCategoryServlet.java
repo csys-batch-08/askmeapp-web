@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -22,40 +21,34 @@ public class DeleteCategoryServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-		@Override
-		protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-       
-	
-	
-	try {
-		
-		PrintWriter out=response.getWriter();
-		CategoryDAOImpl categoryDao=new CategoryDAOImpl();
-    	String categoryName=(request.getParameter("CategoryName1"));	
-		int id=categoryDao.findCategoryId(categoryName);
-		System.out.println("category name"+categoryName);
-		System.out.println("id"+id);
-		String status=categoryDao.findStatus(id);
-		System.out.println("status"+status);
-		if(status.equals("active")) {	
-			System.out.println("inactive");
-	    categoryDao.updateInactive(id);
-	    response.sendRedirect("categories.jsp");
-	    }
-		else {
-			System.out.println("active ");
-			categoryDao.updateActive(id);
-			response.sendRedirect("categories.jsp");
+		try {
+
+			CategoryDAOImpl categoryDao = new CategoryDAOImpl();
+			String categoryName = (request.getParameter("CategoryName1"));
+			int id = categoryDao.findCategoryId(categoryName);
+			System.out.println("category name" + categoryName);
+			System.out.println("id" + id);
+			String status = categoryDao.findStatus(id);
+			System.out.println("status" + status);
+			if (status.equals("active")) {
+				System.out.println("inactive");
+				categoryDao.updateInactive(id);
+				response.sendRedirect("admin.jsp");
+			} else {
+				System.out.println("active ");
+				categoryDao.updateActive(id);
+				response.sendRedirect("admin.jsp");
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
 		}
 
-	} catch (SQLException e) {
-
-		e.printStackTrace();
 	}
-	
+
 }
-	
-	}
-
-

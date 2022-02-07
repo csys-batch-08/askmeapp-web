@@ -82,7 +82,13 @@
   <div class="container">
     <h1 style=color:white>Forgot Password</h1>
     <form name="forgotPassword"  class="forgotpassword" action="ForgotPasswordServlet"  method="post">
-      <table>       
+      <table> 
+      <caption></caption>  
+      <thead>
+      <th id="1">
+      </th>
+      </thead> 
+      <tbody>  
         <tr>
           <td><label for="newPassword">Enter  New Password:</label></td>
           <td><input type="password" name="password"  pattern="[A-Za-z0-9]{8,10}" required></td>
@@ -93,8 +99,8 @@
         </tr>         
         <tr>
           <td colspan="2"><input type="submit" class="submit" /></td>
-        </tr><br><br>
-        
+        </tr>
+        </tbody> 
       </table>
       
     </form>	

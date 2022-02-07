@@ -1,10 +1,8 @@
 package com.chainsys.impl;
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +14,7 @@ import com.chainsys.util.ConnectionUtil;
 
 public class AskmeDAOImpl implements AskmeDAOInterface {
 	//insert	
+		@Override
 		public  void askmequestions(AskMe askMe) throws SQLException {
 			String insertQuery ="insert into ask_me_questions(user_id,category_id,section_id,question_id) values(?,?,?,?)";
 			   //DB connection 
@@ -49,39 +48,9 @@ public class AskmeDAOImpl implements AskmeDAOInterface {
 			}
 		
 		
-		public  List<AskMe> showAllAskme() throws SQLException
-		{
-			List<AskMe> askMeList=new ArrayList<AskMe>();
-			
-			String selectQuery="select user_detail.user_name,question_details.question_description from((user_detail inner join ask_me_questions using(user_id))inner join question_details using (question_id));";
-			
-			
-			Connection con = null;
-			Statement stmt=null;
-			try {
-				con = ConnectionUtil.getDbConnection();
-				stmt = con.createStatement();
-				ResultSet rs=stmt.executeQuery(selectQuery);
-				while(rs.next())
-				{
-					askMeList.add(new AskMe(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4)));
-				}
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}	
-			finally {
-				if(stmt!=null) {
-					stmt.close();
-				}
-				if(con!=null) {
-					con.close();
-				}
-			}
-			
-			return askMeList;
-		}
+	
 		
+		@Override
 		public List<AskMe> FindUserId( AskMe askMe) throws SQLException		{
 			List<AskMe> askList=new ArrayList<AskMe>();
 			
@@ -104,7 +73,7 @@ public class AskmeDAOImpl implements AskmeDAOInterface {
 				
 			} catch (SQLException e) {
 
-				e.printStackTrace();
+				e.getMessage();
 			}	
 			finally {
 				if(pst!=null) {

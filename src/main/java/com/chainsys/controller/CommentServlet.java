@@ -1,7 +1,8 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,13 +24,13 @@ public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		 
 			
 		try {
 			HttpSession session=request.getSession();
-			PrintWriter out=response.getWriter();
 			String comment=(request.getParameter("comment"));	
 			session.setAttribute("comments", comment);
 			int userId=Integer.parseInt(session.getAttribute("userid").toString());
@@ -48,7 +49,7 @@ public class CommentServlet extends HttpServlet {
 			System.out.println("Question inserted");
 			RequestDispatcher requestDispatcher=request.getRequestDispatcher("commentMessage.jsp");
 			requestDispatcher.forward(request, response);
-		} catch (ServletException e) {
+		} catch (ServletException | SQLException e) {
 
 			e.printStackTrace();
 		} 

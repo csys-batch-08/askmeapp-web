@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.impl.AnswerDAOImpl;
 import com.chainsys.model.Answer;
@@ -26,7 +25,6 @@ public class AnswerList extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try { 
 		AnswerDAOImpl answerDao=new AnswerDAOImpl();
-		HttpSession session=request.getSession();
 		List<Answer> answerList;		
 			answerList = answerDao.showAllAnswer();		
 		request.setAttribute("answerList", answerList);

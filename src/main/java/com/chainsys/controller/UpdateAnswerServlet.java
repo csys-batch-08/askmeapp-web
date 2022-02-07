@@ -24,25 +24,20 @@ public class UpdateAnswerServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
 		try {
-			AnswerDAOImpl answerDao=new AnswerDAOImpl();
-			String oldanswer=(request.getParameter("oldanswer"));
-			int id=answerDao.findQuestionId(oldanswer);
-			String update=(request.getParameter("newanswer"));
-			Answer answer=new Answer(update,id,null);
+			AnswerDAOImpl answerDao = new AnswerDAOImpl();
+			String oldanswer = (request.getParameter("oldanswer"));
+			int id = answerDao.findQuestionId(oldanswer);
+			String update = (request.getParameter("newanswer"));
+			Answer answer = new Answer(update, id, null);
 			answerDao.update(answer);
-			
-			RequestDispatcher requestDispatcher=request.getRequestDispatcher("Answers.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
 			requestDispatcher.forward(request, response);
-		} 
-	catch (ServletException | SQLException e) {
+		} catch (ServletException | SQLException e) {
 
 			e.printStackTrace();
-		} 
-		
-	}
+		}
 
 	}
 
-
+}
