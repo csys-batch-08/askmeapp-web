@@ -283,11 +283,12 @@ public class UserDAOImpl implements UserDAOInterface {
 		String findSubscriber = "select subscriber from user_detail where user_id='" + id + "'";
 		Connection con = null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		String subscriber = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findSubscriber);
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				subscriber = rs.getString(1);
 			}
@@ -313,16 +314,15 @@ public class UserDAOImpl implements UserDAOInterface {
 	@Override
 	public List<User> emailExists(User user) throws SQLException {
 		List<User> userList = new ArrayList<User>();
-
 		String selectQuery = "select user_name,password from user_detail where role='USER' and email=? ";
-
 		Connection con = null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(selectQuery);
 			stmt.setString(1, user.getEmailId());
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			while (rs.next()) {
 
 				user.setName(rs.getString(1));

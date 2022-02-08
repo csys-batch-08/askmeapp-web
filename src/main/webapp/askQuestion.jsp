@@ -65,7 +65,6 @@ table, thead, tr, tbody, th, td {
 							viewed Section</a> <a href="#" class="nav-item nav-link disabled"
 							tabindex="-1">Ask a Question</a> <a href="comments.jsp"
 							class="nav-item nav-link">Leave a Reply</a>
-
 					</div>
 					<div class="navbar-nav ms-auto">
 						<a href="index.jsp" class="nav-item nav-link">Logout</a> <a
@@ -113,7 +112,5 @@ table, thead, tr, tbody, th, td {
 			</h3>
 		</c:otherwise>
 	</c:choose>
-
-
 </body>
 </html>

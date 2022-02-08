@@ -63,9 +63,7 @@ public class SectionDAOImpl implements SectionDAOInterface {
 			pstmt = con.prepareStatement(updateQuery);
 			pstmt.setString(1, section.getSectionName());
 			pstmt.setInt(2, section.getSectionId());
-			int i = pstmt.executeUpdate();
-			System.out.println("Updated successfully" + i);
-
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 
 			e.getMessage();
@@ -88,11 +86,12 @@ public class SectionDAOImpl implements SectionDAOInterface {
 		String findUserId = "select section_id from section_details where section_name='" + sectionName + "'";
 		Connection con = null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		int sectionId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findUserId);
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				sectionId = rs.getInt(1);
 			}
@@ -158,16 +157,14 @@ public class SectionDAOImpl implements SectionDAOInterface {
 	public List<Section> showAllSection() throws SQLException {
 
 		List<Section> sectionList = new ArrayList<Section>();
-
 		String selectQuery = "select section_id,section_name,status from section_details";
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs=null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Section section = new Section();
 				section.setSectionId(rs.getInt(1));

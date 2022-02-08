@@ -25,7 +25,7 @@ public class AdminSubscriberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		try {
@@ -40,7 +40,6 @@ public class AdminSubscriberServlet extends HttpServlet {
 				SubscribeUser users = new SubscribeUser(id, sectionName);
 				flag = userDao.insertSection(users);
 			}
-
 			if (flag) {
 				session.setAttribute("message", "Sent Message Successfully");
 				RequestDispatcher req = request.getRequestDispatcher("admin.jsp");

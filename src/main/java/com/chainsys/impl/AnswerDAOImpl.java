@@ -154,11 +154,12 @@ public class AnswerDAOImpl implements AnswerDAOInterface {
 		String findUserId = "select question_id from answer where answers='" + answers + "'";
 		Connection con = null;
 		Statement stmt = null;
+		ResultSet rs = null;
 		int questionId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(findUserId);
+			rs = stmt.executeQuery(findUserId);
 			if (rs.next()) {
 				questionId = rs.getInt(1);
 			}

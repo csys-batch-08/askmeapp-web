@@ -20,7 +20,6 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 		String updateQuery = "update section_details set rating=?,rating_count=? where section_name=?";
 		// get connection
 		Connection con = null;
-
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
@@ -94,12 +93,12 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 		String findRating = "select rating,rating_count from section_details where section_name=?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(findRating);
 			pstmt.setString(1, section.getSectionName());
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				UserRating rate = new UserRating();
 				rate.setRating(rs.getInt(1));

@@ -14,10 +14,6 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 }
-</style>
-</head>
-<body>
-	<style>
 * {
 	margin: 0
 }
@@ -70,13 +66,12 @@ body {
 	background-color: #ffffff;
 	border-radius: 5px;
 }
-
 .forgotpassword .submit:hover {
 	box-shadow: 3px 3px 6px rgb(255, 214, 176);
 }
 </style>
-
-
+</head>
+<body>
 	<div class="container">
 		<h1 style="color: white">Forgot Password</h1>
 		<form name="forgotPassword" class="forgotpassword"

@@ -18,7 +18,6 @@ public class CommentDAOImpl implements CommentDAOInterface {
 		// Query-insert User
 		String insertQuery = "insert into comment_by_user(user_id,category_id,section_id,comments) values(?,?,?,?)";
 		// DB connection
-
 		Connection con = null;
 		PreparedStatement pst = null;
 		// Get all values
@@ -51,14 +50,13 @@ public class CommentDAOImpl implements CommentDAOInterface {
 	public List<Comment> showAllComment() throws SQLException {
 		String selectQuery = "select user_id,comments from comment_by_user";
 		List<Comment> commentList = new ArrayList<>();
-
 		Connection con = null;
-
 		PreparedStatement pst = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(selectQuery);
-			ResultSet rs = pst.executeQuery();
+			rs = pst.executeQuery();
 			while (rs.next()) {
 				Comment comment = new Comment();
 				comment.setUserId(rs.getInt(1));
@@ -88,12 +86,12 @@ public class CommentDAOImpl implements CommentDAOInterface {
 		String findUserId = "select comment_id from comment_by_user where section_id='" + sectionId + "'";
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs = null;
 		int commentId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(findUserId);
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				commentId = rs.getInt(1);
 			}
@@ -120,16 +118,13 @@ public class CommentDAOImpl implements CommentDAOInterface {
 		String deleteQuery = "delete from comment_by_user where comment_id=?";
 		// get connection
 		Connection con = null;
-
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(deleteQuery);
 			pstmt.setInt(1, commentId);
 			pstmt.executeUpdate();
-
 		} catch (SQLException e) {
-
 			e.getMessage();
 		} finally {
 

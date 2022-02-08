@@ -102,8 +102,7 @@ body {
 	you can ask questions, give answers, and share your experience with the
 	rest of the world.
 	<h4 style="color: white">How It Works:</h4>
-	AskMeOnline offers services as per your requirements. Using your
-	desktop computer, laptop, tablet, and or Smartphone.
-	</p>
+	<p>AskMeOnline offers services as per your requirements. Using your
+	desktop computer, laptop, tablet, and or Smartphone.</p>	
 </body>
 </html>

@@ -77,8 +77,7 @@ body {
 			<h3>
 				<span class="badge badge-secondary">${content}</span>
 			</h3>
-		</a><br> <br>
-
+		</a>
 		<h2>
 			<strong>Place Your Rating</strong>
 		</h2>

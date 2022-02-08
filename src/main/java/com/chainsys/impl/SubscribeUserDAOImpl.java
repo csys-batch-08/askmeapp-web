@@ -21,25 +21,21 @@ public class SubscribeUserDAOImpl implements SubscribeUserDAOInterface {
 		List<SubscribeUser> subscribeUserList = new ArrayList<SubscribeUser>();
 
 		String selectQuery = "select distinct section_name from (subscribe_user inner join user_detail  using(user_id)) where user_id=?";
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs=null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
 			pstmt.setInt(1, user.getUserId());
-			System.out.println(user.getUserId());
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				SubscribeUser subscribeUser = new SubscribeUser();
 				subscribeUser.setSectionName(rs.getString(1));
-
 				subscribeUserList.add(subscribeUser);
 			}
 
 		} catch (SQLException e) {
-
 			e.getMessage();
 		} finally {
 

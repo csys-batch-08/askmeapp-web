@@ -18,7 +18,6 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 		// insert
 		String insertQuery = "insert into category_detail(category_name) values(?)";
 		// DB connection
-
 		Connection con = null;
 		PreparedStatement pst = null;
 		// Get all values
@@ -76,11 +75,12 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 		String findUserId = "select category_id from category_detail where category_name='" + categoryName + "'";
 		Connection con = null;
 		Statement stmt = null;
+		ResultSet rs = null;
 		int categoryId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(findUserId);
+			rs = stmt.executeQuery(findUserId);
 			if (rs.next()) {
 				categoryId = rs.getInt(1);
 			}
@@ -194,11 +194,11 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 		String selectQuery = "select category_id,category_name from category_detail where status='active'";
 		Connection con = null;
 		PreparedStatement stmt = null;
-
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(selectQuery);
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Category category = new Category();
 				category.setCategoryId(rs.getInt(1));
@@ -206,9 +206,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 				categoryList.add(category);
 			}
 
-		}
-
-		catch (SQLException e) {
+		} catch (SQLException e) {
 
 			e.getMessage();
 		} finally {
@@ -272,11 +270,12 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 		String findUserId = "select status from category_detail where category_id='" + id + "'";
 		Connection con = null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		String status = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findUserId);
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				status = rs.getString(1);
 			}

@@ -17,7 +17,6 @@ public class AdminCommentViewDAOImpl implements AdminCommentViewDAOInterface {
 	public List<AdminCommentView> commentView() throws SQLException {
 
 		List<AdminCommentView> commentList = new ArrayList<>();
-
 		String selectQuery = "select distinct user_detail.email,comment_by_user.comments from ( user_detail  inner join comment_by_user using(user_id))";
 		Connection con = null;
 		PreparedStatement pstmt = null;

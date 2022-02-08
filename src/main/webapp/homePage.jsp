@@ -93,7 +93,7 @@ table, thead, tr, tbody, th, td {
 					<td><a href="SectionDetailServlet?cusid=${userCategoryList.categoryId}">
 							<h3><span class="badge badge-secondary">${userCategoryList.categoryName}</span>
 							</h3></a></td>
-
+				
 				</tr>
 			</c:forEach>
 

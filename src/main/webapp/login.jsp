@@ -82,7 +82,7 @@ body {
 				<caption></caption>
 				<thead>
 					<tr>
-						<th id="1"></th>
+					    <th id="1"></th>
 					</tr>
 				</thead>
 				<tbody>

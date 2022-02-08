@@ -28,13 +28,9 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			pst.setString(1, question.getQuestions());
 			pst.setInt(2, question.getSectionId());
 			pst.executeUpdate();
-
 		} catch (SQLException e) {
-
 			e.getMessage();
-
 		} finally {
-
 			if (pst != null) {
 				pst.close();
 			}
@@ -51,7 +47,6 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		String updateQuery = "update question_details set question_description=? where question_id=?";
 		// get connection
 		Connection con = null;
-
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
@@ -61,7 +56,6 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-
 			e.getMessage();
 		} finally {
 
@@ -81,12 +75,12 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		String findUserId = "select question_id from question_details where question_description='" + quesdes + "'";
 		Connection con = null;
 		PreparedStatement stmt = null;
-
+		ResultSet rs = null;
 		int questionId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findUserId);
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				questionId = rs.getInt(1);
 			}
@@ -113,16 +107,14 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 	public List<Question> showAllQuestion() throws SQLException {
 
 		List<Question> questionList = new ArrayList<Question>();
-
 		String selectQuery = "select question_id,question_description,status from question_details";
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs=null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Question question = new Question();
 				question.setQuestionId(rs.getInt(1));
@@ -130,7 +122,6 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 				question.setStatus(rs.getString(3));
 				questionList.add(question);
 			}
-
 		} catch (SQLException e) {
 
 			e.getMessage();
@@ -187,7 +178,6 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 
 		return questionList;
 	}
-
 	// Find section Id
 	@Override
 	public int findSectionId(int qId) throws SQLException {

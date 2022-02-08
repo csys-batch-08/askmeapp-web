@@ -17,12 +17,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				+ "' and password='" + password + "'";
 		Connection con = null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		User user = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(validateQuery);
-			ResultSet rs = stmt.executeQuery();
-			// validate user input
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				user = new User(0, null, email, password, null);
 			}

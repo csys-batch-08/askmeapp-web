@@ -76,7 +76,6 @@ table, thead, tr, tbody, th, td {
 			</div>
 		</nav>
 	</div>
-
 	<table class="table">
 		<caption></caption>
 		<thead>
@@ -88,8 +87,8 @@ table, thead, tr, tbody, th, td {
 			<c:forEach var="SectionList" items="${sectionList}">
 				<tr>
 					<td><a
-						href="SectionContentServlet?secid=${SectionList.sectionId}&sectionname=${SectionList.sectionName}"><h3>
-								<span class="badge badge-secondary">${SectionList.sectionName}</span>
+						href="SectionContentServlet?secid=${SectionList.sectionId}&sectionname=${SectionList.sectionName}">
+							<h3><span class="badge badge-secondary">${SectionList.sectionName}</span>
 							</h3></a></td>
 				</tr>
 			</c:forEach>

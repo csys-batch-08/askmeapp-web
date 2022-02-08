@@ -17,7 +17,6 @@ public class AskmeDAOImpl implements AskmeDAOInterface {
 	public void askmequestions(AskMe askMe) throws SQLException {
 		String insertQuery = "insert into ask_me_questions(user_id,category_id,section_id,question_id) values(?,?,?,?)";
 		// DB connection
-
 		Connection con = null;
 		PreparedStatement pst = null;
 		// Get all values
@@ -47,7 +46,6 @@ public class AskmeDAOImpl implements AskmeDAOInterface {
 	@Override
 	public List<AskMe> FindUserId(AskMe askMe) throws SQLException {
 		List<AskMe> askList = new ArrayList<AskMe>();
-
 		String selectQuery = "select ask_me_questions.question_id from (user_detail inner join ask_me_questions using(user_id))where user_id=? and question_id=?";
 		Connection con = null;
 		PreparedStatement pst = null;
