@@ -73,7 +73,7 @@
 		<h1>Section List</h1>
 
 		<table class="table table-bordered">
-		<caption></caption>
+			<caption></caption>
 			<thead>
 				<tr>
 					<th id="1">Section Id</th>
@@ -88,12 +88,10 @@
 						<td>${SectionList.sectionId }</td>
 						<td>${SectionList.sectionName}</td>
 						<td>${SectionList.status}</td>
-
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-
 	</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>    
-    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -31,27 +31,25 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 }
-@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
-table,
-thead,
-tr,
-tbody,
-th,
-td {
-color:white;
-  text-align: center;
+
+@import
+	url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
+	;
+
+table, thead, tr, tbody, th, td {
+	color: white;
+	text-align: center;
 }
 
 .table td {
-   color:white;
-  text-align: center;
+	color: white;
+	text-align: center;
 }
 </style>
 </head>
 <body>
- <div id="toolbar">
-    </div>
-   <div class="w-auto p-3">
+	<div id="toolbar"></div>
+	<div class="w-auto p-3">
 		<nav class="navbar navbar-dark bg-success">
 			<div class="container-fluid">
 				<a href="#" class="navbar-brand"> <img
@@ -65,7 +63,7 @@ color:white;
 					<div class="navbar-nav">
 						<a href="userHome.jsp" class="nav-item nav-link">Home</a> <a
 							href="readMore.jsp" class="nav-item nav-link">About Us</a> <a
-							href="MostViewedSectionServlet" class="nav-item nav-link" >Frequently
+							href="MostViewedSectionServlet" class="nav-item nav-link">Frequently
 							viewed Section</a> <a href="#" class="nav-item nav-link disabled"
 							tabindex="-1">Ask a Question</a>
 					</div>
@@ -78,29 +76,24 @@ color:white;
 			</div>
 		</nav>
 	</div>
- 
-<table class="table">
-<caption></caption>
-			<thead>
-				<tr>
-				   <th id="1" >Section List</th>
-				</tr>
-			</thead>
-			
-			<tbody>
-			<c:forEach var="SectionList"  items="${sectionList}">
-				
-				<tr>	
-									
-					<td><a href="SectionContentServlet?secid=${SectionList.sectionId}&sectionname=${SectionList.sectionName}"><h3><span class="badge badge-secondary">${SectionList.sectionName}</span></h3></a></td>
-					
-				
+
+	<table class="table">
+		<caption></caption>
+		<thead>
+			<tr>
+				<th id="1">Section List</th>
 			</tr>
-					
+		</thead>
+		<tbody>
+			<c:forEach var="SectionList" items="${sectionList}">
+				<tr>
+					<td><a
+						href="SectionContentServlet?secid=${SectionList.sectionId}&sectionname=${SectionList.sectionName}"><h3>
+								<span class="badge badge-secondary">${SectionList.sectionName}</span>
+							</h3></a></td>
+				</tr>
 			</c:forEach>
-					</tbody>
-		           </table><br><br>
-
-
+		</tbody>
+	</table>
 </body>
 </html>

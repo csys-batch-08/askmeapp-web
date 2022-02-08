@@ -12,8 +12,6 @@ import com.chainsys.model.Section;
 import com.chainsys.model.UserRating;
 import com.chainsys.util.ConnectionUtil;
 
-
-
 public class UserRatingDAOImpl implements UserRatingDAOInterface {
 	// rating update
 
@@ -22,7 +20,7 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 		String updateQuery = "update section_details set rating=?,rating_count=? where section_name=?";
 		// get connection
 		Connection con = null;
-		
+
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
@@ -31,23 +29,19 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 			pstmt.setInt(2, userRating.getRateCount());
 			pstmt.setString(3, userRating.getSectionName());
 			pstmt.executeUpdate();
-			
 
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		 finally {
-	        	
-				
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				if (con != null) {
-					con.close();
-				}
+		} finally {
+
+			if (pstmt != null) {
+				pstmt.close();
 			}
-			
+			if (con != null) {
+				con.close();
+			}
+		}
 
 	}
 
@@ -59,14 +53,14 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 		List<UserRating> userRatingList = new ArrayList<UserRating>();
 
 		String selectQuery = "select section_name,(rating/rating_count) as average from section_details  where status='active' order by average DESC";
-		
-		Connection con=null;
+
+		Connection con = null;
 		PreparedStatement pstmt = null;
-	
+
 		try {
-			 con = ConnectionUtil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
-			ResultSet rs  = pstmt.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				UserRating ratingList = new UserRating();
 				ratingList.setSectionName(rs.getString(1));
@@ -79,10 +73,8 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-        finally {
-        	
-			
+		} finally {
+
 			if (pstmt != null) {
 				pstmt.close();
 			}
@@ -90,7 +82,6 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 				con.close();
 			}
 		}
-		
 
 		return userRatingList;
 	}
@@ -101,14 +92,14 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 
 		List<UserRating> rateList = new ArrayList<UserRating>();
 		String findRating = "select rating,rating_count from section_details where section_name=?";
-		Connection con=null;
+		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
-			 con = ConnectionUtil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(findRating);
 			pstmt.setString(1, section.getSectionName());
-			ResultSet rs  = pstmt.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				UserRating rate = new UserRating();
 				rate.setRating(rs.getInt(1));
@@ -119,19 +110,17 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		 finally {
-	        	
-				
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				if (con != null) {
-					con.close();
-				}
+		} finally {
+
+			if (pstmt != null) {
+				pstmt.close();
 			}
+			if (con != null) {
+				con.close();
+			}
+		}
 
 		return rateList;
 	}
-	
+
 }

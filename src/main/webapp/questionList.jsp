@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -69,7 +68,7 @@
 	<div class="container-fluid">
 		<h2>Question List</h2>
 		<table class="table table-bordered">
-		<caption></caption>
+			<caption></caption>
 			<thead>
 				<tr>
 					<th id="1">QuestionId</th>
@@ -89,8 +88,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<br>
-		<br>
+		
 	</div>
 </body>
 </html>

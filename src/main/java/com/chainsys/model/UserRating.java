@@ -39,7 +39,7 @@ public class UserRating {
 	}
 	public UserRating() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public UserRating(String sectionName, int categoryId, int rating, int rateCount) {
 		super();

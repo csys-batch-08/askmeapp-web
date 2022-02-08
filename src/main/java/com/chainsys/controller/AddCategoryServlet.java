@@ -19,35 +19,22 @@ import com.chainsys.model.Category;
 @WebServlet("/AddCategoryServlet")
 public class AddCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException  {
 
-		
-		
-		
-		
-		 try {
-	
-		
-		String categoryName=(request.getParameter("categoryName"));			
-		Category Objcategory=new Category(0,categoryName,null);
-	    CategoryDAOImpl ObjcatDao=new  CategoryDAOImpl();
-	  
-		ObjcatDao.insertCategory(Objcategory);
-	
-	   
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("admin.jsp");
-		
-			requestDispatcher.forward(request, response);}
-		catch (ServletException | IOException | SQLException e) {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try {
+
+			String categoryName = (request.getParameter("categoryName"));
+			Category Objcategory = new Category(0, categoryName, null);
+			CategoryDAOImpl ObjcatDao = new CategoryDAOImpl();
+			ObjcatDao.insertCategory(Objcategory);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
+			requestDispatcher.forward(request, response);
+		} catch (ServletException | IOException | SQLException e) {
 
 			e.printStackTrace();
 		}
-	   
-	
-}
-	
+
+	}
 
 }

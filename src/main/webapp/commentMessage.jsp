@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -34,7 +34,7 @@ body {
 </head>
 <body>
 
-<div id="toolbar"></div>
+	<div id="toolbar"></div>
 	<div class="w-auto p-3">
 		<nav class="navbar navbar-dark bg-success">
 			<div class="container-fluid">
@@ -49,7 +49,7 @@ body {
 					<div class="navbar-nav">
 						<a href="userHome.jsp" class="nav-item nav-link">Home</a> <a
 							href="readMore.jsp" class="nav-item nav-link">About Us</a> <a
-							href="MostViewedSectionServlet" class="nav-item nav-link" >Frequently
+							href="MostViewedSectionServlet" class="nav-item nav-link">Frequently
 							viewed Section</a> <a href="#" class="nav-item nav-link disabled"
 							tabindex="-1">Ask a Question</a>
 					</div>
@@ -62,7 +62,8 @@ body {
 			</div>
 		</nav>
 	</div>
-<center><h1 style=color:white>Your comments received successfully!!	 Reply Shortly</h1></center>
+	<h1 style="color: white">Your comments received successfully!!
+		Reply Shortly</h1>
 
 </body>
 </html>

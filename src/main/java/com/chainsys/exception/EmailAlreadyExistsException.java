@@ -1,8 +1,7 @@
 package com.chainsys.exception;
 
+public class EmailAlreadyExistsException extends Exception {
 
-public class EmailAlreadyExistsException extends Exception{
-	
 	/**
 	 * 
 	 */
@@ -10,7 +9,6 @@ public class EmailAlreadyExistsException extends Exception{
 
 	@Override
 	public String getMessage() {
-
 		return "Email already exist";
-	} 
+	}
 }

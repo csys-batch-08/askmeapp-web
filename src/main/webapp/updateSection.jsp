@@ -75,12 +75,12 @@
 	</nav>
 
 
-	
 
-		<form name="section" action="UpdateSectionServlet" method="post">
-			<fieldset id="box">
-				<legend> Update Section</legend>
-				<table>
+
+	<form name="section" action="UpdateSectionServlet" method="post">
+		<fieldset id="box">
+			<legend> Update Section</legend>
+			<table>
 				<caption></caption>
 				<thead>
 					<tr>
@@ -88,21 +88,21 @@
 						<th id="2"><input type="text" name="oldSectionName"
 							pattern="[A-Za-z]{10, }" required autofocus></th>
 					</tr>
-					
+
 					<tr>
 						<th id="3"><label for="name">Enter New Section Name</label></th>
 						<th id="4"><input type="text" name="newSectionName"
 							pattern="[A-Za-z]{10, }" required autofocus></th>
 					</tr>
-					</thead>
-					<tbody>
+				</thead>
+				<tbody>
 					<tr>
 						<td colspan="2"><input type="submit" class="submit" /></td>
 					</tr>
-                      </tbody>
-				</table>
-			</fieldset>
-		</form>
+				</tbody>
+			</table>
+		</fieldset>
+	</form>
 
 
 </body>

@@ -52,6 +52,21 @@
     color: black;
   }
         
+  .button1 {
+    display: block;
+    width: 25%;
+    border:khaki;
+    background-color:red;
+    color:black;
+    padding: 20px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
   
+  .button1:hover {
+    background-color: #ddd;
+    color: black;
+  }
    
 

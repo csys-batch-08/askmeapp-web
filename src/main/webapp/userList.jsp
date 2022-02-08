@@ -15,12 +15,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
 </head>
-
 <body>
-
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -73,7 +69,7 @@
 	<div class="container-fluid">
 		<h1>User List</h1>
 		<table class="table table-bordered">
-		<caption></caption>
+			<caption></caption>
 			<thead>
 				<tr>
 					<th id="1">User Id</th>
@@ -82,7 +78,6 @@
 					<th id="4">Subscriber</th>
 				</tr>
 			</thead>
-
 			<tbody>
 				<c:forEach var="UserList" items="${userList}">
 					<tr>
@@ -92,10 +87,8 @@
 						<td>${UserList.subscriber}</td>
 					</tr>
 				</c:forEach>
-
 			</tbody>
 		</table>
 	</div>
-
 </body>
 </html>

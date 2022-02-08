@@ -40,7 +40,7 @@ public class Question {
 	}
 	public Question() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public Question(int questionId, String questions, int sectionId, String status) {
 		super();

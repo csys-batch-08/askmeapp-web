@@ -25,20 +25,18 @@ public class AddQuestionServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-		QuestionDAOImpl questionDao = new QuestionDAOImpl();
-		SectionDAOImpl sectionDao = new SectionDAOImpl();
-		String questions = (request.getParameter("question"));
-		String sectionName = (request.getParameter("sectionName"));
-		int id;
-		
+			QuestionDAOImpl questionDao = new QuestionDAOImpl();
+			SectionDAOImpl sectionDao = new SectionDAOImpl();
+			String questions = (request.getParameter("question"));
+			String sectionName = (request.getParameter("sectionName"));
+			int id;
 			id = sectionDao.findSectionId(sectionName);
-		
-		Question question = new Question(0, questions, id, null);
-		questionDao.insertQuestion(question);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
-		requestDispatcher.forward(request, response);
+			Question question = new Question(0, questions, id, null);
+			questionDao.insertQuestion(question);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
+			requestDispatcher.forward(request, response);
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 	}

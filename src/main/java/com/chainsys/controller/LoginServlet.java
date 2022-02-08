@@ -1,4 +1,5 @@
 package com.chainsys.controller;
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -14,20 +15,17 @@ import com.chainsys.impl.AdminDAOImpl;
 import com.chainsys.impl.UserDAOImpl;
 import com.chainsys.model.User;
 
-
-
 @WebServlet("/LoginServlet")
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-	
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		try {
-			
+
 			String email = request.getParameter("email");
 			session.setAttribute("Email", email);
 			String password = request.getParameter("password");
@@ -74,10 +72,10 @@ public class LoginServlet extends HttpServlet {
 
 		catch (PasswordIncorrect iv) {
 			try {
-				session.setAttribute("invalid",iv.getMessage());
+				session.setAttribute("invalid", iv.getMessage());
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
 				requestDispatcher.forward(request, response);
-				
+
 			} catch (IOException s) {
 				iv.getMessage();
 			}

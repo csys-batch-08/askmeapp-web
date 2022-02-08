@@ -33,7 +33,7 @@ public class Comment {
 	}
 	public Comment() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public Comment(int userId, int categoryId, int sectionId, String comments) {
 		super();

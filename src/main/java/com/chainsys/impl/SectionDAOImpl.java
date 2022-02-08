@@ -12,21 +12,19 @@ import com.chainsys.model.Category;
 import com.chainsys.model.Section;
 import com.chainsys.util.ConnectionUtil;
 
+public class SectionDAOImpl implements SectionDAOInterface {
 
-
-public class SectionDAOImpl implements SectionDAOInterface{
-	
 	@Override
 	public void insertSection(Section section) throws SQLException {
 		// Query-insert User
 		String insertQuery = "insert into section_details(section_name,category_id,image) values(?,?,?)";
 		// DB connection
-		
+
 		Connection con = null;
 		PreparedStatement pst = null;
 		// Get all values
 		try {
-	        con = ConnectionUtil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(insertQuery);
 			System.out.println(section.getSectionName());
 			pst.setString(1, section.getSectionName());
@@ -34,18 +32,17 @@ public class SectionDAOImpl implements SectionDAOInterface{
 			pst.setInt(2, section.getCategoryId());
 			System.out.println(section.getImage());
 			pst.setString(3, section.getImage());
-		    pst.executeUpdate();
-			
+			pst.executeUpdate();
+
 		} catch (SQLException e) {
 
 			e.getMessage();
-			
-		}
-		finally {
+
+		} finally {
 			if (pst != null) {
 				pst.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}
@@ -72,12 +69,11 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		finally {
+		} finally {
 			if (pstmt != null) {
 				pstmt.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}
@@ -91,10 +87,10 @@ public class SectionDAOImpl implements SectionDAOInterface{
 	public int findSectionId(String sectionName) throws SQLException {
 		String findUserId = "select section_id from section_details where section_name='" + sectionName + "'";
 		Connection con = null;
-		PreparedStatement stmt=null;
+		PreparedStatement stmt = null;
 		int sectionId = 0;
 		try {
-			 con = ConnectionUtil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findUserId);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
@@ -104,12 +100,11 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		finally {
+		} finally {
 			if (stmt != null) {
 				stmt.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}
@@ -125,8 +120,8 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		List<Section> sectionList = new ArrayList<Section>();
 
 		String selectQuery = "select section_id,section_name from section_details where category_id=? and status='active'";
-		
-		Connection con=null;
+
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -144,12 +139,11 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		finally {
+		} finally {
 			if (pstmt != null) {
 				pstmt.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}
@@ -166,12 +160,12 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		List<Section> sectionList = new ArrayList<Section>();
 
 		String selectQuery = "select section_id,section_name,status from section_details";
-		
-		Connection con=null;
+
+		Connection con = null;
 		PreparedStatement pstmt = null;
-	
+
 		try {
-			 con = ConnectionUtil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -185,12 +179,11 @@ public class SectionDAOImpl implements SectionDAOInterface{
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		finally {
+		} finally {
 			if (pstmt != null) {
 				pstmt.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}
@@ -198,6 +191,5 @@ public class SectionDAOImpl implements SectionDAOInterface{
 
 		return sectionList;
 	}
-	
 
 }

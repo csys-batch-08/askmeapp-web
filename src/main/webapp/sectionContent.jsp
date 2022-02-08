@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-   <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -20,7 +20,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style >
+<style>
 * {
 	margin: 0;
 	padding: 0;
@@ -37,9 +37,8 @@ body {
 </head>
 <body>
 
-<div id="toolbar">
-    </div>
-    <div class="w-auto p-3">
+	<div id="toolbar"></div>
+	<div class="w-auto p-3">
 		<nav class="navbar navbar-dark bg-success">
 			<div class="container-fluid">
 				<a href="#" class="navbar-brand"> <img
@@ -53,11 +52,11 @@ body {
 					<div class="navbar-nav">
 						<a href="userHome.jsp" class="nav-item nav-link">Home</a> <a
 							href="readMore.jsp" class="nav-item nav-link">About Us</a> <a
-							href="MostViewedSectionServlet" class="nav-item nav-link" >Frequently
-							viewed Section</a>
-							<a href="AskMeQuestionServlet" class="nav-item nav-link">Ask a question</a>
-                            <a href="comments.jsp" class="nav-item nav-link">Leave a Reply</a>     
-              
+							href="MostViewedSectionServlet" class="nav-item nav-link">Frequently
+							viewed Section</a> <a href="AskMeQuestionServlet"
+							class="nav-item nav-link">Ask a question</a> <a
+							href="comments.jsp" class="nav-item nav-link">Leave a Reply</a>
+
 					</div>
 					<div class="navbar-nav ms-auto">
 						<a href="index.jsp" class="nav-item nav-link">Logout</a> <a
@@ -68,25 +67,28 @@ body {
 			</div>
 		</nav>
 	</div>
-            
-   
-   
- <c:set var="content" value="${sectionName }"></c:set>
-  <form id="box1" action="UserRatingServlet?sName=${sectionName}" method="post">   
-  <center>      
-      <label>Click To Read a File: </label> 
-      <a href="assets/images/${content}.pdf"><h3><span class="badge badge-secondary">${content}</span></h3></a><br><br>
+	
+		<c:set var="content" value="${sectionName }"></c:set>
+		<form id="box1" action="UserRatingServlet?sName=${sectionName}"
+			method="post">
 
-       <h2><b>Place Your Rating</b></h2>
-        <h3>From 1....10 </h3>
-        <input type="text" name="rating" pattern="[0-9]{1,2}">                 
-        <button type="submit" >Submit Rating</button>
-        </center>
-        </form>
-   
-    
-    
-        
+			<label>Click To Read a File: </label> <a
+				href="assets/images/${content}.pdf">
+				<h3>
+					<span class="badge badge-secondary">${content}</span>
+				</h3>
+			</a><br> <br>
+
+			<h2>
+				<strong>Place Your Rating</strong>
+			</h2>
+			<h3>From 1....10</h3>
+			<input type="text" name="rating" pattern="[0-9]{1,2}">
+			<button type="submit">Submit Rating</button>
+		</form>
+	
+
+
 
 </body>
 </html>

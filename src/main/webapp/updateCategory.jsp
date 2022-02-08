@@ -74,12 +74,12 @@
 		</div>
 	</nav>
 
-	<center>
-		<form name="category" class="category" action="UpdateCategoryServlet"
-			method="post">
-			<fieldset id="box">
-				<legend> Update Category</legend>
-				<table>
+
+	<form name="category" class="category" action="UpdateCategoryServlet"
+		method="post">
+		<fieldset id="box">
+			<legend> Update Category</legend>
+			<table>
 				<caption></caption>
 				<thead>
 					<tr>
@@ -87,20 +87,21 @@
 						<th id="2"><input type="text" name="oldCategoryName"
 							pattern="[A-Za-z]{10, }" required autofocus></th>
 					</tr>
-					
+
 					<tr>
 						<th id="3"><label for="name">Enter New Category Name</label></th>
-						<td id="4"><input type="text" name="newCategoryName"
-							pattern="[A-Za-z]{10, }" required autofocus></th>
+						<th id="4"><input type="text" name="newCategoryName"
+							pattern="[A-Za-z]{10, }" required autofocus>
+						</th>
 					</tr>
-					</thead>
-					<tbody>
+				</thead>
+				<tbody>
 					<tr>
 						<td colspan="2"><input type="submit" class="submit" /></td>
 					</tr>
-                    </tbody>
-				</table>
-			</fieldset>
-		</form>
+				</tbody>
+			</table>
+		</fieldset>
+	</form>
 </body>
 </html>

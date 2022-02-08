@@ -9,10 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -68,11 +64,11 @@
 	<div class="container-fluid">
 		<h2>Answer List</h2>
 		<table class="table table-bordered">
-		<caption></caption>
+			<caption></caption>
 			<thead>
 				<tr>
-					<th >Answers</th>
-					<th>Status</th>
+					<th id="1">Answers</th>
+					<th id="2">Status</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -85,7 +81,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		
 	</div>
 </body>
 </html>

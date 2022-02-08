@@ -13,7 +13,7 @@ import com.chainsys.model.User;
 import com.chainsys.util.ConnectionUtil;
 
 public class SubscribeUserDAOImpl implements SubscribeUserDAOInterface {
-	
+
 	// List of User
 	@Override
 	public List<SubscribeUser> showAllSection(User user) throws SQLException {
@@ -21,10 +21,10 @@ public class SubscribeUserDAOImpl implements SubscribeUserDAOInterface {
 		List<SubscribeUser> subscribeUserList = new ArrayList<SubscribeUser>();
 
 		String selectQuery = "select distinct section_name from (subscribe_user inner join user_detail  using(user_id)) where user_id=?";
-		
-		Connection  con=null;
+
+		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
@@ -41,10 +41,8 @@ public class SubscribeUserDAOImpl implements SubscribeUserDAOInterface {
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-          finally {
-        	 
-			
+		} finally {
+
 			if (pstmt != null) {
 				pstmt.close();
 			}
@@ -52,7 +50,6 @@ public class SubscribeUserDAOImpl implements SubscribeUserDAOInterface {
 				con.close();
 			}
 		}
-		
 
 		return subscribeUserList;
 	}

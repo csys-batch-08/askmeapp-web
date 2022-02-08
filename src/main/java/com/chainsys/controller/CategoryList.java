@@ -14,28 +14,26 @@ import javax.servlet.http.HttpServletResponse;
 import com.chainsys.impl.CategoryDAOImpl;
 import com.chainsys.model.Category;
 
-
-
 /**
  * Servlet implementation class CategoryList
  */
 @WebServlet("/CategoryList")
 public class CategoryList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		try { 
-		CategoryDAOImpl categoryDao = new CategoryDAOImpl();
-		List<Category> categoryList;		
-			categoryList = categoryDao.AllCategory();		
-		request.setAttribute("categoryList", categoryList);
-		RequestDispatcher req = request.getRequestDispatcher("categoryList.jsp");
-		req.forward(request, response);
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		try {
+			CategoryDAOImpl categoryDao = new CategoryDAOImpl();
+			List<Category> categoryList;
+			categoryList = categoryDao.AllCategory();
+			request.setAttribute("categoryList", categoryList);
+			RequestDispatcher req = request.getRequestDispatcher("categoryList.jsp");
+			req.forward(request, response);
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 	}

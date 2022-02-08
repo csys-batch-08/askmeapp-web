@@ -13,19 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.chainsys.impl.QuestionDAOImpl;
 import com.chainsys.model.Question;
 
-
 /**
  * Servlet implementation class UpdateQuestionServlet
  */
 @WebServlet("/UpdateQuestionServlet")
 public class UpdateQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			QuestionDAOImpl questionDao = new QuestionDAOImpl();
 			String oldquestion = (request.getParameter("oldquestion"));

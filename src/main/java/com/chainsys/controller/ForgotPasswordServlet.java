@@ -17,42 +17,46 @@ import com.chainsys.impl.UserDAOImpl;
 @WebServlet("/ForgotPasswordServlet")
 public class ForgotPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ForgotPasswordServlet() {
-        super();
-
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ForgotPasswordServlet() {
+		super();
 
-		try {
-		UserDAOImpl userDao = new UserDAOImpl();
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");		
-			userDao.update(password, email);
-			response.sendRedirect("login.jsp");
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		try {
+			UserDAOImpl userDao = new UserDAOImpl();
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			userDao.update(password, email);
+			response.sendRedirect("login.jsp");
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		doGet(request, response);
-     
+
 	}
 
 }

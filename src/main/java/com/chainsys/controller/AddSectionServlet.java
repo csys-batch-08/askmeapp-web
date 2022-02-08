@@ -14,29 +14,22 @@ import com.chainsys.impl.CategoryDAOImpl;
 import com.chainsys.impl.SectionDAOImpl;
 import com.chainsys.model.Section;
 
-
 /**
  * Servlet implementation class AddSection
  */
 @WebServlet("/AddSectionServlet")
 public class AddSectionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
 
-	
-	
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	
-
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 
 			CategoryDAOImpl ObjcatDao = new CategoryDAOImpl();
 			SectionDAOImpl sectionDao = new SectionDAOImpl();
 			String categoryName = (request.getParameter("selectCategoryName"));
-			int id=0;
+			int id = 0;
 			id = ObjcatDao.findCategoryId(categoryName);
 			String sectionName = (request.getParameter("sectionName"));
 			String image = (request.getParameter("picture"));
@@ -53,5 +46,3 @@ public class AddSectionServlet extends HttpServlet {
 	}
 
 }
-
-

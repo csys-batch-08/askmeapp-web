@@ -14,13 +14,13 @@ import com.chainsys.model.User;
 import com.chainsys.util.ConnectionUtil;
 
 public class UserDAOImpl implements UserDAOInterface {
-	
+
 	// insert user
 	@Override
 	public void insertUser(User user) throws SQLException {
 		// Query-insert User
 		String insertQuery = "insert into user_detail(user_name,email,password) values(?,?,?)";
-		// DB connection		
+		// DB connection
 		Connection con = null;
 		PreparedStatement pst = null;
 		// Get all values
@@ -31,20 +31,19 @@ public class UserDAOImpl implements UserDAOInterface {
 			pst.setString(2, user.getEmailId());
 			pst.setString(3, user.getPassword());
 			pst.executeUpdate();
-			
+
 		} catch (SQLException e) {
 
 			e.getMessage();
-			
-		}
-		 finally {
-				if (pst != null) {
-					pst.close();
-				}
-				if (con != null) {
-					con.close();
-				}
+
+		} finally {
+			if (pst != null) {
+				pst.close();
 			}
+			if (con != null) {
+				con.close();
+			}
+		}
 
 	}
 
@@ -53,8 +52,8 @@ public class UserDAOImpl implements UserDAOInterface {
 	public void update(String password, String email) throws SQLException {
 		String updateQuery = "update user_detail set password=? where email=?";
 		// get connection
-		Connection con=null;
-		
+		Connection con = null;
+
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
@@ -65,15 +64,14 @@ public class UserDAOImpl implements UserDAOInterface {
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		 finally {
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				if (con != null) {
-					con.close();
-				}
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
 			}
+			if (con != null) {
+				con.close();
+			}
+		}
 
 	}
 
@@ -113,8 +111,8 @@ public class UserDAOImpl implements UserDAOInterface {
 	@Override
 	public int findUserId(String email) throws SQLException {
 		String findUserId = "select user_id from user_detail where email='" + email + "'";
-		Connection con=null;
-		PreparedStatement stmt=null;
+		Connection con = null;
+		PreparedStatement stmt = null;
 		int userId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
@@ -128,8 +126,7 @@ public class UserDAOImpl implements UserDAOInterface {
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		finally {
+		} finally {
 			if (stmt != null) {
 				stmt.close();
 			}
@@ -148,12 +145,12 @@ public class UserDAOImpl implements UserDAOInterface {
 		List<User> userList = new ArrayList<User>();
 
 		String selectQuery = "select user_id,user_name,email,subscriber from user_detail where role='USER'";
-		
-		Connection con=null;
+
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			 con = ConnectionUtil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -168,12 +165,12 @@ public class UserDAOImpl implements UserDAOInterface {
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		finally {
+
+		} finally {
 			if (pstmt != null) {
 				pstmt.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}
@@ -188,23 +185,22 @@ public class UserDAOImpl implements UserDAOInterface {
 	public void updateSubscribe(User user) throws SQLException {
 		String updateQuery = "update user_detail set subscriber='yes' where role='USER' and email=?";
 		// get connection
-		Connection con=null;
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(updateQuery);
 			pstmt.setString(1, user.getEmailId());
 			pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		finally {
+		} finally {
 			if (pstmt != null) {
 				pstmt.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}
@@ -219,11 +215,10 @@ public class UserDAOImpl implements UserDAOInterface {
 
 		String selectQuery = "select user_name,email from user_detail where role='USER' and subscriber='yes'";
 
-		
-		Connection con=null;
-		PreparedStatement stmt=null;
+		Connection con = null;
+		PreparedStatement stmt = null;
 		try {
-			 con = ConnectionUtil.getDbConnection();
+			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(selectQuery);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -235,12 +230,11 @@ public class UserDAOImpl implements UserDAOInterface {
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		finally {
+		} finally {
 			if (stmt != null) {
 				stmt.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}
@@ -254,7 +248,7 @@ public class UserDAOImpl implements UserDAOInterface {
 		// Query-insert User
 		String insertQuery = "insert into subscribe_user(user_id,section_name) values(?,?)";
 		// DB connection
-		
+
 		Connection con = null;
 		PreparedStatement pst = null;
 		// Get all values
@@ -264,22 +258,21 @@ public class UserDAOImpl implements UserDAOInterface {
 			pst.setInt(1, user.getUserId());
 			pst.setString(2, user.getSectionName());
 			pst.executeUpdate();
-			
+
 		} catch (SQLException e) {
 
 			e.getMessage();
-			
-		}
-		finally {
+
+		} finally {
 			if (pst != null) {
 				pst.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}
 		}
-		
+
 		return true;
 
 	}
@@ -288,8 +281,8 @@ public class UserDAOImpl implements UserDAOInterface {
 	@Override
 	public String findSubscriber(int id) throws SQLException {
 		String findSubscriber = "select subscriber from user_detail where user_id='" + id + "'";
-		Connection con=null;
-		PreparedStatement stmt=null;
+		Connection con = null;
+		PreparedStatement stmt = null;
 		String subscriber = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
@@ -302,17 +295,16 @@ public class UserDAOImpl implements UserDAOInterface {
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		finally {
+		} finally {
 			if (stmt != null) {
 				stmt.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}
 		}
-		
+
 		return subscriber;
 
 	}
@@ -324,9 +316,8 @@ public class UserDAOImpl implements UserDAOInterface {
 
 		String selectQuery = "select user_name,password from user_detail where role='USER' and email=? ";
 
-		
-		Connection con=null;
-		PreparedStatement stmt=null;
+		Connection con = null;
+		PreparedStatement stmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(selectQuery);
@@ -341,12 +332,11 @@ public class UserDAOImpl implements UserDAOInterface {
 		} catch (SQLException e) {
 
 			e.getMessage();
-		}
-		finally {
+		} finally {
 			if (stmt != null) {
 				stmt.close();
 			}
-			
+
 			if (con != null) {
 				con.close();
 			}

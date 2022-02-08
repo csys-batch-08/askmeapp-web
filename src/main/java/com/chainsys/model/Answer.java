@@ -32,7 +32,7 @@ public class Answer {
 	}
 	public Answer() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public Answer(String answers, int question_id, String status) {
 		super();

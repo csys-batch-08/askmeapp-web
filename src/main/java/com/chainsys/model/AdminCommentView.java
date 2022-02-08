@@ -44,7 +44,7 @@ public class AdminCommentView {
 	}
 	public AdminCommentView() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	
 

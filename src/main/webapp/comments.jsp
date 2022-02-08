@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -31,26 +31,25 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 }
-@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
-table,
-thead,
-tr,
-tbody,
-th,
-td {
-color:white;
-  text-align: center;
+
+@import
+	url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
+	;
+
+table, thead, tr, tbody, th, td {
+	color: white;
+	text-align: center;
 }
 
 .table td {
-   color:white;
-  text-align: center;
+	color: white;
+	text-align: center;
 }
 </style>
 </head>
 <body>
 
-<div id="toolbar"></div>
+	<div id="toolbar"></div>
 	<div class="w-auto p-3">
 		<nav class="navbar navbar-dark bg-success">
 			<div class="container-fluid">
@@ -65,7 +64,7 @@ color:white;
 					<div class="navbar-nav">
 						<a href="userHome.jsp" class="nav-item nav-link">Home</a> <a
 							href="readMore.jsp" class="nav-item nav-link">About Us</a> <a
-							href="MostViewedSectionServlet" class="nav-item nav-link" >Frequently
+							href="MostViewedSectionServlet" class="nav-item nav-link">Frequently
 							viewed Section</a> <a href="#" class="nav-item nav-link disabled"
 							tabindex="-1">Ask a Question</a>
 					</div>
@@ -78,25 +77,26 @@ color:white;
 			</div>
 		</nav>
 	</div>
- 
-  <form name="comment" action="CommentServlet"  method="post">
-      <table class="table">
-      <caption></caption>
-      <thead>
-      <th id="1">
-      </th>
-      </thead>
-      <tbody>
-        <tr>
-          <td><label for="name" style=color:white>Enter your Comments:</label></td>
-          <td><input type="text" name="comment" pattern="[A-Za-z]{10,}+" required autofocus></td>
-        </tr>      
-        <tr>
-       <td colspan="2"><input type="submit" class="submit" />Click</td>  
-        </tr>      
-       </tbody>
-      </table>
-</form>   
-  
+
+	<form name="comment" action="CommentServlet" method="post">
+		<table >
+			<caption></caption>
+			<thead>
+				<th id="1"></th>
+			</thead>
+			<tbody>
+				<tr>
+					<td><label for="name" style="color: white">Enter your
+							Comments:</label></td>
+					<td><input type="text" name="comment" pattern="[A-Za-z]{10,}+"
+						required autofocus></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" class="submit" /></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-     
+	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -20,26 +20,39 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <style>
- *{
- margin:0;
- padding:0;}
-       body {
-         background-image: url('assets/images/plain.jpg');
-         background-repeat: no-repeat;
-         background-attachment: fixed;  
-         background-size: cover;
-          
-       }
-        
-    
-       
-        </style>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-image: url('assets/images/plain.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+h1 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+.container {
+	text-align: center;
+	width: 800px;
+	height: 200px;
+	margin-left: 550px;
+	padding-top: 25px;
+}
+</style>
 </head>
 <body>
- <div id="toolbar">
-    </div>
-   <div id="toolbar"></div>
+	<div id="toolbar"></div>
+	<div id="toolbar"></div>
 	<div class="w-auto p-3">
 		<nav class="navbar navbar-dark bg-success">
 			<div class="container-fluid">
@@ -54,7 +67,7 @@
 					<div class="navbar-nav">
 						<a href="userHome.jsp" class="nav-item nav-link">Home</a> <a
 							href="readMore.jsp" class="nav-item nav-link">About Us</a> <a
-							href="MostViewedSectionServlet" class="nav-item nav-link" >Frequently
+							href="MostViewedSectionServlet" class="nav-item nav-link">Frequently
 							viewed Section</a> <a href="#" class="nav-item nav-link disabled"
 							tabindex="-1">Ask a Question</a>
 					</div>
@@ -67,12 +80,15 @@
 			</div>
 		</nav>
 	</div>
-<center> <h2 style=color:yellow>Welcome Subscriber<h1>&#128512;</h1></h2></center>
-		
-      <table border="5" >
-      <form action="UserSubscriber" align="center"><br><br>
-      <center><button type="submit" class="button">Recently Post!!!</button></form> </center>
- 	
-		           
+	<h2 style="color: yellow">
+		Welcome Subscriber
+		<h1>&#128512;</h1>
+	</h2>
+	<div class="container">
+		<form action="UserSubscriber" method="post">
+			<button type="submit" class="button">Recently Post!!!</button>
+		</form>
+	</div>
+
 </body>
 </html>

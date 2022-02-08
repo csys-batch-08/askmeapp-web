@@ -16,9 +16,9 @@ import com.chainsys.impl.CategoryDAOImpl;
  */
 @WebServlet("/DeleteCategoryServlet")
 public class DeleteCategoryServlet extends HttpServlet {
-		/**
-	 * 
-	 */
+	/**
+	* 
+	*/
 	private static final long serialVersionUID = 1L;
 
 	@Override

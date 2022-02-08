@@ -32,20 +32,19 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 }
-@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
-table,
-thead,
-tr,
-tbody,
-th,
-td {
-color:white;
-  text-align: center;
+
+@import
+	url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
+	;
+
+table, thead, tr, tbody, th, td {
+	color: white;
+	text-align: center;
 }
 
 .table td {
-   color:white;
-  text-align: center;
+	color: white;
+	text-align: center;
 }
 </style>
 </head>
@@ -65,7 +64,7 @@ color:white;
 					<div class="navbar-nav">
 						<a href="userHome.jsp" class="nav-item nav-link">Home</a> <a
 							href="readMore.jsp" class="nav-item nav-link">About Us</a> <a
-							href="MostViewedSectionServlet" class="nav-item nav-link" >Frequently
+							href="MostViewedSectionServlet" class="nav-item nav-link">Frequently
 							viewed Section</a> <a href="#" class="nav-item nav-link disabled"
 							tabindex="-1">Ask a Question</a>
 					</div>
@@ -91,9 +90,10 @@ color:white;
 		<tbody>
 			<c:forEach var="userCategoryList" items="${userCategoryList}">
 				<tr>
-
-					<td ><a
-						href="SectionDetailServlet?cusid=${userCategoryList.categoryId}" ><h3><span class="badge badge-secondary">${userCategoryList.categoryName}</span></h3></a></td>
+					<td><a
+						href="SectionDetailServlet?cusid=${userCategoryList.categoryId}"><h3>
+								<span class="badge badge-secondary">${userCategoryList.categoryName}</span>
+							</h3></a></td>
 
 				</tr>
 			</c:forEach>

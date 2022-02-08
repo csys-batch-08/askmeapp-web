@@ -14,13 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.chainsys.impl.QuestionDAOImpl;
 import com.chainsys.model.Question;
 
-
 /**
  * Servlet implementation class QuestionList
  */
 @WebServlet("/QuestionList")
 public class QuestionList extends HttpServlet {
-	 
+
 	/**
 	 * 
 	 */
@@ -30,14 +29,14 @@ public class QuestionList extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-		QuestionDAOImpl questionDao = new QuestionDAOImpl();
-		List<Question> questionList;		
-			questionList = questionDao.showAllQuestion();		
-		request.setAttribute("questionList", questionList);
-		RequestDispatcher req = request.getRequestDispatcher("questionList.jsp");
-		req.forward(request, response);
+			QuestionDAOImpl questionDao = new QuestionDAOImpl();
+			List<Question> questionList;
+			questionList = questionDao.showAllQuestion();
+			request.setAttribute("questionList", questionList);
+			RequestDispatcher req = request.getRequestDispatcher("questionList.jsp");
+			req.forward(request, response);
 		} catch (SQLException e) {
-		
+
 			e.printStackTrace();
 		}
 

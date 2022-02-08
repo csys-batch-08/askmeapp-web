@@ -17,7 +17,6 @@
 </head>
 
 <body>
-
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -72,12 +71,12 @@
 
 
 		<table class="table table-bordered">
-          <caption></caption>
+			<caption></caption>
 			<thead>
 				<tr>
-					<th>Category Id</th>
-					<th>Category Name</th>
-					<th>Status</th>
+					<th id="1">Category Id</th>
+					<th id="2">Category Name</th>
+					<th id="3">Status</th>
 				</tr>
 			</thead>
 			<tbody>

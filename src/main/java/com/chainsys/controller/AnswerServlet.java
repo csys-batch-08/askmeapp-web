@@ -22,23 +22,23 @@ import com.chainsys.model.Question;
 @WebServlet("/AnswerServlet")
 public class AnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try { 
-		HttpSession session=request.getSession();
-         AnswerDAOImpl answerDao=new AnswerDAOImpl();
-         int qId=Integer.parseInt(request.getParameter("quesId"));
-         session.setAttribute("questionId", qId);
-         String ques=request.getParameter("question");
-         session.setAttribute("question", ques);
-         Question question=new Question(qId,null,0,null);
-         List<Answer> answerList;		
-		 answerList = answerDao.showAnswer(question);		
-         request.setAttribute("answerList", answerList);
-         RequestDispatcher req=request.getRequestDispatcher("answer.jsp");
-		 req.forward(request, response);
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			HttpSession session = request.getSession();
+			AnswerDAOImpl answerDao = new AnswerDAOImpl();
+			int qId = Integer.parseInt(request.getParameter("quesId"));
+			session.setAttribute("questionId", qId);
+			String ques = request.getParameter("question");
+			session.setAttribute("question", ques);
+			Question question = new Question(qId, null, 0, null);
+			List<Answer> answerList;
+			answerList = answerDao.showAnswer(question);
+			request.setAttribute("answerList", answerList);
+			RequestDispatcher req = request.getRequestDispatcher("answer.jsp");
+			req.forward(request, response);
 		} catch (SQLException e) {
 
 			e.printStackTrace();

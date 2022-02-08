@@ -22,30 +22,29 @@ import com.chainsys.model.Section;
 @WebServlet("/AskMeQuestionServlet")
 public class AskMeQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-		HttpSession session=request.getSession();
-         System.out.println("helo");
-         QuestionDAOImpl questionDao=new QuestionDAOImpl();
-         int secId=Integer.parseInt(session.getAttribute("sectionId").toString());
-         System.out.println("sId"+secId);
-         Section section=new Section(secId,null,0,null,null);
-         List<Question> questionList;
-		
+			HttpSession session = request.getSession();
+			System.out.println("helo");
+			QuestionDAOImpl questionDao = new QuestionDAOImpl();
+			int secId = Integer.parseInt(session.getAttribute("sectionId").toString());
+			System.out.println("sId" + secId);
+			Section section = new Section(secId, null, 0, null, null);
+			List<Question> questionList;
+
 			questionList = questionDao.showQuestion(section);
-	
-         request.setAttribute("questionList", questionList);
-         RequestDispatcher req=request.getRequestDispatcher("askQuestion.jsp");
+
+			request.setAttribute("questionList", questionList);
+			RequestDispatcher req = request.getRequestDispatcher("askQuestion.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-	
+
 			e.printStackTrace();
 		}
-         
-		
+
 	}
 
 }

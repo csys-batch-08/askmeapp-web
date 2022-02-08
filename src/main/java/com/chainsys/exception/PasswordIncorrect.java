@@ -1,6 +1,6 @@
 package com.chainsys.exception;
 
-public class PasswordIncorrect extends Exception{
+public class PasswordIncorrect extends Exception {
 	/**
 	 * 
 	 */
@@ -8,8 +8,7 @@ public class PasswordIncorrect extends Exception{
 
 	@Override
 	public String getMessage() {
-
 		return "Password Incorrect";
-	} 
+	}
 
 }

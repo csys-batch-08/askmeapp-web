@@ -18,26 +18,27 @@ import com.chainsys.model.User;
  * Servlet implementation class SubscriberList
  */
 @WebServlet("/SubscriberList")
-public class SubscriberList extends HttpServlet {	
+public class SubscriberList extends HttpServlet {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-		UserDAOImpl userDao = new UserDAOImpl();
-		List<User> subscriberList;		
-			subscriberList = userDao.subscribeUser();		
-		request.setAttribute("subscriberList", subscriberList);
-		RequestDispatcher req = request.getRequestDispatcher("subscriber.jsp");
-		req.forward(request, response);
+			UserDAOImpl userDao = new UserDAOImpl();
+			List<User> subscriberList;
+			subscriberList = userDao.subscribeUser();
+			request.setAttribute("subscriberList", subscriberList);
+			RequestDispatcher req = request.getRequestDispatcher("subscriber.jsp");
+			req.forward(request, response);
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

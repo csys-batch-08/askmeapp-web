@@ -77,7 +77,7 @@
 			<fieldset id="box">
 				<legend> Edit Answer</legend>
 				<table>
-				<caption></caption>
+					<caption></caption>
 					<thead>
 						<tr>
 							<th id="1">Answer<input type="text" name="answer"
@@ -86,7 +86,7 @@
 					</thead>
 				</table>
 				<button type="submit">Submit Answer</button>
-				</fieldset>
+			</fieldset>
 		</form>
 
 	</div>

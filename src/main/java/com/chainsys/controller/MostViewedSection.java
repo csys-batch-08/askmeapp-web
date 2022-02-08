@@ -20,22 +20,21 @@ import com.chainsys.model.UserRating;
 @WebServlet("/MostViewedSectionServlet")
 public class MostViewedSection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-		UserRatingDAOImpl userRatingDao = new UserRatingDAOImpl();
-		List<UserRating> userRatingList;		
-			userRatingList = userRatingDao.showRating();		
-		request.setAttribute("userRatingList", userRatingList);
-		RequestDispatcher req = request.getRequestDispatcher("mostViewedSection.jsp");
-		req.forward(request, response);
+			UserRatingDAOImpl userRatingDao = new UserRatingDAOImpl();
+			List<UserRating> userRatingList;
+			userRatingList = userRatingDao.showRating();
+			request.setAttribute("userRatingList", userRatingList);
+			RequestDispatcher req = request.getRequestDispatcher("mostViewedSection.jsp");
+			req.forward(request, response);
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
-		}     
+		}
 	}
 
 }

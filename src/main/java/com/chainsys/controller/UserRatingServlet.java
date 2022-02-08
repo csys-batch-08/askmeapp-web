@@ -17,50 +17,48 @@ import com.chainsys.impl.UserRatingDAOImpl;
 import com.chainsys.model.Section;
 import com.chainsys.model.UserRating;
 
-
 /**
  * Servlet implementation class UserRatingSection
  */
 @WebServlet("/UserRatingServlet")
 public class UserRatingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
-		HttpSession session=request.getSession();	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		try {
-		UserRating userRating=new UserRating();
-		String content=request.getParameter("sName");
-		session.setAttribute("sectionName", content);
-		int newRating=Integer.parseInt(request.getParameter("rating"));
-		SectionDAOImpl sectionDao=new SectionDAOImpl();
-		int id;
-		
+			UserRating userRating = new UserRating();
+			String content = request.getParameter("sName");
+			session.setAttribute("sectionName", content);
+			int newRating = Integer.parseInt(request.getParameter("rating"));
+			SectionDAOImpl sectionDao = new SectionDAOImpl();
+			int id;
+
 			id = sectionDao.findSectionId(content);
-		
-		session.setAttribute("sid",id);
-	    UserRatingDAOImpl ObjRatDao=new UserRatingDAOImpl();
-	    Section section=new Section(0,content,0,null,null);
-	    List<UserRating> userRateList=ObjRatDao.findRating(section);
-	    int oldRating=0;
-	    int count=0;
-		for(int i=0;i<userRateList.size();i++) {
-			oldRating = userRateList.get(i).getRating();
-			count=userRateList.get(i).getRateCount();	
-			count=count+1;			
-		    int rating=oldRating+newRating;				
-			userRating=new UserRating(content,0,rating,count);
-		    ObjRatDao.updateRating(userRating);
-			}	    
-		
-	    RequestDispatcher requestDispatcher=request.getRequestDispatcher("userHome.jsp");
-		requestDispatcher.forward(request, response);
+
+			session.setAttribute("sid", id);
+			UserRatingDAOImpl ObjRatDao = new UserRatingDAOImpl();
+			Section section = new Section(0, content, 0, null, null);
+			List<UserRating> userRateList = ObjRatDao.findRating(section);
+			int oldRating = 0;
+			int count = 0;
+			for (int i = 0; i < userRateList.size(); i++) {
+				oldRating = userRateList.get(i).getRating();
+				count = userRateList.get(i).getRateCount();
+				count = count + 1;
+				int rating = oldRating + newRating;
+				userRating = new UserRating(content, 0, rating, count);
+				ObjRatDao.updateRating(userRating);
+			}
+
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("userHome.jsp");
+			requestDispatcher.forward(request, response);
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-		} 
-		
-}}
+		}
+
+	}
+}

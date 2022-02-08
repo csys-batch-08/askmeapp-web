@@ -81,25 +81,25 @@
 		<fieldset id="box">
 			<legend> Update Question</legend>
 			<table>
-			<caption></caption>
-			<thead>
-				<tr>
-					<th id="1"><label for="question">Enter old Question</label></th>
-					<th id="2"><input type="text" name="oldquestion"
-						pattern="[A-Za-z]+[?]{10, }" required autofocus></th>
-				</tr>
-				
-				<tr>
-					<th id="3"><label for="name">Enter New Question</label></th>
-					<th id="4"><input type="text" name="newquestion"
-						pattern="[A-Za-z]+[?]{10, }" required autofocus></th>
-				</tr>
+				<caption></caption>
+				<thead>
+					<tr>
+						<th id="1"><label for="question">Enter old Question</label></th>
+						<th id="2"><input type="text" name="oldquestion"
+							pattern="[A-Za-z]+[?]{10, }" required autofocus></th>
+					</tr>
+
+					<tr>
+						<th id="3"><label for="name">Enter New Question</label></th>
+						<th id="4"><input type="text" name="newquestion"
+							pattern="[A-Za-z]+[?]{10, }" required autofocus></th>
+					</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td colspan="2"><input type="submit" class="submit" /></td>
-				</tr>
-                </tbody>
+					<tr>
+						<td colspan="2"><input type="submit" class="submit" /></td>
+					</tr>
+				</tbody>
 			</table>
 		</fieldset>
 	</form>

@@ -8,11 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <style>
 #box {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
@@ -72,30 +67,28 @@
 			</ul>
 		</div>
 	</nav>
-
-
 	<form name="category" action="AddCategoryServlet" method="post">
 		<fieldset id="box">
 			<legend> Add Category</legend>
 			<table>
-			<caption></caption>
-			<thead>
-				<tr>
-				
-					<th id="1"><label for="name">Category Name</label></th>
-					<th id="2"><input type="text" name="categoryName"
-						pattern="[A-Za-z]{10, }" required autofocus></th>
-				</tr>
+				<caption></caption>
+				<thead>
+					<tr>
+
+						<th id="1"><label for="name">Category Name</label></th>
+						<th id="2"><input type="text" name="categoryName"
+							pattern="[A-Za-z]{10, }" required autofocus></th>
+					</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td colspan="2"><input type="submit" class="submit" /></td>
-				</tr>
-              </tbody>
+					<tr>
+						<td colspan="2"><input type="submit" class="submit" /></td>
+					</tr>
+				</tbody>
 			</table>
 		</fieldset>
 	</form>
-	
+
 
 </body>
 </html>

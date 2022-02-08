@@ -22,38 +22,34 @@ import com.chainsys.model.Question;
 @WebServlet("/CommentServlet")
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		 
-			
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		try {
-			HttpSession session=request.getSession();
-			String comment=(request.getParameter("comment"));	
+			HttpSession session = request.getSession();
+			String comment = (request.getParameter("comment"));
 			session.setAttribute("comments", comment);
-			int userId=Integer.parseInt(session.getAttribute("userid").toString());
-			System.out.println("uId"+userId);
-			int catId=Integer.parseInt(session.getAttribute("categoryid").toString());
-			System.out.println("cId"+catId);
-			int secId=Integer.parseInt(session.getAttribute("sectionId").toString());
+			int userId = Integer.parseInt(session.getAttribute("userid").toString());
+			System.out.println("uId" + userId);
+			int catId = Integer.parseInt(session.getAttribute("categoryid").toString());
+			System.out.println("cId" + catId);
+			int secId = Integer.parseInt(session.getAttribute("sectionId").toString());
 			System.out.println(secId);
-			CommentDAOImpl commentDao=new CommentDAOImpl();
-			Comment commentObj=new Comment(userId,catId,secId,comment);
+			CommentDAOImpl commentDao = new CommentDAOImpl();
+			Comment commentObj = new Comment(userId, catId, secId, comment);
 			commentDao.insertComment(commentObj);
 			System.out.println("Comment inserted");
-			Question question=new Question(0,comment,secId,null);
-			QuestionDAOImpl questionDao=new QuestionDAOImpl();
+			Question question = new Question(0, comment, secId, null);
+			QuestionDAOImpl questionDao = new QuestionDAOImpl();
 			questionDao.insertQuestion(question);
 			System.out.println("Question inserted");
-			RequestDispatcher requestDispatcher=request.getRequestDispatcher("commentMessage.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("commentMessage.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ServletException | SQLException e) {
 
 			e.printStackTrace();
-		} 
 		}
 	}
-
-
+}

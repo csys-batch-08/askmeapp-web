@@ -23,11 +23,7 @@
 }
 </style>
 </head>
-
-
-
 <body>
-
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -78,11 +74,11 @@
 		</div>
 	</nav>
 
-	<center>
-		<h2>Subscriber List</h2>
-	</center>
-	<table border="2">
-	<caption></caption>
+
+	<h2>Subscriber List</h2>
+
+	<table>
+		<caption></caption>
 		<thead>
 			<tr>
 				<th id="1">User Name</th>
@@ -99,14 +95,15 @@
 
 		</tbody>
 	</table>
-	
+
 	<c:if test="${not empty message}">
-<h1 style="color:red;background-color:white;font-size:25px;float:left;">${message}</h1>
-</c:if>
-		<form name="subscriber" action="SubscriberServlet1" method="post">
-			<fieldset id="box">
-				<legend> Add Recent Section Name</legend>
-				<table>
+		<h1
+			style="color: red; background-color: white; font-size: 25px; float: left;">${message}</h1>
+	</c:if>
+	<form name="subscriber" action="SubscriberServlet1" method="post">
+		<fieldset id="box">
+			<legend> Add Recent Section Name</legend>
+			<table>
 				<caption></caption>
 				<thead>
 					<tr>
@@ -114,16 +111,15 @@
 						<th id="2"><input type="text" name="sectionName"
 							pattern="[A-Za-z]{10, }" required autofocus></th>
 					</tr>
-					</thead>
-					<tbody>
-			           <tr>
+				</thead>
+				<tbody>
+					<tr>
 						<td colspan="2"><input type="submit" class="submit" /></td>
 					</tr>
-                     </tbody>
-				</table>
-			</fieldset>
-		</form>
-
+				</tbody>
+			</table>
+		</fieldset>
+	</form>
 
 </body>
 </html>
