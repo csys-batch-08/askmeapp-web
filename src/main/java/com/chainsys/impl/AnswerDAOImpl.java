@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,7 +110,6 @@ public class AnswerDAOImpl implements AnswerDAOInterface {
 		return answerList;
 	}
 
-	// Show Answer by quesId
 	@Override
 	public List<Answer> showAnswer(Question question) throws SQLException {
 
@@ -148,18 +146,18 @@ public class AnswerDAOImpl implements AnswerDAOInterface {
 		return answerList;
 	}
 
-	// Find
 	@Override
 	public int findQuestionId(String answers) throws SQLException {
-		String findUserId = "select question_id from answer where answers='" + answers + "'";
+		String findUserId = "select question_id from answer where answers=?";
 		Connection con = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int questionId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(findUserId);
+			stmt = con.prepareStatement(findUserId);
+			stmt.setString(1, answers);
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				questionId = rs.getInt(1);
 			}

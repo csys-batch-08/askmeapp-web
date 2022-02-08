@@ -267,7 +267,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 
 	@Override
 	public String findStatus(int id) throws SQLException {
-		String findUserId = "select status from category_detail where category_id='" + id + "'";
+		String findUserId = "select status from category_detail where category_id=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -275,11 +275,11 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findUserId);
+			stmt.setInt(1, id);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				status = rs.getString(1);
 			}
-
 		} catch (SQLException e) {
 
 			e.getMessage();

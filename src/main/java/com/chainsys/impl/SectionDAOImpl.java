@@ -83,7 +83,7 @@ public class SectionDAOImpl implements SectionDAOInterface {
 
 	@Override
 	public int findSectionId(String sectionName) throws SQLException {
-		String findUserId = "select section_id from section_details where section_name='" + sectionName + "'";
+		String findUserId = "select section_id from section_details where section_name=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -91,6 +91,7 @@ public class SectionDAOImpl implements SectionDAOInterface {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findUserId);
+			stmt.setString(1, sectionName);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				sectionId = rs.getInt(1);

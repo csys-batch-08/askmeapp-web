@@ -280,7 +280,7 @@ public class UserDAOImpl implements UserDAOInterface {
 	// Find User Subscriber
 	@Override
 	public String findSubscriber(int id) throws SQLException {
-		String findSubscriber = "select subscriber from user_detail where user_id='" + id + "'";
+		String findSubscriber = "select subscriber from user_detail where user_id=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -288,6 +288,7 @@ public class UserDAOImpl implements UserDAOInterface {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findSubscriber);
+			stmt.setInt(1, id);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				subscriber = rs.getString(1);
