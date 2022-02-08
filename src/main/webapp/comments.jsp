@@ -9,14 +9,10 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel=stylesheet type=text/css href=assets/css/style1.css>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -79,21 +75,25 @@ table, thead, tr, tbody, th, td {
 	</div>
 
 	<form name="comment" action="CommentServlet" method="post">
-		<table >
+		<table>
 			<caption></caption>
 			<thead>
-				<th id="1"></th>
+				<tr>
+					<th id="1">Comments</th>
+				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td><label for="name" style="color: white">Enter your
 							Comments:</label></td>
-					<td><input type="text" name="comment" pattern="[A-Za-z]{10,}+"
-						required autofocus></td>
+					<td><label id="2"><input type="text" name="comment"
+							id="name" pattern="[A-Za-z]{10,}+" required autofocus></label></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" class="submit" /></td>
+					<td colspan="2"><label id="3"><input type="submit" class="submit" id="3"/></label></td>
 				</tr>
+
+
 			</tbody>
 		</table>
 	</form>

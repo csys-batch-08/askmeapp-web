@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.impl.UserRatingDAOImpl;
 import com.chainsys.model.UserRating;
@@ -27,11 +26,9 @@ public class UserRatingList extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			UserRatingDAOImpl userRatingDao = new UserRatingDAOImpl();
-			HttpSession session = request.getSession();
 			List<UserRating> userRatingList;
 			userRatingList = userRatingDao.showRating();
-			request.setAttribute("userRatingList", userRatingList);
-			session.setAttribute("userRating", userRatingList);
+			request.setAttribute("userRatingList", userRatingList);			
 			RequestDispatcher req = request.getRequestDispatcher("categoryList.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {

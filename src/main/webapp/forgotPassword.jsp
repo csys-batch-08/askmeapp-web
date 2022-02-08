@@ -84,7 +84,9 @@ body {
 			<table>
 				<caption></caption>
 				<thead>
-					<th id="1"></th>
+					<tr>
+						<th id="1"></th>
+					</tr>
 				</thead>
 				<tbody>
 					<tr>

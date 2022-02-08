@@ -52,7 +52,6 @@ h1 {
 				</button>
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<div class="navbar-nav">
-
 						<a href="readMore.jsp" class="nav-item nav-link">About Us</a> <a
 							href="#" class="nav-item nav-link disabled" tabindex="-1">Ask
 							a Question</a>

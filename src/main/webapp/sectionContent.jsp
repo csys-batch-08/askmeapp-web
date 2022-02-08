@@ -67,28 +67,25 @@ body {
 			</div>
 		</nav>
 	</div>
-	
-		<c:set var="content" value="${sectionName }"></c:set>
-		<form id="box1" action="UserRatingServlet?sName=${sectionName}"
-			method="post">
 
-			<label>Click To Read a File: </label> <a
-				href="assets/images/${content}.pdf">
-				<h3>
-					<span class="badge badge-secondary">${content}</span>
-				</h3>
-			</a><br> <br>
+	<c:set var="content" value="${sectionName }"></c:set>
+	<form id="box1" action="UserRatingServlet?sName=${sectionName}"
+		method="post">
 
-			<h2>
-				<strong>Place Your Rating</strong>
-			</h2>
-			<h3>From 1....10</h3>
-			<input type="text" name="rating" pattern="[0-9]{1,2}">
-			<button type="submit">Submit Rating</button>
-		</form>
-	
+		<label for="file">Click To Read a File: </label> <a
+			href="assets/images/${content}.pdf">
+			<h3>
+				<span class="badge badge-secondary">${content}</span>
+			</h3>
+		</a><br> <br>
 
-
-
+		<h2>
+			<strong>Place Your Rating</strong>
+		</h2>
+		<h3>From 1....10</h3>
+		<label id="1"><input type="text" name="rating" id="1"
+			pattern="[0-9]{1,2}"></label>
+		<button type="submit">Submit Rating</button>
+	</form>
 </body>
 </html>

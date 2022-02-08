@@ -90,9 +90,8 @@ table, thead, tr, tbody, th, td {
 		<tbody>
 			<c:forEach var="userCategoryList" items="${userCategoryList}">
 				<tr>
-					<td><a
-						href="SectionDetailServlet?cusid=${userCategoryList.categoryId}"><h3>
-								<span class="badge badge-secondary">${userCategoryList.categoryName}</span>
+					<td><a href="SectionDetailServlet?cusid=${userCategoryList.categoryId}">
+							<h3><span class="badge badge-secondary">${userCategoryList.categoryName}</span>
 							</h3></a></td>
 
 				</tr>

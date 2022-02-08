@@ -80,8 +80,8 @@
 					<caption></caption>
 					<thead>
 						<tr>
-							<th id="1">Answer<input type="text" name="answer"
-								pattern="[A-Za-z]{10, }"></th>
+							<th id="1"><label id="2">Answer<input type="text" name="answer" id="2"
+								pattern="[A-Za-z]{10, }"></label></th>
 						</tr>
 					</thead>
 				</table>

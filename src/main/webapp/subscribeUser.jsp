@@ -83,7 +83,6 @@ table, thead, tr, tbody, th, td {
 	<table class="table">
 		<caption></caption>
 		<thead>
-
 			<tr>
 				<th id="1">Section Name
 					<h1>&#128071;</h1>

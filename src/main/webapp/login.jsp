@@ -15,6 +15,7 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 }
+
 * {
 	margin: 0
 }
@@ -80,24 +81,26 @@ body {
 			<table>
 				<caption></caption>
 				<thead>
-					<th id="1"></th>
+					<tr>
+						<th id="1"></th>
+					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td><label for="email">Enter Email</label></td>
-						<td><input type="text" name="email" id="email"
+						<td><label id="2"><input type="text" name="email" id="email"
 							pattern="[a-z0-9]+[@][a-z]+[.][a-z]+"
-							title="Enter valid email ex(example12@gmail.com)" required></td>
+							title="Enter valid email ex(example12@gmail.com)" required></label></td>
 					</tr>
 					<tr>
 						<td><label for="password">Enter Password:</label></td>
-						<td><input type="password" name="password" id="password"
+						<td><label id="3"><input type="password" name="password" id="password"
 							pattern="((?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
 							title="Enter atleast one upper case and one lower case and one number ,and atleast 8 or more character"
-							required></td>
+							required></label></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" class="submit" /></td>
+						<td colspan="2"><label id="4"><input type="submit" class="submit" id="4"/></label></td>
 					</tr>
 				</tbody>
 			</table>

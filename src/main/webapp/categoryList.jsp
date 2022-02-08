@@ -82,11 +82,9 @@
 			<tbody>
 				<c:forEach var="cList" items="${categoryList}">
 					<tr>
-
 						<td>${cList.categoryId}</td>
 						<td>${cList.categoryName}</td>
 						<td>${cList.status}</td>
-
 					</tr>
 				</c:forEach>
 			</tbody>

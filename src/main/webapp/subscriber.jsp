@@ -108,13 +108,13 @@
 				<thead>
 					<tr>
 						<th id="1"><label for="name">Enter Section Name</label></th>
-						<th id="2"><input type="text" name="sectionName"
-							pattern="[A-Za-z]{10, }" required autofocus></th>
+						<th id="2"><label id="2"><input type="text" name="sectionName" id="name"
+							pattern="[A-Za-z]{10, }" required autofocus></label></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="2"><input type="submit" class="submit" /></td>
+						<td colspan="2"><label id="3"><input type="submit" class="submit" id="3"/></label></td>
 					</tr>
 				</tbody>
 			</table>

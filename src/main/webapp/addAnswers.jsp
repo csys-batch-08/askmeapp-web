@@ -18,7 +18,6 @@
 </style>
 </head>
 <body>
-
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -26,7 +25,6 @@
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="login.jsp">Home</a></li>
-
 				<li><a href="SubscriberList">Subscribers</a></li>
 				<li><a href="CommentsViewServlet">Comment By User</a></li>
 				<li><a href="UserList"> User Details</a></li>
@@ -68,7 +66,6 @@
 			</ul>
 		</div>
 	</nav>
-
 	<form name="answer" action="AddAnswersServlet" method="post">
 		<fieldset id="box">
 			<legend> Add Answer</legend>
@@ -81,7 +78,6 @@
 							pattern="[A-Za-z]{10, }" required autofocus></label>
 						</th>
 					</tr>
-
 					<tr>
 						<th id="3"><label for="question">Question</label></th>
 						<th id="4"><label id="3"><input type="text" name="question" id="question"
@@ -90,7 +86,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="2"><label id="4"><input type="submit" class="submit" /></label></td>
+						<td colspan="2"><label id="4"><input type="submit" class="submit" id="4"/></label></td>
 					</tr>
 				</tbody>
 

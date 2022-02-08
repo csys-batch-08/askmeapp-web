@@ -25,7 +25,6 @@
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="login.jsp">Home</a></li>
-
 				<li><a href="SubscriberList">Subscribers</a></li>
 				<li><a href="CommentsViewServlet">Comment By User</a></li>
 				<li><a href="UserList"> User Details</a></li>
@@ -33,16 +32,13 @@
 				<li><a href="SectionList">Section Detail</a></li>
 				<li><a href="QuestionList">Question Detail</a></li>
 				<li><a href="AnswerList">Answer Detail</a></li>
-
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown">Category <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="addCategory.jsp">Add Category</a></li>
 						<li><a href="updateCategory.jsp">Update Category</a></li>
 						<li><a href="deleteCategory.jsp">Delete Category</a></li>
-
 					</ul></li>
-
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown">Section <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -56,14 +52,12 @@
 						<li><a href="addQuestion.jsp">Add Question</a></li>
 						<li><a href="updateQuestion.jsp">Update Question</a></li>
 					</ul></li>
-
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown">Answer <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="addAnswers.jsp">Add Answer</a></li>
 						<li><a href="updateAnswer.jsp">Update Answer</a></li>
 					</ul></li>
-
 			</ul>
 		</div>
 	</nav>
@@ -74,15 +68,14 @@
 				<caption></caption>
 				<thead>
 					<tr>
-
 						<th id="1"><label for="name">Category Name</label></th>
-						<th id="2"><input type="text" name="categoryName"
-							pattern="[A-Za-z]{10, }" required autofocus></th>
+						<th id="2"><label id="2"><input type="text" name="categoryName" id="name"
+							pattern="[A-Za-z]{10, }" required autofocus></label></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="2"><input type="submit" class="submit" /></td>
+						<td colspan="2"><label id="3"><input type="submit" class="submit" id="3"/></label></td>
 					</tr>
 				</tbody>
 			</table>

@@ -81,32 +81,32 @@ body {
 			<table>
 				<caption></caption>
 				<thead>
-
 					<tr>
 						<th id="1"><label for="name">User Name:</label></th>
-						<th id="2"><input type="text" name="name" id="name"
-							pattern="[A-Za-z0-9]{3,10}"
-							title="Only enter A-Z ,a-z,0-9 and enter  min 3 to max 40 "
-							required autofocus></th>
+						<th id="2"><label id="2"><input type="text"
+								name="name" id="name" pattern="[A-Za-z0-9]{3,10}"
+								title="Only enter A-Z ,a-z,0-9 and enter  min 3 to max 40 "
+								required autofocus></label></th>
 					</tr>
 					<tr>
 						<th id="3"><label for="email">Enter Email:</label></th>
-						<th id="4"><input type="text" name="email" id="email"
-							pattern="[a-z0-9]+[@][a-z]+[.][a-z]+"
-							title="Enter valid email ex(example12@gmail.com)" required></th>
+						<th id="4"><label id="3"><input type="text"
+								name="email" id="email" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+"
+								title="Enter valid email ex(example12@gmail.com)" required></label></th>
 					</tr>
 					<tr>
 						<th id="5"><label for="password">Enter Password:</label></th>
-						<th id="6"><input type="password" name="password"
-							id="password"
-							pattern="((?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
-							title="Enter atleast one upper case and one lower case and one number ,and atleast 8 or more character"
-							required></th>
+						<th id="6"><label id="4"><input type="password"
+								name="password" id="password"
+								pattern="((?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
+								title="Enter atleast one upper case and one lower case and one number ,and atleast 8 or more character"
+								required></label></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="2"><input type="submit" class="submit" /></td>
+						<td colspan="2"><label id="5"><input type="submit"
+								class="submit" id="5" /></label></td>
 					</tr>
 				</tbody>
 			</table>
