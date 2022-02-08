@@ -72,7 +72,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 	// Find
 	@Override
 	public int findQuestionId(String quesdes) throws SQLException {
-		String findUserId = "select question_id from question_details where question_description='" + quesdes + "'";
+		String findUserId = "select question_id from question_details where question_description=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -80,6 +80,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findUserId);
+			stmt.setString(1, quesdes);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				questionId = rs.getInt(1);

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,15 +71,16 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 	// Find
 	@Override
 	public int findCategoryId(String categoryName) throws SQLException {
-		String findUserId = "select category_id from category_detail where category_name='" + categoryName + "'";
+		String findUserId = "select category_id from category_detail where category_name=?";
 		Connection con = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int categoryId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(findUserId);
+			stmt = con.prepareStatement(findUserId);
+			stmt.setString(1, categoryName);
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				categoryId = rs.getInt(1);
 			}

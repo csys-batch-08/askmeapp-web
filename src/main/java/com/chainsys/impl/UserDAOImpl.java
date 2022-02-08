@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,15 +78,17 @@ public class UserDAOImpl implements UserDAOInterface {
 
 	@Override
 	public User validateUser1(String email, String password) throws SQLException {
-		String validateQuery = "select email,password from user_detail where role='USER'and email='" + email
-				+ "' and password='" + password + "'";
+		String validateQuery = "select email,password from user_detail where role='USER'and email=? and password=?";
 		Connection con = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		User user = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(validateQuery);
+			stmt = con.prepareStatement(validateQuery);
+			stmt.setString(1, email);
+			stmt.setString(1, password);
+			rs = stmt.executeQuery();
 			// validate user input
 			if (rs.next()) {
 				user = new User(0, null, email, password, null);
@@ -110,14 +111,16 @@ public class UserDAOImpl implements UserDAOInterface {
 	// Find User
 	@Override
 	public int findUserId(String email) throws SQLException {
-		String findUserId = "select user_id from user_detail where email='" + email + "'";
+		String findUserId = "select user_id from user_detail where email=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		int userId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findUserId);
-			ResultSet rs = stmt.executeQuery();
+			stmt.setString(1, email);
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				userId = rs.getInt(1);
 				System.out.println(userId);
