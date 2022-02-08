@@ -24,7 +24,6 @@ public class AddAnswersServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		try {
 			QuestionDAOImpl questionDao = new QuestionDAOImpl();
 			String answer = (request.getParameter("answer"));

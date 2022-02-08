@@ -91,16 +91,16 @@ body {
 				<tbody>
 					<tr>
 						<td><label for="newPassword">Enter New Password:</label></td>
-						<td><input type="password" name="password"
-							pattern="[A-Za-z0-9]{8,10}" required></td>
+						<td><label id="2"><input type="password" name="password" id="newPassword"
+							pattern="[A-Za-z0-9]{8,10}" required></label></td>
 					</tr>
 					<tr>
 						<td><label for="email">Your Email Id:</label></td>
-						<td><input type="text" name="email"
-							pattern="[a-z0-9]+[@][a-z]+[.][a-z]+" required></td>
+						<td><label id="3"><input type="text" name="email" id="name"
+							pattern="[a-z0-9]+[@][a-z]+[.][a-z]+" required></label></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" class="submit" /></td>
+						<td colspan="2"><label id="4"><input type="submit" class="submit" id="4"/></label></td>
 					</tr>
 				</tbody>
 			</table>
