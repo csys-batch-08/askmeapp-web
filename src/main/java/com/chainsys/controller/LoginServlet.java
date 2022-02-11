@@ -39,7 +39,6 @@ public class LoginServlet extends HttpServlet {
 			User currentUser = userDao.validateUser1(email, password);
 			User adminUser = adminDao.validateAdmin(email, password);
 			if (currentUser != null) {
-				//if (email.equals(currentUser.getEmailid()) && password.equals(currentUser.getPassWord())) {
 					int userId = 0;
 					userId = userDao.findUserId(email);
 					session.setAttribute("userid", userId);
@@ -58,7 +57,6 @@ public class LoginServlet extends HttpServlet {
 
 				}
 			 else if (adminUser != null) {
-			//	if (email.equals(adminUser.getEmailid()) && password.equals(adminUser.getPassWord())) {
 
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
 					requestDispatcher.forward(request, response);
