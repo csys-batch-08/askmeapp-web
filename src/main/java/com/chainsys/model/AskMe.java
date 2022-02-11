@@ -38,7 +38,7 @@ public class AskMe {
 	}
 	public AskMe() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public AskMe(int userId, int categoriesId, int sectionsId, int questionsId) {
 		super();
