@@ -42,7 +42,7 @@ create table question_details(question_id  number generated always as identity(s
                              constraint fk_section foreign key(section_id) references section_details(section_id));
  desc question_details;                            
 select * from question_details;           
-alter table question_details add status VARCHAR2(10) default 'active' not null; 
+
 create table ask_me_questions(ask_id   number generated always as identity(start with 500 increment by 1),
                    user_id number,
                    category_id number,
@@ -66,9 +66,6 @@ create table comment_by_user(comment_id  number generated always as identity(sta
                      constraint fk_cat foreign key(category_id) references category_detail(category_id),
                      constraint fk_sec foreign key(section_id) references section_details(section_id));
 desc comment_by_user;   
-select * from comment_by_user;
-delete from comment_by_user;
-commit;                  
 
 create table answer(answers varchar(1000) not null,question_id number,
 status VARCHAR2(10) default 'active' not null,
@@ -78,7 +75,6 @@ create table subscribe_user(user_id number,
                             section_name varchar2(100),
                             CONSTRAINT  user_fk foreign key(user_id) references user_detail(user_id));
 select * from  subscribe_user;  
-
 select * from answer;
 select * from question_details;
 select * from category_detail;
