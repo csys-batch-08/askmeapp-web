@@ -1,11 +1,18 @@
 package com.chainsys.impl;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import com.chainsys.dao.AdminCommentViewDAOInterface;
 import com.chainsys.model.AdminCommentView;
@@ -32,7 +39,7 @@ public class AdminCommentViewDAOImpl implements AdminCommentViewDAOInterface {
 				commentList.add(comment);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {

@@ -45,8 +45,7 @@ public class EditAnswerServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ServletException | IOException | SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

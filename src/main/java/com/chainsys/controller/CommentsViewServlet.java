@@ -32,8 +32,7 @@ public class CommentsViewServlet extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("commentsView.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

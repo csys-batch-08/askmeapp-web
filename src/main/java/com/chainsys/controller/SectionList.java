@@ -33,8 +33,7 @@ public class SectionList extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("sectionList.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 

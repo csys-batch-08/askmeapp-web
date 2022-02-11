@@ -67,24 +67,52 @@ body {
 			</div>
 		</nav>
 	</div>
+	<table class="table">
+		<caption></caption>
+		<thead>
+			<tr>
+				<th id="1">Section List</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="SectionList" items="${sectionList}">
+				<tr>
+					<td><div class="card" style="width: 18rem;">
+							<img src="assets/images/${SectionList.sectionName}.jpg"
+								class="card-img-top" alt="...">
+						</div></td>
+					<td>
+						<div class="card-body">
+							<h5 class="card-title">${SectionList.sectionName}</h5>
+							<p class="card-text">${SectionList.description}</p>
+							<c:set var="content" value="${sectionName }"></c:set>
+							<form id="box1" action="UserRatingServlet?sName=${sectionName}"
+								method="post">
 
-	<c:set var="content" value="${sectionName }"></c:set>
-	<form id="box1" action="UserRatingServlet?sName=${sectionName}"
-		method="post">
+								<label for="file">Click To Read a File: </label> <a
+									href="assets/images/${content}.pdf">
+									<h3>
+										<span class="badge badge-secondary">${content}</span>
+									</h3>
+								</a>
+								<h2>
+									<strong>Place Your Rating</strong>
+								</h2>
+								<h3>From 1....10</h3>
+								<label id="1"><input type="text" name="rating" id="1"
+									pattern="[0-9]{1,2}"></label>
+								<button type="submit">Submit Rating</button>
+							</form>
+							<a
+								href="SectionContentServlet?secid=${SectionList.sectionId}&sectionname=${SectionList.sectionName}"
+								class="btn btn-dark">Go ${SectionList.sectionName}</a>
+						</div>
+					</td>
 
-		<label for="file">Click To Read a File: </label> <a
-			href="assets/images/${content}.pdf">
-			<h3>
-				<span class="badge badge-secondary">${content}</span>
-			</h3>
-		</a>
-		<h2>
-			<strong>Place Your Rating</strong>
-		</h2>
-		<h3>From 1....10</h3>
-		<label id="1"><input type="text" name="rating" id="1"
-			pattern="[0-9]{1,2}"></label>
-		<button type="submit">Submit Rating</button>
-	</form>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
 </body>
 </html>

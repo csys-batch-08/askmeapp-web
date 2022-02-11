@@ -35,7 +35,7 @@ public class AddAnswersServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

@@ -34,13 +34,12 @@ public class AddSectionServlet extends HttpServlet {
 			String sectionName = (request.getParameter("sectionName"));
 			String image = (request.getParameter("picture"));
 			System.out.println("image" + image);
-			Section section = new Section(0, sectionName, id, null, image);
+			Section section = new Section(0, sectionName, id, null, image,null);
 			sectionDao.insertSection(section);
 			RequestDispatcher req1 = request.getRequestDispatcher("admin.jsp");
 			req1.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

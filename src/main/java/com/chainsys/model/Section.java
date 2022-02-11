@@ -8,7 +8,7 @@ public class Section {
 	private int categoryId;
 	private String status;
 	private String image;
-	
+	private String description;
 	public int getSectionId() {
 		return sectionId;
 	}
@@ -39,26 +39,33 @@ public class Section {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	@Override
-	public String toString() {
-		return "Section [sectionId=" + sectionId + ", sectionName=" + sectionName + ", categoryId=" + categoryId
-				+ ", status=" + status + ", image=" + image + "]";
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public Section() {
 		super();
-
+		// TODO Auto-generated constructor stub
 	}
-	public Section(int sectionId, String sectionName, int categoryId, String status, String image) {
+	public Section(int sectionId, String sectionName, int categoryId, String status, String image, String description) {
 		super();
 		this.sectionId = sectionId;
 		this.sectionName = sectionName;
 		this.categoryId = categoryId;
 		this.status = status;
 		this.image = image;
+		this.description = description;
+	}
+	@Override
+	public String toString() {
+		return "Section [sectionId=" + sectionId + ", sectionName=" + sectionName + ", categoryId=" + categoryId
+				+ ", status=" + status + ", image=" + image + ", description=" + description + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(categoryId, image, sectionId, sectionName, status);
+		return Objects.hash(categoryId, description, image, sectionId, sectionName, status);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -69,9 +76,11 @@ public class Section {
 		if (getClass() != obj.getClass())
 			return false;
 		Section other = (Section) obj;
-		return categoryId == other.categoryId && Objects.equals(image, other.image) && sectionId == other.sectionId
+		return categoryId == other.categoryId && Objects.equals(description, other.description)
+				&& Objects.equals(image, other.image) && sectionId == other.sectionId
 				&& Objects.equals(sectionName, other.sectionName) && Objects.equals(status, other.status);
 	}
+	
 	
 	
 	

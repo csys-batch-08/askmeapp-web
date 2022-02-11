@@ -1,11 +1,18 @@
 package com.chainsys.impl;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import com.chainsys.dao.CategoryDAOInterface;
 import com.chainsys.model.Category;
@@ -26,7 +33,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 			pst.setString(1, category.getCategoryName());
 			pst.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -54,7 +61,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 			pstmt.setInt(2, category.getCategoryId());
 			pstmt.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -85,7 +92,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 				categoryId = rs.getInt(1);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -131,7 +138,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 			pstmt3 = con.prepareStatement(updateQuery3);
 			pstmt3.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -174,7 +181,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 			pstmt3 = con.prepareStatement(updateQuery3);
 			pstmt3.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -191,7 +198,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 	public List<Category> showAllCategory() throws SQLException {
 		List<Category> categoryList = new ArrayList<Category>();
 
-		String selectQuery = "select category_id,category_name from category_detail where status='active'";
+		String selectQuery = "select category_id,category_name,description from category_detail where status='active'";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -203,10 +210,11 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 				Category category = new Category();
 				category.setCategoryId(rs.getInt(1));
 				category.setCategoryName(rs.getString(2));
+				category.setDescription(rs.getString(3));
 				categoryList.add(category);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -248,7 +256,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 
 		}
 
-		catch (SQLException e) {
+		catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -280,7 +288,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 			if (rs.next()) {
 				status = rs.getString(1);
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {

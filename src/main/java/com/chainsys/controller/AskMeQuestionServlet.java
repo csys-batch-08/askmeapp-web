@@ -28,21 +28,17 @@ public class AskMeQuestionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			HttpSession session = request.getSession();
-			System.out.println("helo");
 			QuestionDAOImpl questionDao = new QuestionDAOImpl();
 			int secId = Integer.parseInt(session.getAttribute("sectionId").toString());
 			System.out.println("sId" + secId);
-			Section section = new Section(secId, null, 0, null, null);
+			Section section = new Section(secId, null, 0, null, null,null);
 			List<Question> questionList;
-
 			questionList = questionDao.showQuestion(section);
-
 			request.setAttribute("questionList", questionList);
 			RequestDispatcher req = request.getRequestDispatcher("askQuestion.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

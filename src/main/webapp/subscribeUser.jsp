@@ -79,7 +79,6 @@ table, thead, tr, tbody, th, td {
 		</nav>
 	</div>
 	<h2 style="color: yellow">Subscriber!!!</h2>
-
 	<table class="table">
 		<caption></caption>
 		<thead>

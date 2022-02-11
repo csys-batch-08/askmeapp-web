@@ -1,11 +1,18 @@
 package com.chainsys.impl;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import com.chainsys.dao.SectionDAOInterface;
 import com.chainsys.model.Category;
@@ -34,7 +41,7 @@ public class SectionDAOImpl implements SectionDAOInterface {
 			pst.setString(3, section.getImage());
 			pst.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 
@@ -64,7 +71,7 @@ public class SectionDAOImpl implements SectionDAOInterface {
 			pstmt.setString(1, section.getSectionName());
 			pstmt.setInt(2, section.getSectionId());
 			pstmt.executeUpdate();
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -97,7 +104,7 @@ public class SectionDAOImpl implements SectionDAOInterface {
 				sectionId = rs.getInt(1);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -119,7 +126,7 @@ public class SectionDAOImpl implements SectionDAOInterface {
 
 		List<Section> sectionList = new ArrayList<Section>();
 
-		String selectQuery = "select section_id,section_name from section_details where category_id=? and status='active'";
+		String selectQuery = "select section_id,section_name,description from section_details where category_id=? and status='active'";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -133,10 +140,11 @@ public class SectionDAOImpl implements SectionDAOInterface {
 				Section section = new Section();
 				section.setSectionId(rs.getInt(1));
 				section.setSectionName(rs.getString(2));
+				section.setDescription(rs.getString(3));
 				sectionList.add(section);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -174,7 +182,7 @@ public class SectionDAOImpl implements SectionDAOInterface {
 				sectionList.add(section);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {

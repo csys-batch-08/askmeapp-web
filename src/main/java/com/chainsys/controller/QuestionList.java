@@ -36,8 +36,7 @@ public class QuestionList extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("questionList.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

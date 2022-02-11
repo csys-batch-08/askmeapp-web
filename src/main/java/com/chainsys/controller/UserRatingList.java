@@ -32,8 +32,7 @@ public class UserRatingList extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("categoryList.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 

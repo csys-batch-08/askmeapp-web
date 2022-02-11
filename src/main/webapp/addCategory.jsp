@@ -8,6 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 #box {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
@@ -17,7 +21,6 @@
 </style>
 </head>
 <body>
-
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -69,13 +72,15 @@
 				<thead>
 					<tr>
 						<th id="1"><label for="name">Category Name</label></th>
-						<th id="2"><label id="2"><input type="text" name="categoryName" id="name"
-							pattern="[A-Za-z]{10, }" required autofocus></label></th>
+						<th id="2"><label id="2"><input type="text"
+								name="categoryName" id="name" pattern="[A-Za-z]{10, }" required
+								autofocus></label></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="2"><label id="3"><input type="submit" class="submit" id="3"/></label></td>
+						<td colspan="2"><label id="3"><input type="submit"
+								class="submit" id="3" /></label></td>
 					</tr>
 				</tbody>
 			</table>

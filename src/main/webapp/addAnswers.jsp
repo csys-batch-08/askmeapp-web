@@ -9,6 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 #box {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
@@ -74,22 +78,23 @@
 				<thead>
 					<tr>
 						<th id="1"><label for="answer">Enter Answer</label></th>
-						<th id="2"><label id="2"><input type="text" name="answer" id="answer"
-							pattern="[A-Za-z]{10, }" required autofocus></label>
-						</th>
+						<th id="2"><label id="2"><input type="text"
+								name="answer" id="answer" pattern="[A-Za-z]{10, }" required
+								autofocus></label></th>
 					</tr>
 					<tr>
 						<th id="3"><label for="question">Question</label></th>
-						<th id="4"><label id="3"><input type="text" name="question" id="question"
-							pattern="[A-Za-z]+[?]{10, }" required autofocus></label></th>
+						<th id="4"><label id="3"><input type="text"
+								name="question" id="question" pattern="[A-Za-z]+[?]{10, }"
+								required autofocus></label></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="2"><label id="4"><input type="submit" class="submit" id="4"/></label></td>
+						<td colspan="2"><label id="4"><input type="submit"
+								class="submit" id="4" /></label></td>
 					</tr>
 				</tbody>
-
 			</table>
 		</fieldset>
 	</form>

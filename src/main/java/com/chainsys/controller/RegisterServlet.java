@@ -47,7 +47,7 @@ public class RegisterServlet extends HttpServlet {
 			}
 		} catch (IOException e1) {
 
-			e1.printStackTrace();
+			e1.getMessage();
 		}
 
 		catch (EmailAlreadyExistsException e) {
@@ -55,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
 
 		} catch (Exception e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 

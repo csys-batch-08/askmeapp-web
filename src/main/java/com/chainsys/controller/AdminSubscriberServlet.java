@@ -49,11 +49,9 @@ public class AdminSubscriberServlet extends HttpServlet {
 				session.setAttribute("message", "Message not send");
 				RequestDispatcher req = request.getRequestDispatcher("subscriber.jsp");
 				req.forward(request, response);
-
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

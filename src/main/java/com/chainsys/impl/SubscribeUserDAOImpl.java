@@ -1,11 +1,18 @@
 package com.chainsys.impl;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import com.chainsys.dao.SubscribeUserDAOInterface;
 import com.chainsys.model.SubscribeUser;
@@ -23,7 +30,7 @@ public class SubscribeUserDAOImpl implements SubscribeUserDAOInterface {
 		String selectQuery = "select distinct section_name from (subscribe_user inner join user_detail  using(user_id)) where user_id=?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs=null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
@@ -35,7 +42,7 @@ public class SubscribeUserDAOImpl implements SubscribeUserDAOInterface {
 				subscribeUserList.add(subscribeUser);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 			e.getMessage();
 		} finally {
 

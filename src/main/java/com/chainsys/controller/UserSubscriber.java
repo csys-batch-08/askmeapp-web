@@ -34,8 +34,7 @@ public class UserSubscriber extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("subscribeUser.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 

@@ -29,13 +29,12 @@ public class UpdateSectionServlet extends HttpServlet {
 			String sectionName = (request.getParameter("oldSectionName"));
 			int id = sectionDao.findSectionId(sectionName);
 			String update = (request.getParameter("newSectionName"));
-			Section section = new Section(id, update, 0, null, null);
+			Section section = new Section(id, update, 0, null, null,null);
 			sectionDao.update(section);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ServletException | SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

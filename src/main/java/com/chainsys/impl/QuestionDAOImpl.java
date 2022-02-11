@@ -1,11 +1,18 @@
 package com.chainsys.impl;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import com.chainsys.dao.QuestionDAOInterface;
 import com.chainsys.model.Question;
@@ -28,7 +35,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			pst.setString(1, question.getQuestions());
 			pst.setInt(2, question.getSectionId());
 			pst.executeUpdate();
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 			e.getMessage();
 		} finally {
 			if (pst != null) {
@@ -55,7 +62,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			pstmt.setInt(2, question.getQuestionId());
 			pstmt.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 			e.getMessage();
 		} finally {
 
@@ -86,7 +93,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 				questionId = rs.getInt(1);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -111,7 +118,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		String selectQuery = "select question_id,question_description,status from question_details";
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs=null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
@@ -123,7 +130,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 				question.setStatus(rs.getString(3));
 				questionList.add(question);
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -164,7 +171,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 				questionList.add(question);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -179,24 +186,25 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 
 		return questionList;
 	}
+
 	// Find section Id
 	@Override
 	public int findSectionId(int qId) throws SQLException {
 		String findUserId = "select section_id from question_details where question_id=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
-		ResultSet rs =null;
+		ResultSet rs = null;
 		int sectionId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmt = con.prepareStatement(findUserId);
-			stmt.setInt(1,qId);
-			rs= stmt.executeQuery();
+			stmt.setInt(1, qId);
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				sectionId = rs.getInt(1);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {

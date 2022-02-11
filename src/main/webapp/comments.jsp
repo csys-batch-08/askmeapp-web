@@ -78,25 +78,29 @@ table, thead, tr, tbody, th, td {
 	</div>
 
 	<form name="comment" action="CommentServlet" method="post">
-		<table>
-			<caption></caption>
-			<thead>
-				<tr>
-					<th id="1">Comments</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><label for="name" style="color: white">Enter your
-							Comments:</label></td>
-					<td><label id="2"><input type="text" name="comment"
-							id="name" pattern="[A-Za-z]{10,}+" required autofocus></label></td>
-				</tr>
-				<tr>
-					<td colspan="2"><label id="3"><input type="submit" class="submit" id="3"/></label></td>
-				</tr>
-			</tbody>
-		</table>
+		<fieldset id="box">
+			<legend>Enter Your Comments</legend>
+			<table>
+				<caption></caption>
+				<thead>
+					<tr>
+						<th id="1">Comments</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><label for="name" style="color: white">Enter your
+								Comments:</label></td>
+						<td><label id="2"><input type="text" name="comment"
+								id="name" pattern="[A-Za-z]{10,}+" required autofocus></label></td>
+					</tr>
+					<tr>
+						<td colspan="2"><label id="3"><input type="submit"
+								class="submit" id="3" /></label></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
 	</form>
 
 </body>

@@ -19,10 +19,6 @@ import com.chainsys.model.User;
 
 @WebServlet("/SubscriberServlet")
 public class SubscribeServlet extends HttpServlet {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -37,7 +33,6 @@ public class SubscribeServlet extends HttpServlet {
 			User user = new User(0, null, email, null, null);
 			userDAOImpl.updateSubscribe(user);
 			int userId = Integer.parseInt(session.getAttribute("userid").toString());
-
 			String subscriber = userDAOImpl.findSubscriber(userId);
 			if (subscriber.equals("yes")) {
 				session.setAttribute("subscriber", "Hai Already you are an Subscriber");
@@ -47,8 +42,7 @@ public class SubscribeServlet extends HttpServlet {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

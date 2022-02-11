@@ -40,8 +40,7 @@ public class AnswerServlet extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("answer.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 

@@ -38,7 +38,7 @@ public class UserRatingServlet extends HttpServlet {
 			id = sectionDao.findSectionId(content);
 			session.setAttribute("sid", id);
 			UserRatingDAOImpl ObjRatDao = new UserRatingDAOImpl();
-			Section section = new Section(0, content, 0, null, null);
+			Section section = new Section(0, content, 0, null, null,null);
 			List<UserRating> userRateList = ObjRatDao.findRating(section);
 			int oldRating = 0;
 			int count = 0;
@@ -50,12 +50,10 @@ public class UserRatingServlet extends HttpServlet {
 				userRating = new UserRating(content, 0, rating, count);
 				ObjRatDao.updateRating(userRating);
 			}
-
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("userHome.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

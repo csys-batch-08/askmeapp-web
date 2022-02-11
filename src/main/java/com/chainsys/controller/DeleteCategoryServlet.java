@@ -26,7 +26,6 @@ public class DeleteCategoryServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-
 			CategoryDAOImpl categoryDao = new CategoryDAOImpl();
 			String categoryName = (request.getParameter("CategoryName1"));
 			int id = categoryDao.findCategoryId(categoryName);
@@ -46,7 +45,7 @@ public class DeleteCategoryServlet extends HttpServlet {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

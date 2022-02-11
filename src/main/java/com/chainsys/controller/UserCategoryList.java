@@ -29,8 +29,7 @@ public class UserCategoryList extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("homePage.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 

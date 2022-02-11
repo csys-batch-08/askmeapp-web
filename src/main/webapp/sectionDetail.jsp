@@ -86,10 +86,19 @@ table, thead, tr, tbody, th, td {
 		<tbody>
 			<c:forEach var="SectionList" items="${sectionList}">
 				<tr>
-					<td><a
-						href="SectionContentServlet?secid=${SectionList.sectionId}&sectionname=${SectionList.sectionName}">
-							<h3><span class="badge badge-secondary">${SectionList.sectionName}</span>
-							</h3></a></td>
+					<td><div class="card" style="width: 18rem;">
+							<img src="assets/images/${SectionList.sectionName}.jpg"
+								class="card-img-top" alt="...">
+						</div></td>
+					<td>
+						<div class="card-body">
+							<h5 class="card-title">${SectionList.sectionName}</h5>
+							<p class="card-text">${SectionList.description}</p>							<a
+								href="SectionContentServlet?secid=${SectionList.sectionId}&sectionname=${SectionList.sectionName}"
+								class="btn btn-dark">Go ${SectionList.sectionName}</a>
+						</div>
+					</td>
+
 				</tr>
 			</c:forEach>
 		</tbody>

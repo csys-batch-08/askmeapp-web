@@ -58,8 +58,7 @@ public class AskQuestionServlet extends HttpServlet {
 		}
 
 		catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 

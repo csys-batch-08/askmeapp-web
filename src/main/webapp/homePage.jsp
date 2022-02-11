@@ -20,6 +20,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 * {
 	margin: 0;
@@ -90,24 +91,21 @@ table, thead, tr, tbody, th, td {
 		<tbody>
 			<c:forEach var="userCategoryList" items="${userCategoryList}">
 				<tr>
-					<td><a href="SectionDetailServlet?cusid=${userCategoryList.categoryId}">
-							<h3><span class="badge badge-secondary">${userCategoryList.categoryName}</span>
-							</h3></a></td>
-				
+					<td><div class="card" style="width: 18rem;">
+							<img src="assets/images/${userCategoryList.categoryName}.jpg"
+								class="card-img-top" alt="..."></div></td>
+					<td><div class="card-body">
+						<h5 class="card-title">${userCategoryList.categoryName}</h5>
+						<p class="card-text">${userCategoryList.description}</p>
+						<a
+							href="SectionDetailServlet?cusid=${userCategoryList.categoryId}"
+							class="btn btn-dark">Go ${userCategoryList.categoryName}</a>
+					</div>
+					
+					</td>
 				</tr>
 			</c:forEach>
-
 		</tbody>
 	</table>
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

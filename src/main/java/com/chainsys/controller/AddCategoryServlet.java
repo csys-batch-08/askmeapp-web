@@ -25,14 +25,13 @@ public class AddCategoryServlet extends HttpServlet {
 		try {
 
 			String categoryName = (request.getParameter("categoryName"));
-			Category Objcategory = new Category(0, categoryName, null);
+			Category Objcategory = new Category(0, categoryName, null,null);
 			CategoryDAOImpl ObjcatDao = new CategoryDAOImpl();
 			ObjcatDao.insertCategory(Objcategory);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ServletException | IOException | SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

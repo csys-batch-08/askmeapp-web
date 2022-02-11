@@ -48,8 +48,7 @@ public class CommentServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("commentMessage.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ServletException | SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 }

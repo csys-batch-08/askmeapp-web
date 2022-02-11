@@ -32,8 +32,7 @@ public class MostViewedSection extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("mostViewedSection.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 

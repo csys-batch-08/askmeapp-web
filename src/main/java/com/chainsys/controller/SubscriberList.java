@@ -35,8 +35,7 @@ public class SubscriberList extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("subscriber.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}

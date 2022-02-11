@@ -32,8 +32,7 @@ public class UserList extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("userList.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 

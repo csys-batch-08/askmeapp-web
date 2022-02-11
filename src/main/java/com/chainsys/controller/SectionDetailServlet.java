@@ -33,15 +33,14 @@ public class SectionDetailServlet extends HttpServlet {
 			request.setAttribute("userRatingList", userRatingList);
 			int cid = Integer.parseInt(request.getParameter("cusid"));
 			session.setAttribute("categoryid", cid);
-			Category category = new Category(cid, null, null);
+			Category category = new Category(cid, null, null,null);
 			SectionDAOImpl sectionDAOImpl = new SectionDAOImpl();
 			List<Section> sectionList = sectionDAOImpl.showSectionName(category);
 			request.setAttribute("sectionList", sectionList);
 			RequestDispatcher req = request.getRequestDispatcher("sectionDetail.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}
