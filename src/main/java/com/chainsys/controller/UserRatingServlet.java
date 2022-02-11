@@ -29,7 +29,7 @@ public class UserRatingServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		try {
-			UserRating userRating = new UserRating();
+			UserRating userRating;
 			String content = request.getParameter("sName");
 			session.setAttribute("sectionName", content);
 			int newRating = Integer.parseInt(request.getParameter("rating"));

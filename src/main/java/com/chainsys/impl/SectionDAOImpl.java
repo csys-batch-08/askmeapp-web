@@ -61,7 +61,6 @@ public class SectionDAOImpl implements SectionDAOInterface {
 		String updateQuery = "update section_details set section_name=?  where section_id=?";
 		// get connection
 		Connection con = null;
-		System.out.println("Connection successfully");
 		PreparedStatement pstt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
@@ -126,7 +125,7 @@ public class SectionDAOImpl implements SectionDAOInterface {
 	@Override
 	public List<Section> showSectionName(Category category) throws SQLException {
 
-		List<Section> sectionList = new ArrayList<Section>();
+		List<Section> sectionList = new ArrayList<>();
 		String selectQuery = "select section_id,section_name,description from section_details where category_id=? and status='active'";
 		Connection con = null;
 		PreparedStatement pstmmt = null;

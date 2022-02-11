@@ -13,7 +13,7 @@ public interface CategoryDAOInterface {
 	public  int findCategoryId(String categoryName) throws SQLException;	
 	public List<Category> showAllCategory() throws SQLException;
 	public void updateInactive(int id) throws SQLException;	
-	public List<Category> AllCategory() throws SQLException;
+	public List<Category> allCategory() throws SQLException;
 	public String findStatus(int id) throws SQLException;
 	public void updateActive(int id) throws SQLException;		
 }

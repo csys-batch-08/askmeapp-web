@@ -2,7 +2,6 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -27,8 +26,7 @@ public class UserRatingList extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			UserRatingDAOImpl userRatingDao = new UserRatingDAOImpl();
-			List<UserRating> userRatingList=new ArrayList<>();
-			userRatingList = userRatingDao.showRating();
+			List<UserRating> userRatingList = userRatingDao.showRating();			
 			request.setAttribute("userRatingList", userRatingList);			
 			RequestDispatcher req = request.getRequestDispatcher("categoryList.jsp");
 			req.forward(request, response);

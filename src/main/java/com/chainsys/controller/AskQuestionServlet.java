@@ -35,7 +35,7 @@ public class AskQuestionServlet extends HttpServlet {
 			AskmeDAOImpl askmeDao = new AskmeDAOImpl();
 			AskMe askMe = new AskMe(userId, 0, 0, questionId);
 			List<AskMe> askList = null;
-			askList = askmeDao.FindUserId(askMe);
+			askList = askmeDao.findUserId(askMe);
 			if (askList == null) {
 				throw new AlreadyUsedQuestionException();
 			} else {

@@ -51,7 +51,7 @@ public class AskmeDAOImpl implements AskmeDAOInterface {
 	}
 
 	@Override
-	public List<AskMe> FindUserId(AskMe askMe) throws SQLException {
+	public List<AskMe> findUserId(AskMe askMe) throws SQLException {
 		List<AskMe> askList = new ArrayList<>();
 		String selectQuery = "select ask_me_questions.question_id from (user_detail inner join ask_me_questions using(user_id))where user_id=? and question_id=?";
 		Connection con = null;

@@ -114,7 +114,7 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 	@Override
 	public List<Question> showAllQuestion() throws SQLException {
 
-		List<Question> questionList = new ArrayList<Question>();
+		List<Question> questionList = new ArrayList<>();
 		String selectQuery = "select question_id,question_description,status from question_details";
 		Connection con = null;
 		PreparedStatement ptstmt = null;

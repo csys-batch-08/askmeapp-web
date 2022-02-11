@@ -232,7 +232,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 	// List of category for admin
 
 	@Override
-	public List<Category> AllCategory() throws SQLException {
+	public List<Category> allCategory() throws SQLException {
 		List<Category> categoryList = new ArrayList<>();
 
 		String selectQuery = "select category_id,category_name,status from category_detail";

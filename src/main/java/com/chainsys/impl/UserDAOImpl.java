@@ -130,7 +130,6 @@ public class UserDAOImpl implements UserDAOInterface {
 			rs = sttmt.executeQuery();
 			if (rs.next()) {
 				userId = rs.getInt(1);
-				System.out.println(userId);
 			}
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {

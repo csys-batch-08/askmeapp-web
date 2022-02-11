@@ -2,7 +2,6 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -31,8 +30,7 @@ public class AdminSubscriberServlet extends HttpServlet {
 		try {
 			String sectionName = request.getParameter("sectionName");
 			UserDAOImpl userDao = new UserDAOImpl();
-			List<User> userList = new ArrayList<>();
-			userList = userDao.subscribeUser();
+			List<User> userList = userDao.subscribeUser();			
 			int id = 0;
 			boolean flag = false;
 			for (User user1 : userList) {
