@@ -90,7 +90,7 @@ public class CommentDAOImpl implements CommentDAOInterface {
 	// Find comment Id
 	@Override
 	public int findCommentId(int sectionId) throws SQLException {
-		String findUserId = "select comment_id from comment_by_user where section_id='" + sectionId + "'";
+		String findUserId = "select comment_id from comment_by_user where section_id=?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -98,6 +98,7 @@ public class CommentDAOImpl implements CommentDAOInterface {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(findUserId);
+			pstmt.setInt(1, sectionId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				commentId = rs.getInt(1);
