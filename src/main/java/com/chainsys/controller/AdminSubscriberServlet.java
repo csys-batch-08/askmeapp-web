@@ -31,7 +31,7 @@ public class AdminSubscriberServlet extends HttpServlet {
 		try {
 			String sectionName = request.getParameter("sectionName");
 			UserDAOImpl userDao = new UserDAOImpl();
-			List<User> userList = new ArrayList<User>();
+			List<User> userList = new ArrayList<>();
 			userList = userDao.subscribeUser();
 			int id = 0;
 			boolean flag = false;

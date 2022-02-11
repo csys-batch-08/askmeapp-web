@@ -1,6 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,8 +21,10 @@ import com.chainsys.model.User;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
+	
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		try {
@@ -37,10 +40,10 @@ public class LoginServlet extends HttpServlet {
 			User adminUser = adminDao.validateAdmin(email, password);
 			if (currentUser != null) {
 				if (email.equals(currentUser.getEmailId()) && password.equals(currentUser.getPassword())) {
-					int user_id = 0;
-					user_id = userDao.findUserId(email);
-					session.setAttribute("userid", user_id);
-					String subscriber = userDao.findSubscriber(user_id);
+					int userId = 0;
+					userId = userDao.findUserId(email);
+					session.setAttribute("userid", userId);
+					String subscriber = userDao.findSubscriber(userId);
 
 					if (subscriber.equals("no")) {
 
@@ -65,12 +68,9 @@ public class LoginServlet extends HttpServlet {
 			else {
 				throw new PasswordIncorrect();
 			}
-		} catch (IOException e1) {
-
-			e1.getMessage();
 		}
-
-		catch (PasswordIncorrect iv) {
+	
+		catch (PasswordIncorrect | SQLException iv) {
 			try {
 				session.setAttribute("invalid", iv.getMessage());
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
@@ -80,9 +80,6 @@ public class LoginServlet extends HttpServlet {
 				iv.getMessage();
 			}
 
-		} catch (Exception e) {
-			e.getMessage();
 		}
-	}
 
-}
+	}}

@@ -26,28 +26,26 @@ public class SectionDAOImpl implements SectionDAOInterface {
 		// Query-insert User
 		String insertQuery = "insert into section_details(section_name,category_id,image) values(?,?,?)";
 		// DB connection
-
 		Connection con = null;
-		PreparedStatement pst = null;
+		PreparedStatement pstt = null;
 		// Get all values
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pst = con.prepareStatement(insertQuery);
-			System.out.println(section.getSectionName());
-			pst.setString(1, section.getSectionName());
-			System.out.println(section.getCategoryId());
-			pst.setInt(2, section.getCategoryId());
-			System.out.println(section.getImage());
-			pst.setString(3, section.getImage());
-			pst.executeUpdate();
+			pstt = con.prepareStatement(insertQuery);
+			pstt.setString(1, section.getSectionName());
+			pstt.setInt(2, section.getCategoryId());
+			pstt.setString(3, section.getImage());
+			pstt.executeUpdate();
 
-		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+				| NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException
+				| BadPaddingException e) {
 
 			e.getMessage();
 
 		} finally {
-			if (pst != null) {
-				pst.close();
+			if (pstt != null) {
+				pstt.close();
 			}
 
 			if (con != null) {
@@ -64,19 +62,21 @@ public class SectionDAOImpl implements SectionDAOInterface {
 		// get connection
 		Connection con = null;
 		System.out.println("Connection successfully");
-		PreparedStatement pstmt = null;
+		PreparedStatement pstt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setString(1, section.getSectionName());
-			pstmt.setInt(2, section.getSectionId());
-			pstmt.executeUpdate();
-		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+			pstt = con.prepareStatement(updateQuery);
+			pstt.setString(1, section.getSectionName());
+			pstt.setInt(2, section.getSectionId());
+			pstt.executeUpdate();
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+				| NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException
+				| BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
-			if (pstmt != null) {
-				pstmt.close();
+			if (pstt != null) {
+				pstt.close();
 			}
 
 			if (con != null) {
@@ -104,7 +104,9 @@ public class SectionDAOImpl implements SectionDAOInterface {
 				sectionId = rs.getInt(1);
 			}
 
-		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+				| NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException
+				| BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
@@ -125,17 +127,15 @@ public class SectionDAOImpl implements SectionDAOInterface {
 	public List<Section> showSectionName(Category category) throws SQLException {
 
 		List<Section> sectionList = new ArrayList<Section>();
-
 		String selectQuery = "select section_id,section_name,description from section_details where category_id=? and status='active'";
-
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(selectQuery);
-			pstmt.setInt(1, category.getCategoryId());
-			rs = pstmt.executeQuery();
+			pstmmt = con.prepareStatement(selectQuery);
+			pstmmt.setInt(1, category.getCategoryId());
+			rs = pstmmt.executeQuery();
 			while (rs.next()) {
 				Section section = new Section();
 				section.setSectionId(rs.getInt(1));
@@ -144,12 +144,14 @@ public class SectionDAOImpl implements SectionDAOInterface {
 				sectionList.add(section);
 			}
 
-		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+				| NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException
+				| BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
-			if (pstmt != null) {
-				pstmt.close();
+			if (pstmmt != null) {
+				pstmmt.close();
 			}
 
 			if (con != null) {
@@ -165,11 +167,11 @@ public class SectionDAOImpl implements SectionDAOInterface {
 	@Override
 	public List<Section> showAllSection() throws SQLException {
 
-		List<Section> sectionList = new ArrayList<Section>();
+		List<Section> sectionList = new ArrayList<>();
 		String selectQuery = "select section_id,section_name,status from section_details";
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs=null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
@@ -182,7 +184,9 @@ public class SectionDAOImpl implements SectionDAOInterface {
 				sectionList.add(section);
 			}
 
-		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+				| NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException
+				| BadPaddingException e) {
 
 			e.getMessage();
 		} finally {

@@ -7,18 +7,17 @@ public class Answer {
 	private String answers;
 	private int questionId;
 	private String status;
-	
 	public String getAnswers() {
 		return answers;
 	}
 	public void setAnswers(String answers) {
 		this.answers = answers;
 	}
-	public int getQuestion_id() {
+	public int getQuestionId() {
 		return questionId;
 	}
-	public void setQuestion_id(int question_id) {
-		this.questionId = question_id;
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
 	public String getStatus() {
 		return status;
@@ -26,19 +25,19 @@ public class Answer {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	@Override
-	public String toString() {
-		return "Answer [answers=" + answers + ", question_id=" + questionId + ", status=" + status + "]";
-	}
 	public Answer() {
 		super();
-
+		// TODO Auto-generated constructor stub
 	}
-	public Answer(String answers, int question_id, String status) {
+	public Answer(String answers, int questionId, String status) {
 		super();
 		this.answers = answers;
-		this.questionId = question_id;
+		this.questionId = questionId;
 		this.status = status;
+	}
+	@Override
+	public String toString() {
+		return "Answer [answers=" + answers + ", questionId=" + questionId + ", status=" + status + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -58,5 +57,4 @@ public class Answer {
 	}
 	
 	
-
 }

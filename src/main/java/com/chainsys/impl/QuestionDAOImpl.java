@@ -27,19 +27,19 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		String insertQuery = "insert into question_details(question_description,section_id) values(?,?)";
 		// DB connection
 		Connection con = null;
-		PreparedStatement pst = null;
+		PreparedStatement pstt = null;
 		// Get all values
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pst = con.prepareStatement(insertQuery);
-			pst.setString(1, question.getQuestions());
-			pst.setInt(2, question.getSectionId());
-			pst.executeUpdate();
+			pstt = con.prepareStatement(insertQuery);
+			pstt.setString(1, question.getQuestions());
+			pstt.setInt(2, question.getSectionId());
+			pstt.executeUpdate();
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 			e.getMessage();
 		} finally {
-			if (pst != null) {
-				pst.close();
+			if (pstt != null) {
+				pstt.close();
 			}
 			if (con != null) {
 				con.close();
@@ -54,20 +54,20 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		String updateQuery = "update question_details set question_description=? where question_id=?";
 		// get connection
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement psstmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setString(1, question.getQuestions());
-			pstmt.setInt(2, question.getQuestionId());
-			pstmt.executeUpdate();
+			psstmt = con.prepareStatement(updateQuery);
+			psstmt.setString(1, question.getQuestions());
+			psstmt.setInt(2, question.getQuestionId());
+			psstmt.executeUpdate();
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 			e.getMessage();
 		} finally {
 
-			if (pstmt != null) {
-				pstmt.close();
+			if (psstmt != null) {
+				psstmt.close();
 			}
 			if (con != null) {
 				con.close();
@@ -81,14 +81,14 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 	public int findQuestionId(String quesdes) throws SQLException {
 		String findUserId = "select question_id from question_details where question_description=?";
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement stmmt = null;
 		ResultSet rs = null;
 		int questionId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(findUserId);
-			stmt.setString(1, quesdes);
-			rs = stmt.executeQuery();
+			stmmt = con.prepareStatement(findUserId);
+			stmmt.setString(1, quesdes);
+			rs = stmmt.executeQuery();
 			if (rs.next()) {
 				questionId = rs.getInt(1);
 			}
@@ -98,8 +98,8 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			e.getMessage();
 		} finally {
 
-			if (stmt != null) {
-				stmt.close();
+			if (stmmt != null) {
+				stmmt.close();
 			}
 			if (con != null) {
 				con.close();
@@ -117,12 +117,12 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 		List<Question> questionList = new ArrayList<Question>();
 		String selectQuery = "select question_id,question_description,status from question_details";
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement ptstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(selectQuery);
-			rs = pstmt.executeQuery();
+			ptstmt = con.prepareStatement(selectQuery);
+			rs = ptstmt.executeQuery();
 			while (rs.next()) {
 				Question question = new Question();
 				question.setQuestionId(rs.getInt(1));
@@ -135,8 +135,8 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			e.getMessage();
 		} finally {
 
-			if (pstmt != null) {
-				pstmt.close();
+			if (ptstmt != null) {
+				ptstmt.close();
 			}
 			if (con != null) {
 				con.close();
@@ -151,18 +151,18 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 	@Override
 	public List<Question> showQuestion(Section section) throws SQLException {
 
-		List<Question> questionList = new ArrayList<Question>();
+		List<Question> questionList = new ArrayList<>();
 
 		String query = "select question_id,question_description from question_details where section_id=? and status='active'";
 
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement pstm = null;
 
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, section.getSectionId());
-			ResultSet rs = pstmt.executeQuery();
+			pstm = con.prepareStatement(query);
+			pstm.setInt(1, section.getSectionId());
+			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
 				Question question = new Question();
 				question.setQuestionId(rs.getInt(1));
@@ -176,8 +176,8 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			e.getMessage();
 		} finally {
 
-			if (pstmt != null) {
-				pstmt.close();
+			if (pstm != null) {
+				pstm.close();
 			}
 			if (con != null) {
 				con.close();

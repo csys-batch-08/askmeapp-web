@@ -20,17 +20,17 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 	@Override
 	public User validateAdmin(String email, String password) throws SQLException {
-		String validateQuery = "select email,password from user_detail where role='ADMIN'and email=? and password=?";
+		String validate = "select email,password from user_detail where role='ADMIN'and email=? and password=?";
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement stmte = null;
 		ResultSet rs = null;
 		User user = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(validateQuery);
-			stmt.setString(1, email);
-			stmt.setString(2, password);
-			rs = stmt.executeQuery();
+			stmte = con.prepareStatement(validate);
+			stmte.setString(1, email);
+			stmte.setString(2, password);
+			rs = stmte.executeQuery();
 			if (rs.next()) {
 				user = new User(0, null, email, password, null);
 			}
@@ -39,8 +39,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			e.getMessage();
 
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (stmte != null) {
+				stmte.close();
 			}
 			if (con != null) {
 				con.close();

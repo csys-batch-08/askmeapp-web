@@ -29,7 +29,6 @@ public class SubscribeServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			UserDAOImpl userDAOImpl = new UserDAOImpl();
 			String email = session.getAttribute("Email").toString();
-			System.out.println("user" + email);
 			User user = new User(0, null, email, null, null);
 			userDAOImpl.updateSubscribe(user);
 			int userId = Integer.parseInt(session.getAttribute("userid").toString());

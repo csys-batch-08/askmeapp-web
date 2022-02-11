@@ -28,23 +28,17 @@ public class DeleteCategoryServlet extends HttpServlet {
 		try {
 			CategoryDAOImpl categoryDao = new CategoryDAOImpl();
 			String categoryName = (request.getParameter("CategoryName1"));
-			int id = categoryDao.findCategoryId(categoryName);
-			System.out.println("category name" + categoryName);
-			System.out.println("id" + id);
-			String status = categoryDao.findStatus(id);
-			System.out.println("status" + status);
-			if (status.equals("active")) {
-				System.out.println("inactive");
+			int id = categoryDao.findCategoryId(categoryName);			
+			String status = categoryDao.findStatus(id);			
+			if (status.equals("active")) {				
 				categoryDao.updateInactive(id);
 				response.sendRedirect("admin.jsp");
-			} else {
-				System.out.println("active ");
+			} else {				
 				categoryDao.updateActive(id);
 				response.sendRedirect("admin.jsp");
 			}
 
 		} catch (SQLException e) {
-
 			e.getMessage();
 		}
 

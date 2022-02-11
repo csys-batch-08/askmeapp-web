@@ -27,20 +27,15 @@ public class EditAnswerServlet extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			QuestionDAOImpl questionDao = new QuestionDAOImpl();
-			String question = (String) session.getAttribute("comment");
-			System.out.println("question" + question);
-			int qId = questionDao.findQuestionId(question);
-			System.out.println("ques" + qId);
-			String answer = request.getParameter("answer");
-			System.out.println("ans" + answer);
+			String question = (String) session.getAttribute("comment");			
+			int qId = questionDao.findQuestionId(question);			
+			String answer = request.getParameter("answer");			
 			Answer answer1 = new Answer(answer, qId, null);
 			AnswerDAOImpl answerDao = new AnswerDAOImpl();
 			answerDao.insertAnswer(answer1);
-			int sId = questionDao.findSectionId(qId);
-			System.out.println("SectionId" + sId);
+			int sId = questionDao.findSectionId(qId);			
 			CommentDAOImpl commentDao = new CommentDAOImpl();
-			int commentId = commentDao.findCommentId(sId);
-			System.out.println("CommentId" + commentId);
+			int commentId = commentDao.findCommentId(sId);			
 			commentDao.deletedetails(commentId);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
 			requestDispatcher.forward(request, response);

@@ -28,23 +28,23 @@ public class UserDAOImpl implements UserDAOInterface {
 		String insertQuery = "insert into user_detail(user_name,email,password) values(?,?,?)";
 		// DB connection
 		Connection con = null;
-		PreparedStatement pst = null;
+		PreparedStatement psst = null;
 		// Get all values
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pst = con.prepareStatement(insertQuery);
-			pst.setString(1, user.getName());
-			pst.setString(2, user.getEmailId());
-			pst.setString(3, user.getPassword());
-			pst.executeUpdate();
+			psst = con.prepareStatement(insertQuery);
+			psst.setString(1, user.getName());
+			psst.setString(2, user.getEmailId());
+			psst.setString(3, user.getPassword());
+			psst.executeUpdate();
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 
 		} finally {
-			if (pst != null) {
-				pst.close();
+			if (psst != null) {
+				psst.close();
 			}
 			if (con != null) {
 				con.close();
@@ -60,19 +60,19 @@ public class UserDAOImpl implements UserDAOInterface {
 		// get connection
 		Connection con = null;
 
-		PreparedStatement pstmt = null;
+		PreparedStatement psmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setString(1, password);
-			pstmt.setString(2, email);
-			pstmt.executeUpdate();
+			psmt = con.prepareStatement(updateQuery);
+			psmt.setString(1, password);
+			psmt.setString(2, email);
+			psmt.executeUpdate();
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
-			if (pstmt != null) {
-				pstmt.close();
+			if (psmt != null) {
+				psmt.close();
 			}
 			if (con != null) {
 				con.close();
@@ -87,15 +87,15 @@ public class UserDAOImpl implements UserDAOInterface {
 	public User validateUser1(String email, String password) throws SQLException {
 		String validateQuery = "select email,password from user_detail where role='USER'and email=? and password=?";
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement sptmt = null;
 		ResultSet rs = null;
 		User user = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(validateQuery);
-			stmt.setString(1, email);
-			stmt.setString(2, password);
-			rs = stmt.executeQuery();
+			sptmt = con.prepareStatement(validateQuery);
+			sptmt.setString(1, email);
+			sptmt.setString(2, password);
+			rs = sptmt.executeQuery();
 			// validate user input
 			if (rs.next()) {
 				user = new User(0, null, email, password, null);
@@ -105,8 +105,8 @@ public class UserDAOImpl implements UserDAOInterface {
 			e.getMessage();
 
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (sptmt != null) {
+				sptmt.close();
 			}
 			if (con != null) {
 				con.close();
@@ -120,14 +120,14 @@ public class UserDAOImpl implements UserDAOInterface {
 	public int findUserId(String email) throws SQLException {
 		String findUserId = "select user_id from user_detail where email=?";
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement sttmt = null;
 		ResultSet rs = null;
 		int userId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(findUserId);
-			stmt.setString(1, email);
-			rs = stmt.executeQuery();
+			sttmt = con.prepareStatement(findUserId);
+			sttmt.setString(1, email);
+			rs = sttmt.executeQuery();
 			if (rs.next()) {
 				userId = rs.getInt(1);
 				System.out.println(userId);
@@ -137,8 +137,8 @@ public class UserDAOImpl implements UserDAOInterface {
 
 			e.getMessage();
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (sttmt != null) {
+				sttmt.close();
 			}
 			if (con != null) {
 				con.close();
@@ -152,17 +152,17 @@ public class UserDAOImpl implements UserDAOInterface {
 	@Override
 	public List<User> showAllUser() throws SQLException {
 
-		List<User> userList = new ArrayList<User>();
+		List<User> userList = new ArrayList<>();
 
 		String selectQuery = "select user_id,user_name,email,subscriber from user_detail where role='USER'";
 
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement ptstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(selectQuery);
-			rs = pstmt.executeQuery();
+			ptstmt = con.prepareStatement(selectQuery);
+			rs = ptstmt.executeQuery();
 			while (rs.next()) {
 				User user = new User();
 				user.setUserId(rs.getInt(1));
@@ -177,8 +177,8 @@ public class UserDAOImpl implements UserDAOInterface {
 			e.getMessage();
 
 		} finally {
-			if (pstmt != null) {
-				pstmt.close();
+			if (ptstmt != null) {
+				ptstmt.close();
 			}
 
 			if (con != null) {
@@ -196,19 +196,19 @@ public class UserDAOImpl implements UserDAOInterface {
 		String updateQuery = "update user_detail set subscriber='yes' where role='USER' and email=?";
 		// get connection
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement psmtmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setString(1, user.getEmailId());
-			pstmt.executeUpdate();
+			psmtmt = con.prepareStatement(updateQuery);
+			psmtmt.setString(1, user.getEmailId());
+			psmtmt.executeUpdate();
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
-			if (pstmt != null) {
-				pstmt.close();
+			if (psmtmt != null) {
+				psmtmt.close();
 			}
 
 			if (con != null) {
@@ -221,16 +221,16 @@ public class UserDAOImpl implements UserDAOInterface {
 	// List of Subscriber
 	@Override
 	public List<User> subscribeUser() throws SQLException {
-		List<User> userList = new ArrayList<User>();
+		List<User> userList = new ArrayList<>();
 
 		String selectQuery = "select user_name,email from user_detail where role='USER' and subscriber='yes'";
 
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement stmtm = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(selectQuery);
-			ResultSet rs = stmt.executeQuery();
+			stmtm = con.prepareStatement(selectQuery);
+			ResultSet rs = stmtm.executeQuery();
 			while (rs.next()) {
 				User user = new User();
 				user.setName(rs.getString(1));
@@ -241,8 +241,8 @@ public class UserDAOImpl implements UserDAOInterface {
 
 			e.getMessage();
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (stmtm != null) {
+				stmtm.close();
 			}
 
 			if (con != null) {
@@ -260,22 +260,22 @@ public class UserDAOImpl implements UserDAOInterface {
 		// DB connection
 
 		Connection con = null;
-		PreparedStatement pst = null;
+		PreparedStatement psst = null;
 		// Get all values
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pst = con.prepareStatement(insertQuery);
-			pst.setInt(1, user.getUserId());
-			pst.setString(2, user.getSectionName());
-			pst.executeUpdate();
+			psst = con.prepareStatement(insertQuery);
+			psst.setInt(1, user.getUserId());
+			psst.setString(2, user.getSectionName());
+			psst.executeUpdate();
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 
 		} finally {
-			if (pst != null) {
-				pst.close();
+			if (psst != null) {
+				psst.close();
 			}
 
 			if (con != null) {
@@ -292,14 +292,14 @@ public class UserDAOImpl implements UserDAOInterface {
 	public String findSubscriber(int id) throws SQLException {
 		String findSubscriber = "select subscriber from user_detail where user_id=?";
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement smttmt = null;
 		ResultSet rs = null;
 		String subscriber = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(findSubscriber);
-			stmt.setInt(1, id);
-			rs = stmt.executeQuery();
+			smttmt = con.prepareStatement(findSubscriber);
+			smttmt.setInt(1, id);
+			rs = smttmt.executeQuery();
 			if (rs.next()) {
 				subscriber = rs.getString(1);
 			}
@@ -308,8 +308,8 @@ public class UserDAOImpl implements UserDAOInterface {
 
 			e.getMessage();
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (smttmt != null) {
+				smttmt.close();
 			}
 
 			if (con != null) {
@@ -324,16 +324,16 @@ public class UserDAOImpl implements UserDAOInterface {
 	// Exception
 	@Override
 	public List<User> emailExists(User user) throws SQLException {
-		List<User> userList = new ArrayList<User>();
+		List<User> userList = new ArrayList<>();
 		String selectQuery = "select user_name,password from user_detail where role='USER' and email=? ";
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement stmst = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(selectQuery);
-			stmt.setString(1, user.getEmailId());
-			rs = stmt.executeQuery();
+			stmst = con.prepareStatement(selectQuery);
+			stmst.setString(1, user.getEmailId());
+			rs = stmst.executeQuery();
 			while (rs.next()) {
 
 				user.setName(rs.getString(1));
@@ -344,8 +344,8 @@ public class UserDAOImpl implements UserDAOInterface {
 
 			e.getMessage();
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (stmst != null) {
+				stmst.close();
 			}
 
 			if (con != null) {

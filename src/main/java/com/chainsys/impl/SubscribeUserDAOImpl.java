@@ -25,7 +25,7 @@ public class SubscribeUserDAOImpl implements SubscribeUserDAOInterface {
 	@Override
 	public List<SubscribeUser> showAllSection(User user) throws SQLException {
 
-		List<SubscribeUser> subscribeUserList = new ArrayList<SubscribeUser>();
+		List<SubscribeUser> subscribeUserList = new ArrayList<>();
 
 		String selectQuery = "select distinct section_name from (subscribe_user inner join user_detail  using(user_id)) where user_id=?";
 		Connection con = null;

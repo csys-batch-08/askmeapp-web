@@ -31,20 +31,15 @@ public class CommentServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			String comment = (request.getParameter("comment"));
 			session.setAttribute("comments", comment);
-			int userId = Integer.parseInt(session.getAttribute("userid").toString());
-			System.out.println("uId" + userId);
-			int catId = Integer.parseInt(session.getAttribute("categoryid").toString());
-			System.out.println("cId" + catId);
-			int secId = Integer.parseInt(session.getAttribute("sectionId").toString());
-			System.out.println(secId);
+			int userId = Integer.parseInt(session.getAttribute("userid").toString());			
+			int catId = Integer.parseInt(session.getAttribute("categoryid").toString());			
+			int secId = Integer.parseInt(session.getAttribute("sectionId").toString());			
 			CommentDAOImpl commentDao = new CommentDAOImpl();
 			Comment commentObj = new Comment(userId, catId, secId, comment);
-			commentDao.insertComment(commentObj);
-			System.out.println("Comment inserted");
+			commentDao.insertComment(commentObj);			
 			Question question = new Question(0, comment, secId, null);
 			QuestionDAOImpl questionDao = new QuestionDAOImpl();
-			questionDao.insertQuestion(question);
-			System.out.println("Question inserted");
+			questionDao.insertQuestion(question);			
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("commentMessage.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ServletException | SQLException e) {

@@ -6,6 +6,7 @@ public class Admin {
 	private String name;
 	private String emailId;
 	private String password;
+	
 	public String getName() {
 		return name;
 	}
@@ -24,9 +25,13 @@ public class Admin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	@Override
+	public String toString() {
+		return "Admin [name=" + name + ", emailId=" + emailId + ", password=" + password + "]";
+	}
 	public Admin() {
 		super();
-
+		// TODO Auto-generated constructor stub
 	}
 	public Admin(String name, String emailId, String password) {
 		super();
@@ -51,6 +56,7 @@ public class Admin {
 				&& Objects.equals(password, other.password);
 	}
 	
+
   	
 	
 }

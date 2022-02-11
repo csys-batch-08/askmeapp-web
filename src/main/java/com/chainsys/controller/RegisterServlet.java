@@ -31,14 +31,14 @@ public class RegisterServlet extends HttpServlet {
 			String name = (request.getParameter("name"));
 			String email = (request.getParameter("email"));
 			String password = (request.getParameter("password"));
-			User Objuser = new User(0, name, email, password, null);
+			User objUser = new User(0, name, email, password, null);
 			UserDAOImpl userDao = new UserDAOImpl();
-			userDao.insertUser(Objuser);
+			userDao.insertUser(objUser);
 			response.sendRedirect("login.jsp");
 			List<User> userList = null;
-			userList = userDao.emailExists(Objuser);
+			userList = userDao.emailExists(objUser);
 			if (userList == null) {
-				userDao.insertUser(Objuser);
+				userDao.insertUser(objUser);
 				response.sendRedirect("login.jsp");
 			}
 

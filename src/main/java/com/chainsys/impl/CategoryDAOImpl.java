@@ -25,20 +25,20 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 		String insertQuery = "insert into category_detail(category_name) values(?)";
 		// DB connection
 		Connection con = null;
-		PreparedStatement pst = null;
+		PreparedStatement pstm = null;
 		// Get all values
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pst = con.prepareStatement(insertQuery);
-			pst.setString(1, category.getCategoryName());
-			pst.executeUpdate();
+			pstm = con.prepareStatement(insertQuery);
+			pstm.setString(1, category.getCategoryName());
+			pstm.executeUpdate();
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
-			if (pst != null) {
-				pst.close();
+			if (pstm != null) {
+				pstm.close();
 			}
 			if (con != null) {
 				con.close();
@@ -118,15 +118,15 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 		String updateQuery3 = "update  answer set status=(select status from question_details where answer.question_id=question_details.question_id)";
 
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmtt = null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setInt(1, id);
-			pstmt.executeUpdate();
+			pstmtt = con.prepareStatement(updateQuery);
+			pstmtt.setInt(1, id);
+			pstmtt.executeUpdate();
 
 			pstmt1 = con.prepareStatement(updateQuery1);
 			pstmt1.setInt(1, id);
@@ -142,7 +142,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 
 			e.getMessage();
 		} finally {
-			ConnectionUtil.closePreparedStatement(pstmt, con);
+			ConnectionUtil.closePreparedStatement(pstmtt, con);
 			ConnectionUtil.closePreparedStatement(pstmt1, con);
 			ConnectionUtil.closePreparedStatement(pstmt2, con);
 			ConnectionUtil.closePreparedStatement(pstmt3, con);
@@ -159,16 +159,15 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 		String updateQuery1 = "update section_details set status='active' where category_id=?";
 		String updateQuery2 = "update question_details set status=(select status from section_details where question_details.section_id=section_details.section_id)";
 		String updateQuery3 = "update  answer set status=(select status from question_details where answer.question_id=question_details.question_id)";
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmtmt= null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(updateQuery);
-			System.out.println(id);
-			pstmt.setInt(1, id);
-			pstmt.executeUpdate();
+			pstmtmt = con.prepareStatement(updateQuery);
+			pstmtmt.setInt(1, id);
+			pstmtmt.executeUpdate();
 
 			pstmt1 = con.prepareStatement(updateQuery1);
 			pstmt1.setInt(1, id);
@@ -176,7 +175,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 
 			pstmt2 = con.prepareStatement(updateQuery2);
 			pstmt2.executeUpdate();
-			pstmt2.executeUpdate();
+			
 
 			pstmt3 = con.prepareStatement(updateQuery3);
 			pstmt3.executeUpdate();
@@ -185,7 +184,7 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 
 			e.getMessage();
 		} finally {
-			ConnectionUtil.closePreparedStatement(pstmt, con);
+			ConnectionUtil.closePreparedStatement(pstmtmt, con);
 			ConnectionUtil.closePreparedStatement(pstmt1, con);
 			ConnectionUtil.closePreparedStatement(pstmt2, con);
 			ConnectionUtil.closePreparedStatement(pstmt3, con);
@@ -196,16 +195,16 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 	// List of category
 	@Override
 	public List<Category> showAllCategory() throws SQLException {
-		List<Category> categoryList = new ArrayList<Category>();
+		List<Category> categoryList = new ArrayList<>();
 
 		String selectQuery = "select category_id,category_name,description from category_detail where status='active'";
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement tstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(selectQuery);
-			rs = stmt.executeQuery();
+			tstmt = con.prepareStatement(selectQuery);
+			rs = tstmt.executeQuery();
 			while (rs.next()) {
 				Category category = new Category();
 				category.setCategoryId(rs.getInt(1));
@@ -218,8 +217,8 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 
 			e.getMessage();
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (tstmt != null) {
+				tstmt.close();
 			}
 
 			if (con != null) {
@@ -234,18 +233,18 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 
 	@Override
 	public List<Category> AllCategory() throws SQLException {
-		List<Category> categoryList = new ArrayList<Category>();
+		List<Category> categoryList = new ArrayList<>();
 
 		String selectQuery = "select category_id,category_name,status from category_detail";
 
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement smtmt = null;
 		ResultSet rs = null;
 
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(selectQuery);
-			rs = stmt.executeQuery();
+			smtmt = con.prepareStatement(selectQuery);
+			rs = smtmt.executeQuery();
 			while (rs.next()) {
 				Category category = new Category();
 				category.setCategoryId(rs.getInt(1));
@@ -260,8 +259,8 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 
 			e.getMessage();
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (smtmt != null) {
+				smtmt.close();
 			}
 			if (con != null) {
 				con.close();
@@ -277,14 +276,14 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 	public String findStatus(int id) throws SQLException {
 		String findUserId = "select status from category_detail where category_id=?";
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement stsmt = null;
 		ResultSet rs = null;
 		String status = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(findUserId);
-			stmt.setInt(1, id);
-			rs = stmt.executeQuery();
+			stsmt = con.prepareStatement(findUserId);
+			stsmt.setInt(1, id);
+			rs = stsmt.executeQuery();
 			if (rs.next()) {
 				status = rs.getString(1);
 			}
@@ -293,8 +292,8 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 			e.getMessage();
 		} finally {
 
-			if (stmt != null) {
-				stmt.close();
+			if (stsmt != null) {
+				stsmt.close();
 			}
 			if (con != null) {
 				con.close();

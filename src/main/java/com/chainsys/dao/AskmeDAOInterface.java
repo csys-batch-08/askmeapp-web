@@ -9,6 +9,4 @@ import com.chainsys.model.AskMe;
 public interface AskmeDAOInterface {
 	public void askmequestions(AskMe askMe) throws SQLException;	
 	public List<AskMe> FindUserId( AskMe askMe) throws SQLException;		
-	
-	
 }

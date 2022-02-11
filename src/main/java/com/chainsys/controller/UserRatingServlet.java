@@ -37,9 +37,9 @@ public class UserRatingServlet extends HttpServlet {
 			int id;
 			id = sectionDao.findSectionId(content);
 			session.setAttribute("sid", id);
-			UserRatingDAOImpl ObjRatDao = new UserRatingDAOImpl();
+			UserRatingDAOImpl objRatDao = new UserRatingDAOImpl();
 			Section section = new Section(0, content, 0, null, null,null);
-			List<UserRating> userRateList = ObjRatDao.findRating(section);
+			List<UserRating> userRateList = objRatDao.findRating(section);
 			int oldRating = 0;
 			int count = 0;
 			for (int i = 0; i < userRateList.size(); i++) {
@@ -48,7 +48,7 @@ public class UserRatingServlet extends HttpServlet {
 				count = count + 1;
 				int rating = oldRating + newRating;
 				userRating = new UserRating(content, 0, rating, count);
-				ObjRatDao.updateRating(userRating);
+				objRatDao.updateRating(userRating);
 			}
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("userHome.jsp");
 			requestDispatcher.forward(request, response);

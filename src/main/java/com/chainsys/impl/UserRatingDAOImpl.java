@@ -27,22 +27,22 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 		String updateQuery = "update section_details set rating=?,rating_count=? where section_name=?";
 		// get connection
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement psttmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setInt(1, userRating.getRating());
-			pstmt.setInt(2, userRating.getRateCount());
-			pstmt.setString(3, userRating.getSectionName());
-			pstmt.executeUpdate();
+			psttmt = con.prepareStatement(updateQuery);
+			psttmt.setInt(1, userRating.getRating());
+			psttmt.setInt(2, userRating.getRateCount());
+			psttmt.setString(3, userRating.getSectionName());
+			psttmt.executeUpdate();
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
 
-			if (pstmt != null) {
-				pstmt.close();
+			if (psttmt != null) {
+				psttmt.close();
 			}
 			if (con != null) {
 				con.close();
@@ -56,17 +56,17 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 	@Override
 	public List<UserRating> showRating() throws SQLException {
 
-		List<UserRating> userRatingList = new ArrayList<UserRating>();
+		List<UserRating> userRatingList = new ArrayList<>();
 
 		String selectQuery = "select section_name,(rating/rating_count) as average from section_details  where status='active' order by average DESC";
 
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement psstmt = null;
 
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(selectQuery);
-			ResultSet rs = pstmt.executeQuery();
+			psstmt = con.prepareStatement(selectQuery);
+			ResultSet rs = psstmt.executeQuery();
 			while (rs.next()) {
 				UserRating ratingList = new UserRating();
 				ratingList.setSectionName(rs.getString(1));
@@ -81,8 +81,8 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 			e.getMessage();
 		} finally {
 
-			if (pstmt != null) {
-				pstmt.close();
+			if (psstmt != null) {
+				psstmt.close();
 			}
 			if (con != null) {
 				con.close();
@@ -96,16 +96,16 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 	@Override
 	public List<UserRating> findRating(Section section) throws SQLException {
 
-		List<UserRating> rateList = new ArrayList<UserRating>();
+		List<UserRating> rateList = new ArrayList<>();
 		String findRating = "select rating,rating_count from section_details where section_name=?";
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement ppstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(findRating);
-			pstmt.setString(1, section.getSectionName());
-			rs = pstmt.executeQuery();
+			ppstmt = con.prepareStatement(findRating);
+			ppstmt.setString(1, section.getSectionName());
+			rs = ppstmt.executeQuery();
 			while (rs.next()) {
 				UserRating rate = new UserRating();
 				rate.setRating(rs.getInt(1));
@@ -118,8 +118,8 @@ public class UserRatingDAOImpl implements UserRatingDAOInterface {
 			e.getMessage();
 		} finally {
 
-			if (pstmt != null) {
-				pstmt.close();
+			if (ppstmt != null) {
+				ppstmt.close();
 			}
 			if (con != null) {
 				con.close();

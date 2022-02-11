@@ -28,8 +28,8 @@ public class UpdateCategoryServlet extends HttpServlet {
 			String oldCategoryName = (request.getParameter("oldCategoryName"));
 			int id = categoryDao.findCategoryId(oldCategoryName);
 			String newCategoryName = (request.getParameter("newCategoryName"));
-			Category Objcategory2 = new Category(id, newCategoryName, null,null);
-			categoryDao.update(Objcategory2);
+			Category objCategory = new Category(id, newCategoryName, null,null);
+			categoryDao.update(objCategory);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ServletException | SQLException e) {

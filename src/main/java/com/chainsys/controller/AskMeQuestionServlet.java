@@ -30,7 +30,6 @@ public class AskMeQuestionServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			QuestionDAOImpl questionDao = new QuestionDAOImpl();
 			int secId = Integer.parseInt(session.getAttribute("sectionId").toString());
-			System.out.println("sId" + secId);
 			Section section = new Section(secId, null, 0, null, null,null);
 			List<Question> questionList;
 			questionList = questionDao.showQuestion(section);

@@ -47,7 +47,7 @@ public class Section {
 	}
 	public Section() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public Section(int sectionId, String sectionName, int categoryId, String status, String image, String description) {
 		super();
