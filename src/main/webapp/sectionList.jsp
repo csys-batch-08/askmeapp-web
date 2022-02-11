@@ -10,9 +10,9 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity=''></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity=''></script>
 
 
 </head>
@@ -26,7 +26,6 @@
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="login.jsp">Home</a></li>
-
 				<li><a href="SubscriberList">Subscribers</a></li>
 				<li><a href="CommentsViewServlet">Comment By User</a></li>
 				<li><a href="UserList"> User Details</a></li>
@@ -34,23 +33,19 @@
 				<li><a href="SectionList">Section Detail</a></li>
 				<li><a href="QuestionList">Question Detail</a></li>
 				<li><a href="AnswerList">Answer Detail</a></li>
-
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown">Category <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="addCategory.jsp">Add Category</a></li>
 						<li><a href="updateCategory.jsp">Update Category</a></li>
 						<li><a href="deleteCategory.jsp">Delete Category</a></li>
-
 					</ul></li>
-
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown">Section <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="addSection.jsp">Add Section</a></li>
 						<li><a href="updateSection.jsp">Update Section</a></li>
 					</ul></li>
-
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown">Question <span class="caret"></span></a>
 					<ul class="dropdown-menu">

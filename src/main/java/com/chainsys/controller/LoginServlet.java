@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 			}
 		} catch (IOException e1) {
 
-			e1.printStackTrace();
+			e1.getMessage();
 		}
 
 		catch (PasswordIncorrect iv) {
