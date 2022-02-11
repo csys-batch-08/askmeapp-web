@@ -34,7 +34,7 @@ public class SubscribeUserDAOImpl implements SubscribeUserDAOInterface {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmt = con.prepareStatement(selectQuery);
-			pstmt.setInt(1, user.getUserId());
+			pstmt.setInt(1, user.getUseriId());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				SubscribeUser subscribeUser = new SubscribeUser();

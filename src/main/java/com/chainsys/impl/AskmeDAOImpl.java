@@ -31,9 +31,9 @@ public class AskmeDAOImpl implements AskmeDAOInterface {
 			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(insertQuery);
 			pst.setInt(1, askMe.getUserId());
-			pst.setInt(2, askMe.getCategoryId());
-			pst.setInt(3, askMe.getSectionId());
-			pst.setInt(4, askMe.getQuestionId());
+			pst.setInt(2, askMe.getCategoriesId());
+			pst.setInt(3, askMe.getSectionsId());
+			pst.setInt(4, askMe.getQuestionsId());
 			pst.executeUpdate();
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
@@ -61,11 +61,11 @@ public class AskmeDAOImpl implements AskmeDAOInterface {
 			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(selectQuery);
 			pst.setInt(1, askMe.getUserId());
-			pst.setInt(2, askMe.getQuestionId());
+			pst.setInt(2, askMe.getQuestionsId());
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				AskMe ask = new AskMe();
-				ask.setQuestionId(rs.getInt(3));
+				ask.setQuestionsId(rs.getInt(3));
 				askList.add(askMe);
 			}
 

@@ -34,7 +34,7 @@ public class AdminSubscriberServlet extends HttpServlet {
 			int id = 0;
 			boolean flag = false;
 			for (User user1 : userList) {
-				id = userDao.findUserId(user1.getEmailId());
+				id = userDao.findUserId(user1.getEmailid());
 				SubscribeUser users = new SubscribeUser(id, sectionName);
 				flag = userDao.insertSection(users);
 			}

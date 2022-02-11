@@ -33,9 +33,9 @@ public class UserDAOImpl implements UserDAOInterface {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			psst = con.prepareStatement(insertQuery);
-			psst.setString(1, user.getName());
-			psst.setString(2, user.getEmailId());
-			psst.setString(3, user.getPassword());
+			psst.setString(1, user.getUsername());
+			psst.setString(2, user.getEmailid());
+			psst.setString(3, user.getPassWord());
 			psst.executeUpdate();
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
@@ -164,10 +164,10 @@ public class UserDAOImpl implements UserDAOInterface {
 			rs = ptstmt.executeQuery();
 			while (rs.next()) {
 				User user = new User();
-				user.setUserId(rs.getInt(1));
-				user.setName(rs.getString(2));
-				user.setEmailId(rs.getString(3));
-				user.setSubscriber(rs.getString(4));
+				user.setUseriId(rs.getInt(1));
+				user.setUsername(rs.getString(2));
+				user.setEmailid(rs.getString(3));
+				user.setSubScriber(rs.getString(4));
 				userList.add(user);
 			}
 
@@ -199,7 +199,7 @@ public class UserDAOImpl implements UserDAOInterface {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			psmtmt = con.prepareStatement(updateQuery);
-			psmtmt.setString(1, user.getEmailId());
+			psmtmt.setString(1, user.getEmailid());
 			psmtmt.executeUpdate();
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
@@ -232,8 +232,8 @@ public class UserDAOImpl implements UserDAOInterface {
 			ResultSet rs = stmtm.executeQuery();
 			while (rs.next()) {
 				User user = new User();
-				user.setName(rs.getString(1));
-				user.setEmailId(rs.getString(2));
+				user.setUsername(rs.getString(1));
+				user.setEmailid(rs.getString(2));
 				userList.add(user);
 			}
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
@@ -331,12 +331,11 @@ public class UserDAOImpl implements UserDAOInterface {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			stmst = con.prepareStatement(selectQuery);
-			stmst.setString(1, user.getEmailId());
+			stmst.setString(1, user.getEmailid());
 			rs = stmst.executeQuery();
 			while (rs.next()) {
-
-				user.setName(rs.getString(1));
-				user.setPassword(rs.getString(2));
+                user.setUsername(rs.getString(1));
+                user.setPassWord(rs.getString(2));
 				userList.add(user);
 			}
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
