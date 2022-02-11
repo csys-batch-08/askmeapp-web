@@ -91,14 +91,14 @@ public class SectionDAOImpl implements SectionDAOInterface {
 	public int findSectionId(String sectionName) throws SQLException {
 		String findUserId = "select section_id from section_details where section_name=?";
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement sttmt = null;
 		ResultSet rs = null;
 		int sectionId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(findUserId);
-			stmt.setString(1, sectionName);
-			rs = stmt.executeQuery();
+			sttmt = con.prepareStatement(findUserId);
+			sttmt.setString(1, sectionName);
+			rs = sttmt.executeQuery();
 			if (rs.next()) {
 				sectionId = rs.getInt(1);
 			}
@@ -109,8 +109,8 @@ public class SectionDAOImpl implements SectionDAOInterface {
 
 			e.getMessage();
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (sttmt != null) {
+				sttmt.close();
 			}
 
 			if (con != null) {

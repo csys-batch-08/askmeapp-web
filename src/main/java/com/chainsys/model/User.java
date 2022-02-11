@@ -1,64 +1,63 @@
 package com.chainsys.model;
+
 import java.util.Objects;
 
 public class User {
-	private int userId;
-	private String name;
-	private String emailId;
-	private String password;
-	private String subscriber;
-	
-	
-	public String getSubscriber() {
-		return subscriber;
+	private int useriId;
+	private String username;
+	private String emailid;
+	private String passWord;
+	private String subScriber;
+	public int getUseriId() {
+		return useriId;
 	}
-	public void setSubscriber(String subscriber) {
-		this.subscriber = subscriber;
+	public void setUseriId(int useriId) {
+		this.useriId = useriId;
 	}
-	public int getUserId() {
-		return userId;
+	public String getUsername() {
+		return username;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getName() {
-		return name;
+	public String getEmailid() {
+		return emailid;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
 	}
-	public String getEmailId() {
-		return emailId;
+	public String getPassWord() {
+		return passWord;
 	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
 	}
-	public String getPassword() {
-		return password;
+	public String getSubScriber() {
+		return subScriber;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSubScriber(String subScriber) {
+		this.subScriber = subScriber;
 	}
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", emailId=" + emailId + ", password=" + password
-				+ ", subscriber=" + subscriber + "]";
+		return "User [useriId=" + useriId + ", username=" + username + ", emailid=" + emailid + ", passWord=" + passWord
+				+ ", subScriber=" + subScriber + "]";
 	}
 	public User() {
 		super();
-
+		// TODO Auto-generated constructor stub
 	}
-	public User(int userId, String name, String emailId, String password, String subscriber) {
+	public User(int useriId, String username, String emailid, String passWord, String subScriber) {
 		super();
-		this.userId = userId;
-		this.name = name;
-		this.emailId = emailId;
-		this.password = password;
-		this.subscriber = subscriber;
+		this.useriId = useriId;
+		this.username = username;
+		this.emailid = emailid;
+		this.passWord = passWord;
+		this.subScriber = subScriber;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(emailId, name, password, subscriber, userId);
+		return Objects.hash(emailid, passWord, subScriber, useriId, username);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -69,10 +68,12 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(emailId, other.emailId) && Objects.equals(name, other.name)
-				&& Objects.equals(password, other.password) && Objects.equals(subscriber, other.subscriber)
-				&& userId == other.userId;
+		return Objects.equals(emailid, other.emailid) && Objects.equals(passWord, other.passWord)
+				&& Objects.equals(subScriber, other.subScriber) && useriId == other.useriId
+				&& Objects.equals(username, other.username);
 	}
+	
+	
 	
 	
 }

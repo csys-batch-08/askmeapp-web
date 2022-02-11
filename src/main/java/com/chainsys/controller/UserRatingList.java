@@ -26,8 +26,8 @@ public class UserRatingList extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			UserRatingDAOImpl userRatingDao = new UserRatingDAOImpl();
-			List<UserRating> userRatingList = userRatingDao.showRating();			
-			request.setAttribute("userRatingList", userRatingList);			
+			List<UserRating> userRatingLists = userRatingDao.showRating();			
+			request.setAttribute("userRatingList", userRatingLists);			
 			RequestDispatcher req = request.getRequestDispatcher("categoryList.jsp");
 			req.forward(request, response);
 		} catch (SQLException e) {

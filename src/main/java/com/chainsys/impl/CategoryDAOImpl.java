@@ -119,33 +119,33 @@ public class CategoryDAOImpl implements CategoryDAOInterface {
 
 		Connection con = null;
 		PreparedStatement pstmtt = null;
-		PreparedStatement pstmt1 = null;
-		PreparedStatement pstmt2 = null;
-		PreparedStatement pstmt3 = null;
+		PreparedStatement pstmts = null;
+		PreparedStatement pstmte = null;
+		PreparedStatement pstmtp = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pstmtt = con.prepareStatement(updateQuery);
 			pstmtt.setInt(1, id);
 			pstmtt.executeUpdate();
 
-			pstmt1 = con.prepareStatement(updateQuery1);
-			pstmt1.setInt(1, id);
-			pstmt1.executeUpdate();
+			pstmts = con.prepareStatement(updateQuery1);
+			pstmts.setInt(1, id);
+			pstmts.executeUpdate();
 
-			pstmt2 = con.prepareStatement(updateQuery2);
-			pstmt2.executeUpdate();
+			pstmte = con.prepareStatement(updateQuery2);
+			pstmte.executeUpdate();
 
-			pstmt3 = con.prepareStatement(updateQuery3);
-			pstmt3.executeUpdate();
+			pstmtp = con.prepareStatement(updateQuery3);
+			pstmtp.executeUpdate();
 
 		} catch (SQLException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 
 			e.getMessage();
 		} finally {
 			ConnectionUtil.closePreparedStatement(pstmtt, con);
-			ConnectionUtil.closePreparedStatement(pstmt1, con);
-			ConnectionUtil.closePreparedStatement(pstmt2, con);
-			ConnectionUtil.closePreparedStatement(pstmt3, con);
+			ConnectionUtil.closePreparedStatement(pstmts, con);
+			ConnectionUtil.closePreparedStatement(pstmte, con);
+			ConnectionUtil.closePreparedStatement(pstmtp, con);
 		}
 
 	}

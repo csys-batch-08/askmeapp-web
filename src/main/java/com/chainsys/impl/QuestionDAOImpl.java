@@ -192,14 +192,14 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 	public int findSectionId(int qId) throws SQLException {
 		String findUserId = "select section_id from question_details where question_id=?";
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement stmte = null;
 		ResultSet rs = null;
 		int sectionId = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			stmt = con.prepareStatement(findUserId);
-			stmt.setInt(1, qId);
-			rs = stmt.executeQuery();
+			stmte = con.prepareStatement(findUserId);
+			stmte.setInt(1, qId);
+			rs = stmte.executeQuery();
 			if (rs.next()) {
 				sectionId = rs.getInt(1);
 			}
@@ -209,8 +209,8 @@ public class QuestionDAOImpl implements QuestionDAOInterface {
 			e.getMessage();
 		} finally {
 
-			if (stmt != null) {
-				stmt.close();
+			if (stmte != null) {
+				stmte.close();
 			}
 			if (con != null) {
 				con.close();
